@@ -6,6 +6,8 @@
 
     if(isset($dataset)){
         echo json_encode(["status" => "success"]);
+    }else{
+        echo json_encode(["status" => "error"]);
     }
 
 
