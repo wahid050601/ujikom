@@ -99,7 +99,7 @@
 
             <!-- INFORMATION DETAIL -->
             <div class="col-lg-5">
-                <div class="card border">
+                <div class="card border" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
                     <div class="card-header text-center h6 border border-buttom"><i class="fas fa-search"></i>&nbsp; Detail Pembayaran SPP</div>
                     <div class="card-body">
                         <!-- Notice -->
@@ -261,65 +261,6 @@
                 // KET PEMBAYARAN SISWA
                 let idSiswashowpay = $('#spp-siswa-sl').val();
                 showDetailPaymentSpp(idSiswashowpay);
-
-                // $.ajax({
-                //     method: "POST",
-                //     url: "pages/spp/spp-load-data.php",
-                //     dataType: "json",
-                //     data: {
-                //         "type" : "dtlSppSiswa",
-                //         "idsiswa" : $(this).val()
-                //     },
-                //     success: function(msg){
-                //         if(msg.data == ''){
-
-                //             $('.list-detail-spp-siswa').empty();
-                //             $('.spp-null').show();
-                //         }else{
-
-                //             $('.list-detail-spp-siswa').empty();
-                //             $('.spp-null').hide();
-
-                //             var dataDetail = '';
-                //             $.each(msg.data, function(key, val){
-                //                 dataDetail += '<li class="list-group-item d-flex justify-content-between align-items-center"><span class="spp-name">'+ val.jns_pem +'</span><span class="spp-sts"><span class="label label-success badge-pill"><i class="fas fa-check"></i></span><span data-idspp="'+ val.id_jns +'" class="label btn-primary badge-pill show-detail-spp"><i class="fas fa-eye"></i></span></span></li>'
-                //             });
-                //             $('.list-detail-spp-siswa').append(dataDetail);
-
-
-                //             // Action Show Detail SPP
-                //             $('.show-detail-spp').on('click', function(){
-
-                //                 $.ajax({
-                //                     method: "POST",
-                //                     url: "pages/spp/spp-load-data.php",
-                //                     dataType: "json",
-                //                     data: {
-                //                         "type" : "showSppSiswa",
-                //                         "idspp" : $(this).data("idspp")
-                //                     },
-                //                     success: function(msg){
-                                        
-                //                         $.each(msg.data, function(key, val){
-                //                             $('#show-siswa').html(val.nama_siswa);
-                //                             $('#show-nis').html(val.nis_siswa);
-                //                             $('#show-kls').html(val.kls_siswa);
-                //                             $('#show-prod').html(val.prod_siswa);
-                //                             $('#show-spp').html(val.jns_pem);
-                //                             $('#show-val').html('Rp. '+val.jns_val);
-                //                             $('#show-sts').html('<span class="label label-success"><i class="fas fa-check"></i></i>&nbsp; '+val.sts_pem+'</span>');
-                //                             $('#show-tgl').html(val.tgl_pem);
-                //                             $('#show-adm').html(val.nama_usr);
-                //                         });
-                //                     }
-                //                 });
-                //                 $('#detailSpp').modal('show');
-                //                 // alert("SHOW DATA")
-                //             })
-                            
-                //         }
-                //     }
-                // });
             }
             
         });
@@ -348,57 +289,6 @@
                 let Validspp = $('#spp-sl').val();
                 $('span.icon').html('<i class="fas fa-sync-alt fa-spin"></i>');
                 validasiPaymentSpp(Validsiswa, Validspp);
-
-                // $.ajax({
-                //     method: 'POST',
-                //     url: "pages/spp/spp-func-data.php",
-                //     dataType: 'json',
-                //     data: {
-                //         "act" : "procSpp",
-                //         "idsiswa" : idsiswa,
-                //         "idspp" : idspp,
-                //         "validasi": "true"
-                //     },
-                //     success: function(msg){
-                //         if(msg.status == 'notreadypay'){
-                //             $('#spp-siswa-sl').attr('disabled', true);
-                //             $('#spp-sl').attr('disabled', true);
-                //             $('#btn-gnr-spp').addClass('btn-disabled disabled waves-effect waves-light');
-                //             $('#btn-gnr-spp').attr('disabled', true);
-                //             $('.info-payspp-show').css('display', 'contents');
-
-                //             $.each(msg.datas, function(key, val){
-                //                 $('.header-payspp-siswa').html(val.jns_pem+' - '+val.prod_siswa);
-                //                 $('.nama-siswa').html(val.nama_siswa);
-                //                 $('.nis-siswa').html(val.nis_siswa);
-                //                 $('.nis-nisn-siswa').html(val.nis_siswa);
-                //                 $('.tgl-pem-siswa').html(val.tgl_pem);
-                //                 $('.validator-siswa').html(val.nama_usr);
-                //             });
-                //         }else if(msg.status == 'readypay'){
-                //             $('#spp-siswa-sl').attr('disabled', true);
-                //             $('#spp-sl').attr('disabled', true);
-                //             $('#btn-gnr-spp').addClass('btn-disabled disabled waves-effect waves-light');
-                //             $('#btn-gnr-spp').attr('disabled', true);
-                            
-                //             // DATA SISWA
-                //             $.each(msg.siswa, function(key, val){
-                //                 $('#nama-siswa').html(val.nama_siswa);
-                //                 $('#nis-siswa').html(val.nis_siswa);
-                //                 $('#kls-siswa').html(val.kls_siswa);
-                //                 $('#prod-siswa').html(val.prod_siswa);
-                //             });
-    
-                //             // DATA SPP
-                //             $.each(msg.spp, function(key, val){
-                //                 $('#ket-spp').html(val.jns_pem);
-                //                 $('#val-spp').html('Rp. '+val.jns_val);
-                //             });
-                //             $('.table-spp').css('display', 'contents');
-                //         }
-                        
-                //     }
-                // });
             }
         });
 
