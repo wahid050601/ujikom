@@ -35,7 +35,7 @@
                             <table id="table-katg" class="table table-striped table-bordered table-xs" style="width:100%">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <td class="text-center">No.</td>
+                                        <!-- <td class="text-center">No.</td> -->
                                         <td class="text-center">Kategori</td>
                                         <td class="text-center">Action</td>
                                     </tr>
@@ -44,6 +44,7 @@
                                     <!-- Data Here -->
                                 </tbody>
                             </table>
+                            <small style="font-size: 11px; color:red; font-style: italic;"> *) pilih salah satu kategori</small>
                         </div>
                     </div>
                 </div>
@@ -85,7 +86,10 @@
                 
                 let kategori = '';
                 $.each(msg.data, function(key, val){
-                    kategori += '<tr><td>'+val.num+'</td><td>'+val.katg+'</td><td>'+val.action+'</td></tr>';
+
+                    // kategori += '<tr><td>'+val.num+'</td><td>'+val.katg+'</td><td>'+val.action+'</td></tr>';
+                    let actionButton = '<span id="btnKatg" data-idkatg="'+val.katg_pem+'" class="label btn-primary">show <i class="fas fa-eye"></i></span>';
+                    kategori += '<tr><td><span class="label label-success"><i class="fas fa-cube"></i> &nbsp;'+val.katg_pem.toUpperCase()+'</span></td><td class="text-center">'+actionButton+'</td></tr>';
                 });
 
                 $('.tab-show-katg').append(kategori);

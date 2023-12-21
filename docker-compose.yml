@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  apache:
+    # build: .
+    image: php:apache
+    container_name: myapps
+    volumes:
+      # - ./:/usr/local/apache2/htdocs/myapps
+      - ./:/var/www/html/myapps
+    environment:
+      DB_HOST: host.docker.internal
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: wahid561
+      DB_DATABASE: fa_addawah
+    ports:
+      - "561:80"
+      - "443:443"
