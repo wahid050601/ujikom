@@ -57,7 +57,7 @@
         </button>
       </div>
       <div class="modal-body">
-      <form action="" method="POST">
+      <form action="" method="POST" id="formAddPemSpp">
         <div class="form-group">
             <label for="">Bulan</label>
             <select class="custom-select form-control-sm" name="bulan-spp" id="bulan-spp" style="width: 100%;">
@@ -101,7 +101,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; batal</button>
-        <button type="submit" class="btn btn-primary btn-sm" id="btnadd-spp"><i class="fas fa-save"></i>&nbsp; simpan</button>
+        <button type="button" onclick="AddPembayaranSpp($('#formAddPemSpp').serialize())" class="btn btn-primary btn-sm" id="btnadd-spp"><i class="fas fa-save"></i>&nbsp; simpan</button>
       </div>
       </form>
     </div>

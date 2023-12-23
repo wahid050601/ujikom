@@ -10,12 +10,12 @@
 
             // ADD PEMBAYARAN SPP
             case "addpemSpp" :
-                $bulan = $_POST["bulan"];
-                $tkj = $_POST["valtkj"];
-                $akl = $_POST["valakl"];
-                $bdp = $_POST["valbdp"];
-                $tp = $_POST["tp"];
-                $smtr = $_POST["smtr"];
+                $bulan = $_POST["bulan-spp"];
+                $tkj = $_POST["tkjpem-spp"];
+                $akl = $_POST["aklpem-spp"];
+                $bdp = $_POST["bdppem-spp"];
+                $tp = $_POST["tp-spp"];
+                $smtr = $_POST["smtr-spp"];
 
                 //VALIDASI DUPLICATE
                 $query="select * from tb_jns_pem where jns_pem like '%$bulan%' and jns_tp = '$tp'";
@@ -35,14 +35,16 @@
                     if(mysqli_query($koneksi, $query)) {
                         echo json_encode([
                             "status" => "success",
-                            "info" => "data pembayaran berhasil ditambah",
-                            "text" => ' <br> silahkan tekan tombol <button class="btn label btn-primary"><i class="fas fa-sync-alt"></i></button> untuk <strong>merefresh</strong> data'
+                            "info" => "Pembayaran SPP",
+                            "text" => ' <br><strong>Pembayaran BERHASIL ditambah</strong>',
+                            "katPem" => "spp"
                         ]);
                     }else{
                         echo json_encode([
                             "status" => "error",
-                            "info" => "data pembayaran gagal ditambah",
-                            "text" => ""
+                            "info" => "Pembayaran SPP",
+                            "text" => "<br><strong>Pembayaran GAGAL ditambah</strong>",
+                            "katPem" => "spp"
                         ]);
                     }
                     
@@ -118,24 +120,22 @@
                     $prep = mysqli_query($koneksi, $query);
                     if($prep){
                         $stsdel = "success";
-                        $info = "data pembayaran bulan ".$bulan." tahun pelajaran ".$tp." semester ".$smtr." berhasil di hapus";
-                        $text = '<br> silahkan tekan tombol <button class="btn label btn-primary"><i class="fas fa-sync-alt"></i></button> untuk <strong>merefresh</strong> data';
+                        // $info = "data pembayaran bulan ".$bulan." tahun pelajaran ".$tp." semester ".$smtr." berhasil di hapus";
+                        $info = "Pembayaran SPP";
+                        $text = '<br><strong>Pembayaran BERHASIL dihapus</strong>';
                     }else{
                         $stsdel = "error";
-                        $info = "data pembayaran gagal dihapus";
-                        $text = "";
+                        $info = "Pembayaran SPP";
+                        $text = "<br><strong>Pembayaran GAGAL dihapus</strong>";
                     }
                 }
 
                 // Get Tahun Pelajaran Pembayaran
                 $jnstp = [];
                 if(isset($_POST["katg"])){
-                    $query1 = "select * from tb_jns_pem where jns_katg = '" .$_POST["katg"]. "' group by jns_tp";
-                    $prep = $koneksi->prepare($query1);
-                    $prep->execute();
-                    $rest = $prep->get_result();
-                    // $jnstp = [];
-                    while($row = $rest->fetch_assoc()){
+                    $query1 = "select jns_tp from tb_jns_pem where jns_katg = '" .$_POST["katg"]. "' group by jns_tp";
+                    $execQueryTp = mysqli_query($koneksi, $query1);
+                    while($row = mysqli_fetch_assoc($execQueryTp)){
                         $jnstp[] = $row;
                     }
                 }
@@ -147,7 +147,8 @@
                     "statusDel" => [
                         "stsdel" => $stsdel,
                         "info" => $info,
-                        "text" => $text
+                        "text" => $text,
+                        "katPem" => "spp"
                     ]
                 ]);
             break;
@@ -201,14 +202,16 @@
                 if($exec){
                     echo json_encode([
                         "status" => "success",
-                        "info" => "data pembayaran ".$pembayaran_ujian. "-Kelas " .$kelas_pem_ujian." tahun pelajaran ".$tp_pem_ujian." semester ".$smtr_pem_ujian." berhasil di tambah",
-                        "text" => '<br> silahkan tekan tombol <button class="btn label btn-primary"><i class="fas fa-sync-alt"></i></button> untuk <strong>merefresh</strong> data',
+                        "info" => "Pembayaran UJIAN",
+                        "text" => ' <br><strong>Pembayaran BERHASIL ditambah</strong>',
+                        "katPem" => "ujian"
                     ]);
                 }else{
                     echo json_encode([
                         "status" => "success",
-                        "info" => "data pembayaran ujian gagal di tambah",
-                        "text" => '',
+                        "info" => "Pembayaran UJIAN",
+                        "text" => ' <br><strong>Pembayaran GAGAL ditambah</strong>',
+                        "katPem" => "ujian"
                     ]);
                 }
             break;
@@ -251,14 +254,16 @@
                     if($exec){
                         echo json_encode([
                             "status" => "success",
-                            "info" => "data pembayaran berhasil di hapus",
-                            "text" => '<br> silahkan tekan tombol <button class="btn label btn-primary"><i class="fas fa-sync-alt"></i></button> untuk <strong>merefresh</strong> data'
+                            "info" => "Pembayaran UJIAN",
+                            "text" => ' <br><strong>Pembayaran BERHASIL dihapus</strong>',
+                            "katPem" => "ujian"
                         ]);
                     }else{
                         echo json_encode([
-                            "status" => "error",
-                            "info" => "data pembayaran gagal di hapus",
-                            "text" => ''
+                            "status" => "success",
+                            "info" => "Pembayaran UJIAN",
+                            "text" => ' <br><strong>Pembayaran GAGAL dihapus</strong>',
+                            "katPem" => "ujian"
                         ]);
                     }
                 }
@@ -288,14 +293,16 @@
                     if($execQ){
                         echo json_encode([
                             "status" => "success",
-                            "info" => "data pembayaran ".$val_data." berhasil di tambah",
-                            "text" => '<br> silahkan tekan tombol <button class="btn label btn-primary"><i class="fas fa-sync-alt"></i></button> untuk <strong>merefresh</strong> data'
+                            "info" => "Pembayaran KEGIATAN",
+                            "text" => ' <br><strong>Pembayaran BERHASIL ditambah</strong>',
+                            "katPem" => "kegiatan"
                         ]);
                     }else{
                         echo json_encode([
                             "status" => "error",
-                            "info" => "data pembayaran gagal di tambah",
-                            "text" => ''
+                            "info" => "Pembayaran KEGIATAN",
+                            "text" => ' <br><strong>Pembayaran GAGAL ditambah</strong>',
+                            "katPem" => "kegiatan"
                         ]);
                     }
                 }else{
