@@ -152,7 +152,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="detailSppLabel">Detail SPP</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
                 </button>
             </div>
             <div class="modal-body">
@@ -420,7 +420,7 @@
                 "idsiswa" : idSiswa
             },
             success: function(msg){
-                if(msg.data == ''){
+                if(msg.data == null){
 
                     $('.list-detail-spp-siswa').empty();
                     $('.spp-null').show();
@@ -456,9 +456,9 @@
                                     $('#show-prod').html(val.prod_siswa);
                                     $('#show-spp').html(val.jns_pem);
                                     $('#show-val').html('Rp. '+val.jns_val);
-                                    $('#show-sts').html('<span class="label label-success"><i class="fas fa-check"></i></i>&nbsp; '+val.sts_pem+'</span>');
-                                    $('#show-tgl').html(val.tgl_pem);
-                                    $('#show-adm').html(val.nama_usr);
+                                    $('#show-sts').html('<span class="label label-success"><i class="fas fa-check"></i></i>&nbsp; '+val.status_spp+'</span>');
+                                    $('#show-tgl').html(val.tanggal_pem);
+                                    $('#show-adm').html(val.nama_adm);
                                 });
                             }
                         });
@@ -497,8 +497,8 @@
                         $('.nama-siswa').html(val.nama_siswa);
                         $('.nis-siswa').html(val.nis_siswa);
                         $('.nis-nisn-siswa').html(val.nis_siswa);
-                        $('.tgl-pem-siswa').html(val.tgl_pem);
-                        $('.validator-siswa').html(val.nama_usr);
+                        $('.tgl-pem-siswa').html(val.tanggal_pem);
+                        $('.validator-siswa').html(val.nama_adm);
                     });
                 }else if(msg.status == 'readypay'){
                     $('.info-payspp-show').css('display', 'none');
