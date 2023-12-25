@@ -420,7 +420,7 @@
                 "idsiswa" : idSiswa
             },
             success: function(msg){
-                if(msg.data == null){
+                if(msg.data == ''){
 
                     $('.list-detail-spp-siswa').empty();
                     $('.spp-null').show();
