@@ -10,12 +10,12 @@
 
             // ADD PEMBAYARAN SPP
             case "addpemSpp" :
-                $bulan = $_POST["bulan-spp"];
-                $tkj = $_POST["tkjpem-spp"];
-                $akl = $_POST["aklpem-spp"];
-                $bdp = $_POST["bdppem-spp"];
-                $tp = $_POST["tp-spp"];
-                $smtr = $_POST["smtr-spp"];
+                $bulan = $_POST["bulan"];
+                $tkj = $_POST["valtkj"];
+                $akl = $_POST["valakl"];
+                $bdp = $_POST["valbdp"];
+                $tp = $_POST["tp"];
+                $smtr = $_POST["smtr"];
 
                 //VALIDASI DUPLICATE
                 $query="select * from tb_jns_pem where jns_pem like '%$bulan%' and jns_tp = '$tp'";
@@ -53,6 +53,7 @@
                         "status" => "warning",
                         "info" => "data pembayaran bulan $bulan tahun pelajaran $tp sudah tersedia",
                         "text" => "",
+                        "katPem" => "spp"
                     ]);
                 }
             break;
@@ -86,9 +87,16 @@
 
                         // CHECK STATUS KETERSEDIAAN HAPUS PEMBAYARAN
                         if($stspem != null){
-                            $query_sts = "select tb_siswa.nama_siswa as siswa, tb_jns_pem.jns_pem as pembayaran, tb_pem_spp.tgl_pem as tgl, tb_pem_spp.sts_pem as status 
-                            from tb_pem_spp left join tb_siswa on tb_pem_spp.id_siswa = tb_siswa.id left join tb_jns_pem  on tb_pem_spp.id_spp  = tb_jns_pem.id_jns 
+                            $query_sts = "
+                            select 
+                            tb_siswa.nama_siswa as siswa, 
+                            tb_jns_pem.jns_pem as pembayaran, 
+                            tb_pem_spp.tanggal_pem as tgl, 
+                            tb_pem_spp.status_spp as status 
+                            from tb_pem_spp left join tb_siswa on tb_pem_spp.id_siswa = tb_siswa.id 
+                            left join tb_jns_pem  on tb_pem_spp.id_spp  = tb_jns_pem.id_jns 
                             where id_spp = ".$jnsid[0]." or id_spp = ".$jnsid[1]." or id_spp = ".$jnsid[2];
+                            
                             $prep_sts = mysqli_query($koneksi ,$query_sts);
                             while($row = mysqli_fetch_assoc($prep_sts)){
                                 $jnspem[] = $row;
@@ -221,10 +229,14 @@
                 if(isset($_POST["id_pem"])){
                     $id = $_POST["id_pem"];
 
-                    $query = 'select tb_siswa.nama_siswa as nama, tb_pem_ujian.sts_pem_u as status from tb_pem_ujian 
-                    left join tb_jns_pem on tb_pem_ujian.id_pem_u = tb_jns_pem.id_jns 
+                    $query = 'select 
+                    tb_siswa.nama_siswa as nama, 
+                    tb_pem_ujian.status_pem as status 
+                    from tb_pem_ujian 
+                    left join tb_jns_pem on tb_pem_ujian.id_pem_ujian = tb_jns_pem.id_jns 
                     left join tb_siswa on tb_siswa.id = tb_pem_ujian.id_siswa 
                     where tb_pem_ujian.id_ujian = ' . $id;
+                    
                     $exec = mysqli_query($koneksi, $query);
                     $data_del = [];
                     while($rows = mysqli_fetch_assoc($exec)){
@@ -319,12 +331,18 @@
                 if(isset($_POST["idkegiatan"])){
                     $id_kegiatan = $_POST["idkegiatan"];
                     
-                    $queryValdel = "select * from tb_pem_kegiatan where id_pem_keg = $id_kegiatan";
+                    $queryValdel = "select * from tb_pem_kegiatan where id_keg = $id_kegiatan";
                     $checkValdel = mysqli_query($koneksi, $queryValdel);
             
                     if(mysqli_fetch_row($checkValdel) != null){
-                        $queryValdel1 = "select b.nama_siswa as siswa, a.sts_pem_keg as status from tb_pem_kegiatan a 
-                        left join tb_siswa b on a.id_siswa = b.id where a.id_pem_keg = $id_kegiatan";
+                        $queryValdel1 = "
+                        select 
+                        b.nama_siswa as siswa, 
+                        a.status_pem as status 
+                        from tb_pem_kegiatan a 
+                        left join tb_siswa b on a.id_siswa = b.id 
+                        where a.id_keg = $id_kegiatan";
+
                         $execVal = mysqli_query($koneksi, $queryValdel1);
                         $data_valDel = [];
                         while($rows = mysqli_fetch_assoc($execVal)){
@@ -352,14 +370,16 @@
                     if($exec){
                         echo json_encode([
                             "status" => "success",
-                            "info" => "data pembayaran berhasil di hapus",
-                            "text" => '<br> silahkan tekan tombol <button class="btn label btn-primary"><i class="fas fa-sync-alt"></i></button> untuk <strong>merefresh</strong> data'
+                            "info" => "Pembayaran KEGIATAN",
+                            "text" => '<br><strong>Pembayaran BERHASIL dihapus</strong>',
+                            "katPem" => "kegiatan"
                         ]);
                     }else{
                         echo json_encode([
                             "status" => "error",
-                            "info" => "data pembayaran gagal di hapus",
-                            "text" => ''
+                            "info" => "Pembayaran KEGIATAN",
+                            "text" => ' <br><strong>Pembayaran GAGAL dihapus</strong>',
+                            "katPem" => "kegiatan"
                         ]);
                     }
                 }

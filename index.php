@@ -58,7 +58,7 @@
 
   <body>
   <!-- Pre-loader start -->
-  <div class="theme-loader">
+  <!-- <div class="theme-loader">
       <div class="loader-track">
           <div class="preloader-wrapper">
               <div class="spinner-layer spinner-blue">
@@ -109,8 +109,30 @@
               </div>
           </div>
       </div>
-  </div>
+  </div> -->
   <!-- Pre-loader end -->
+<!-- ========================LOADING======================== -->
+<style>
+.loading {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(255, 255, 255, 1);
+color: black;
+display: flex;
+align-items: center;
+justify-content: center;
+z-index: 9999;
+font-size: 30px;
+}
+</style>
+<div id="loading" class="loading">
+    <img src="assets/images/setting.gif" alt="loading" style="width: 90px;"> &nbsp; Loading ...
+</div>
+<!-- ========================LOADING======================== -->
+
   
   <div id="pcoded" class="pcoded">
       <div class="pcoded-overlay-box"></div>
@@ -143,7 +165,7 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <img src="assets/images/wahid.JPG" class="img-radius" alt="User-Profile-Image">
                                     <span>Wahid Prayogo</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
@@ -171,7 +193,7 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="assets/images/avatar-4.jpg" alt="User-Profile-Image">
+                                    <img class="img-80 img-radius" src="assets/images/wahid.JPG" alt="User-Profile-Image">
                                     <div class="user-details">
                                         <span id="more-details">Wahid Prayogo</span>
                                     </div>
@@ -381,6 +403,7 @@
                 success: function(page){
                     $('.show-page').html(page);
                     $('title').html("My Addawah | Dashboard");
+                    $('#loading').hide();
                 }
             });
         });

@@ -1,23 +1,3 @@
-<!-- ========================LOADING======================== -->
-<style>
-  .loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  font-size: 30px;
-}
-</style>
-<!-- <div id="loading" class="loading"><i class="fas fa-circle-notch fa-spin fa-lg"></i>&nbsp; Loading</div> -->
-<!-- ========================LOADING======================== -->
-
 <div class="list-group-item text-center">
     <h6><i class="fas fa-bookmark"></i>&nbsp; Data Pembayaran <span class="header-pem" style="text-transform: uppercase;"></span></h6>
 </div>
@@ -30,13 +10,13 @@
 <table id="table-jns" class="table table-striped table-bordered table-xs" style="width:100%">
     <thead>
         <tr class="bg-primary">
-            <td>No.</td>
-            <td>Pembayaran</td>
-            <td>Prodi</td>
-            <td>Nominal</td>
-            <td>Cicilan</td>
-            <td>Tahun Pelajaran</td>
-            <td>Kategori</td>
+            <td class="text-center">No.</td>
+            <td class="text-center">Pembayaran</td>
+            <td class="text-center">Prodi</td>
+            <td class="text-center">Nominal</td>
+            <td class="text-center">Cicilan</td>
+            <td class="text-center">Tahun Pelajaran</td>
+            <td class="text-center">Kategori</td>
         </tr>
     </thead>
     <tbody id="show-pem">
@@ -86,7 +66,7 @@
 
         <div class="form-group">
             <label for="">Tahun Pelajaran</label>
-            <input type="text" class="form-control form-control-sm" name="tp-spp" id="tp-spp">
+            <input type="text" class="form-control form-control-sm" name="tp-spp" id="tp-spp" placeholder="Ex: 2018/2019">
         </div>
 
         <div class="form-group">
@@ -94,14 +74,14 @@
             <select class="custom-select form-control-sm" name="smtr-spp" id="smtr-spp" style="width: 100%;">
                 <option value="">__ pilih semester __</option>
                 <option value="ganjil">Ganjil</option>
-                <option value="genap"></option>
+                <option value="genap">Genap</option>
             </select>
         </div>
         
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; batal</button>
-        <button type="button" onclick="AddPembayaranSpp($('#formAddPemSpp').serialize())" class="btn btn-primary btn-sm" id="btnadd-spp"><i class="fas fa-save"></i>&nbsp; simpan</button>
+        <button type="button" class="btn btn-primary btn-sm" id="btnadd-spp"><i class="fas fa-save"></i>&nbsp; simpan</button>
       </div>
       </form>
     </div>
@@ -176,18 +156,11 @@
         </div>
 
         <!-- READY DELL -->
+        <hr>
         <div class="ready-del-spp" style="display: none;">
-          <hr>
-          <div class="alert bg-success text-center text-white">
-            <i class="fas fa-check"></i> <i class="text-del-spp"> </i>
-          </div>
-          <ul class="list-group" style="margin-top: -20px;">
-            <li class="list-group-item list-show-pem-spp">
-
-            </li>
-          </ul>
+          <img src="assets/images/verified.gif" alt="verified" style="width: 40px;">
+          <span>Validasi Berhasil! Data dapat dihapus</span>
         </div>
-        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" id="btncanceldelpem" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; batal</button>
@@ -246,26 +219,7 @@
         </div>
 
         <div class="form-group form-prodi">
-          <!-- <div class="row">
-            <div class="col-lg-8">
-              <input type="text" class="form-control form-control-sm" id="nominal-pem" name="nominal-pem">
-            </div>
-            <div class="col-lg-4">
-              <select class="custom-select form-control-sm" name="ccl-nominal-pem" id="ccl-nominal-pem" style="width: 100%;">
-                <option value="">__cicilan__</option>
-                <option value="1">1x Cicilan</option>
-                <option value="2">2x Cicilan</option>
-                <option value="3">3x Cicilan</option>
-                <option value="4">4x Cicilan</small></option>
-                <option value="5">5x Cicilan</option>
-                <option value="6">6x Cicilan</option>
-                <option value="7">7x Cicilan</option>
-                <option value="8">8x Cicilan</option>
-                <option value="9">9x Cicilan</option>
-                <option value="10">10x Cicilan</option>
-              </select>
-            </div>
-          </div> -->
+          <!-- PRODI HERE -->
         </div>
 
         <div class="form-group">
@@ -298,25 +252,25 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title" id="modalDellUjianLabel"> <i class="fas fa-trash"></i> Hapus Data Pembayaram Ujian</h6>
+        <h6 class="modal-title" id="modalDellUjianLabel"><i class="fas fa-th-list"></i> Data Pembayaran Ujian</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
         </button>
       </div>
       <div class="modal-body">
         <!-- NOT READY DELL -->
-        <div class="notready-del" style="display: none;">
+        <div class="notready-del" style="display: contents;">
           <style>
             .list-pem-ujian {
               height: 150px;
               width: auto;
               overflow-y: scroll;
-              overflow-x: scroll;
+              /* overflow-x: scroll; */
             }
           </style>
           <small class="text-danger"><i>*) data pembayaran ujian tidak dapat dihapus, terdapat siswa yang sudah melakukan pembayaran</i></small>
           <ul class="list-group">
-            <li class="list-group-item bg-primary text-center" style="padding: 3px;">Ujian Semester Ganjil-Kelas X</li>
+            <li class="list-group-item bg-primary text-center header-pem-ujian" style="padding: 3px;"> </li>
             <li class="list-group-item  list-pem-ujian">
 
             </li>
@@ -324,17 +278,17 @@
         </div>
         
         <!-- READY DELL -->
-        <div class="ready-del" style="display: none;">
+        <!-- <div class="ready-del" style="display: none;">
           <div class="alert bg-success text-center text-white">
             <i class="fas fa-check"></i> <i class="text-del"> </i>
           </div>
-        </div>
+        </div> -->
 
       </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fas fa-times"></i> Batal</button>
-        <button type="button" class="btn btn-primary btn-sm" id="btndell-ujian-pem"><i class="fas fa-trash"></i> Hapus</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fas fa-times"></i> Tutup</button>
+        <!-- <button type="button" class="btn btn-primary btn-sm" id="btndell-ujian-pem"><i class="fas fa-trash"></i> Hapus</button> -->
       </div>
     </div>
   </div>
@@ -437,14 +391,14 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h6 class="modal-title" id="modalDellKegiatanLabel"><i class="fas fa-trash"></i> Hapus Data Pembayaran Kegiatan</h6>
+        <h6 class="modal-title" id="modalDellKegiatanLabel"><i class="fas fa-th-list"></i>&nbsp; Data Pembayaran Kegiatan</h6>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
         </button>
       </div>
       <div class="modal-body">
         <!-- NOT READY DELL -->
-        <div class="notready-del" style="display: none;">
+        <div class="notready-del">
           <style>
             .list-pem-kegiatan {
               height: 150px;
@@ -461,20 +415,480 @@
             </li>
           </ul>
         </div>
-        
-        <!-- READY DELL -->
-        <div class="ready-del" style="display: none;">
-          <div class="alert bg-success text-center text-white">
-            <i class="fas fa-check"></i> <i class="text-del"> </i>
-          </div>
-        </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fas fa-times"></i> Batal</button>
-        <button type="button" class="btn btn-primary btn-sm" id="btndell-kegiatan-pem"><i class="fas fa-trash"></i> Hapus</button>
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fas fa-times"></i> Tutup</button>
+        <!-- <button type="button" class="btn btn-primary btn-sm" id="btndell-kegiatan-pem"><i class="fas fa-trash"></i> Hapus</button> -->
       </div>
     </div>
   </div>
 </div>
 <!-- END MODAL DATA KEGIATAN -->
+
+
+
+
+<script>
+  // ADD PEMBAYARAN SHOW ALL MODAL
+  $('.button-spp').on('click', '#bntaddpem', function(){
+    var data = $('#bntaddpem').data('katg');
+
+    if(data == "spp"){
+        $('#modalAddSpp').modal('show');
+    }else if(data == "ujian"){
+        $('#modalAddUjian').modal('show');
+    }else if(data == 'kegiatan'){
+        $('#modalAddKegiatan').modal('show');
+    }
+  });
+
+
+  // ================================================================== SPP SECTION ========================================
+  // DELETE PEMBAYARAN SPP (SHOW)
+  $('.button-spp').on('click', '#bntdellpem', function(){
+    $('#btn-val-del-spp').hide();
+    let kategori = $('#bntdellpem').data('katg');
+
+    $('#smtr-spp-del').on('change', function(){
+      if($('#bulan-spp-del').val() == '' || $('#tp-spp-del').val() == ''){
+        alert("lengkapi form sebelumnya");
+        $('#smtr-spp-del').val('');
+      }else{
+        $('#btn-val-del-spp').show();
+      }
+    });
+
+    $('#modalDellSpp').modal('show');
+    $('#formDelSpp')[0].reset();
+    $('.notice').empty();
+    $('#btndel-spp').attr('disabled', true);
+    $('#btndel-spp').addClass('btn-disabled');
+    $('#tp-spp-del').empty();
+    $('.tb-del-spp').empty();
+    $('.notready-del-spp').css('display', 'none');
+    $('.ready-del-spp').css('display', 'none');
+
+    $.ajax({
+      method: "POST",
+      url: "pages/adm-katg/adm-katg-func.php",
+      dataType: "json",
+      data: {
+          "action" : "delpemSpp",
+          "katg" : kategori
+      },
+      success: function(msg){
+        // Append Tahun Pelajaran
+        let tp = '';
+        $.each(msg.jnstp, function(key, val){
+            tp += '<option value="'+val.jns_tp+'">'+val.jns_tp+'</option>';
+        });
+        $('#tp-spp-del').append('<option value="">__ pilih tahun pelajaran __</option>').append(tp);
+      }
+    });
+
+  });
+
+  
+  // VALIDATION DELETE PEMBAYARAN SPP
+  $('#btn-val-del-spp').on('click', function(event){
+    $.ajax({
+      method: "POST",
+      url: "pages/adm-katg/adm-katg-func.php",
+      dataType: "json",
+      data:{
+          "action" : "delpemSpp",
+          "jns" : $('#bulan-spp-del').val(),
+          "tp" : $('#tp-spp-del').val(),
+          "smtr" : $('#smtr-spp-del').val()
+      },
+      success: function(msg2){
+        if(msg2.status == 'ready'){
+            // let valdel = '';
+            // $.each(msg2.jnspem, function(key, val){
+            //     valdel += `
+            //     <div class="d-flex justify-content-between align-items-center" style="padding: 2px;">`+val.jns_pem+`-`+val.jns_ket+` TP.`+val.jns_tp+`</div>`;
+            // });
+            // let notice = 'data pembayaran SPP dapat dihapus';
+            // $('.text-del-spp').empty();
+            // $('.text-del-spp').html(notice);
+            // $('.list-show-pem-spp').empty();
+            // $('.list-show-pem-spp').html(valdel);
+            $('#btndel-spp').attr('disabled', false);
+            $('#btndel-spp').removeClass('btn-disabled');
+            $('.ready-del-spp').css('display', 'contents');
+            // $('.tb-del-spp').css('display', 'contents');
+        }else if(msg2.status == 'notready'){
+            let headersppnotready = 'Pembayaran SPP Bulan '+$('#bulan-spp-del').val()+' TP.'+$('#tp-spp-del').val()+' Semester '+$('#smtr-spp-del').val();
+            let valdel = '';
+            $.each(msg2.jnspem, function(key, val){
+                valdel += `
+                <p class="d-flex justify-content-between align-items-center" style="padding: 2px;">
+                    `+val.siswa+` <span class="label label-success">`+val.status+`</span>
+                </p>`;
+            });
+            $('.header-delspp').text(headersppnotready);
+            $('.list-pem-spp').append(valdel);
+            $('#btndel-spp').attr('disabled', true);
+            $('#btndel-spp').addClass('btn-disabled');
+            $('.notready-del-spp').css('display', 'contents');
+
+        }else if(msg2.status == ''){
+            let note = `pembayaran bulan 
+                        <strong>`+$('#bulan-spp-del').val()+`</strong> 
+                        tahun pelajaran 
+                        <strong>`+$('#tp-spp-del').val()+`</strong> 
+                        semester 
+                        <strong>`+$('#smtr-spp-del').val()+`</strong> 
+                        tidak ditemukan
+                        `;
+            $('#modalDellSpp').modal('hide');
+            Swal.fire({
+                title: "warning",
+                html: note,
+                icon: "warning",
+                showConfirmButton: true,
+            }).then((ok) => {
+                $('#btndel-spp').attr('disabled', true);
+                $('#btndel-spp').addClass('btn-disabled');
+                $('#modalDellSpp').modal('show');
+            });
+        }
+      }
+    });
+  });
+
+
+   
+  // === === === ACTION TAMBAH PEMBAYARAN SPP === === ===
+  $('#btnadd-spp').on('click', function(){
+    if($('#bulan-spp').val() == '' || $('#tkjpem-spp').val() == '' || $('#aklpem-spp').val() == '' || $('#bdppem-spp').val() == '' || $('#tp-spp').val() == '' || $('#smtr-spp').val() == ''){
+      $('#modalAddSpp').modal('hide');
+      Swal.fire({
+        title: "WARNING",
+        text: "Harap lengkapi semua Form",
+        icon: "warning",
+        showConfirmButton: true
+      }).then((ok) => {
+        $('#modalAddSpp').modal('show');
+      });
+
+    }else{
+      var dataJson = {
+          bulan : $('#bulan-spp').val(),
+          valtkj : $('#tkjpem-spp').val(),
+          valakl : $('#aklpem-spp').val(),
+          valbdp : $('#bdppem-spp').val(),
+          tp : $('#tp-spp').val(),
+          smtr : $('#smtr-spp').val()
+      }
+      $('#loading').show();
+      AddPembayaranSpp(dataJson);
+    }
+  });
+
+  // === === === ACTION DELETE PEMBAYARAN SPP === === ===
+  $('#btndel-spp').on('click', function(){
+    let dataDelPem = {
+      bulan : $('#bulan-spp-del').val(),
+      tp :  $('#tp-spp-del').val(),
+      smtr : $('#smtr-spp-del').val()
+    }
+
+    $('#modalDellSpp').modal('hide');
+    Swal.fire({
+        title: 'Delete',
+        text: 'Ingin hapus data pembayaran spp ?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: "yes"
+    }).then((result) => {
+        if(result.isConfirmed){
+          $('#loading').show();
+          DeletePembayaranSpp(dataDelPem);
+            // console.log(dataDelPem);
+        }else{
+            $('#modalDellSpp').modal('show');
+        }
+    });
+  });
+// ================================================================ END SPP SECTION ======================================
+
+
+
+
+// ================================================================= UJIAN SECTION =======================================
+  // ADD PEMBAYARAN UJIAN
+  // Set Global Variable Nominal Pembayaran
+  var nom_umum = '';
+  var nom_tkj = '';
+  var nom_akl = '';
+  var nom_bdp = '';
+  // KATEGORY UMUM
+  $('#ck-pem-umum').change(function(){
+      let form = `
+      <div class="row">
+      <div class="col-lg-8">
+          <input type="number" class="form-control form-control-sm" id="val-ujian-umum" placeholder="nominal pembayaran">
+      </div>
+      <div class="col-lg-4">
+          <select class="custom-select form-control-sm" id="ccl-nominal-pem-umum" style="width: 100%;">
+              <option value="">__cicilan__</option>`;
+          for(let i=1; i <= 10; i++){
+              form += `<option value="`+i+`">`+i+`x Cicilan</option>`;
+          }
+      form += `</select>
+      </div>
+      </div>`;
+      $('.form-prodi').append(form);
+
+      // Unchecked
+      if(!$('#ck-pem-umum').is(':checked')){
+          $('input#val-ujian-umum').remove();
+          $('select#ccl-nominal-pem-umum').remove();
+      }
+  });
+
+  // PRODI TKJ
+  $('#ck-pem-tkj').change(function(){
+      let formtkj = `
+      <div class="row">
+      <div class="col-lg-8">
+          <input type="number" class="form-control form-control-sm" id="val-ujian-tkj" placeholder="nominal pembayaran TKJ">
+      </div>
+      <div class="col-lg-4">
+          <select class="custom-select form-control-sm" id="ccl-nominal-pem-tkj" style="width: 100%;">
+              <option value="">__cicilan__</option>`;
+          for(let i=1; i <= 10; i++){
+              formtkj += `<option value="`+i+`">`+i+`x Cicilan</option>`;
+          }
+      formtkj += `</select>
+      </div>
+      </div>`;
+      $('.form-prodi').append(formtkj);
+
+      // Unchecked
+      if(!$('#ck-pem-tkj').is(':checked')){
+          $('input#val-ujian-tkj').remove();
+          $('select#ccl-nominal-pem-tkj').remove();
+      }
+  });
+
+  // PRODI AKL
+  $('#ck-pem-akl').change(function(){
+      let formakl = `
+      <div class="row">
+      <div class="col-lg-8">
+          <input type="number" class="form-control form-control-sm" id="val-ujian-akl" placeholder="nominal pembayaran AKL">
+      </div>
+      <div class="col-lg-4">
+          <select class="custom-select form-control-sm" id="ccl-nominal-pem-akl" style="width: 100%;">
+              <option value="">__cicilan__</option>`;
+          for(let i=1; i <= 10; i++){
+              formakl += `<option value="`+i+`">`+i+`x Cicilan</option>`;
+          }
+      formakl += `</select>
+      </div>
+      </div>`;
+      $('.form-prodi').append(formakl);
+
+      // Unchecked
+      if(!$('#ck-pem-akl').is(':checked')){
+          $('input#val-ujian-akl').remove();
+          $('select#ccl-nominal-pem-akl').remove();
+      }
+  });
+
+  // PRODI BDP
+  $('#ck-pem-bdp').change(function(){
+      let formbdp = `
+      <div class="row">
+      <div class="col-lg-8">
+          <input type="number" class="form-control form-control-sm" id="val-ujian-bdp" placeholder="nominal pembayaran BDP">
+      </div>
+      <div class="col-lg-4">
+          <select class="custom-select form-control-sm" id="ccl-nominal-pem-bdp" style="width: 100%;">
+              <option value="">__cicilan__</option>`;
+              for(let i=1; i <= 10; i++){
+                  formbdp += `<option value="`+i+`">`+i+`x Cicilan</option>`;
+              }
+      formbdp +=`</select>
+      </div>
+      </div>`;
+      $('.form-prodi').append(formbdp);
+
+      // Unchecked
+      if(!$('#ck-pem-bdp').is(':checked')){
+          $('input#val-ujian-bdp').remove();
+          $('select#ccl-nominal-pem-bdp').remove();
+      }
+  });
+
+  $("input:checkbox").change(function(){
+      // PRODI CHECK ISSET
+      if($('#ck-pem-tkj').is(':checked') || $('#ck-pem-akl').is(':checked') || $('#ck-pem-bdp').is(':checked')){
+          $('#ck-pem-umum').attr('disabled', true);
+
+      }else if(!$('#ck-pem-tkj').is(':checked') || !$('#ck-pem-akl').is(':checked') || !$('#ck-pem-bdp').is(':checked')){
+          $('#ck-pem-umum').attr('disabled', false);
+      }
+      // UMUM CHECK ISSET
+      if($('#ck-pem-umum').is(':checked')){
+          $('#ck-pem-tkj').attr('disabled', true);
+          $('#ck-pem-akl').attr('disabled', true);
+          $('#ck-pem-bdp').attr('disabled', true);
+
+      }else if(!$('#ck-pem-tkj').is(':checked')){
+          $('#ck-pem-tkj').attr('disabled', false);
+          $('#ck-pem-akl').attr('disabled', false);
+          $('#ck-pem-bdp').attr('disabled', false);
+      }
+  });
+
+
+  // === === === ACTION TAMBAH PEMBYARAN UJIAN === === === 
+  $('#btnadd-ujian-pem').on('click', function(){
+    if($('#ujian-pem').val() == '' || $('#kls-ujian-pem').val() == '' || $('#tp-ujian-pem').val() == '' || $('#smtr-ujian-pem').val() == ''){
+      Swal.fire({
+        title: "WARNING",
+        text: "Harap lengkapi semua Form",
+        icon: "warning",
+        showConfirmButton: true
+      }).then((ok) => {
+        $('#modalAddSpp').modal('show');
+      });
+
+    }else{
+      $('#loading').show();
+      // get data nominal
+      nom_umum += $('#val-ujian-umum').val()+ '-' +$('#ccl-nominal-pem-umum').val();
+      nom_tkj += $('#val-ujian-tkj').val()+ '-' +$('#ccl-nominal-pem-tkj').val();
+      nom_akl += $('#val-ujian-akl').val()+ '-' +$('#ccl-nominal-pem-akl').val();
+      nom_bdp += $('#val-ujian-bdp').val()+ '-' +$('#ccl-nominal-pem-bdp').val();
+      
+      var mappingDataUjian = {
+        pembayaran : $('#ujian-pem').val(),
+        kelas : $('#kls-ujian-pem').val(),
+        tp : $('#tp-ujian-pem').val(),
+        smtr : $('#smtr-ujian-pem').val(),
+        pemUmum : nom_umum,
+        pemTkj : nom_tkj,
+        pemAkl : nom_akl,
+        pemBdp : nom_bdp
+      }
+      AddPembayaranUjian(mappingDataUjian);
+    }
+  });
+
+
+  // === === === ACTION DELETE PEMBAYARAN UJAIN === === ===
+  $('#table-jns').on('click', '#dell-ujian-pers', function(){
+    let idPemUjian = $(this).data('id');
+    let titlePem = $(this).data('pem');
+
+    $.ajax({
+      method: "POST",
+      url: "pages/adm-katg/adm-katg-func.php",
+      dataType: "json",
+      data: {
+        "action" : "dellpemUjian",
+        "id_pem" : idPemUjian
+      },
+      success: function(msg){
+        // console.log(msg); 
+        if(msg.status == 'not-ready'){
+          $('.list-pem-ujian').empty();
+          let show = '';
+          $.each(msg.data, function(key, val){
+              show += `
+              <p class="d-flex justify-content-between align-items-center" style="padding: 2px;">
+                  `+val.nama+` <span class="label label-success">`+val.status+`</span>
+              </p>`;
+          });
+          $('.header-pem-ujian').html(titlePem);
+          $('.list-pem-ujian').append(show);
+          $('.notready-del').css('display', 'contents');
+          $('#modalDellUjian').modal('show');
+
+        }else if(msg.status == 'ready'){
+          Swal.fire({
+            title: "Hapus",
+            text: "Ingin hapus pembayaran "+ titlePem +" ?",
+            icon: "question",
+            confirmButtonText: "iya",
+            cancelButtonText: "tidak",
+            showCancelButton: true
+          }).then((result) => {
+            if(result.isConfirmed){
+              $('#loading').show();
+              DeletePembayaranUjian(idPemUjian);
+            }
+          });
+        }
+      }
+    });
+  });
+
+  // ========================================================= END SECTION PEMBAYARAN UJIAN ================================
+
+
+
+
+  // ========================================================= SECTION PEMBAYARAN KEGIATAN =================================
+ 
+  // === === === ACTION TAMBAH PEMBAYARAN KEGIATAN === === ===
+  $('#btn-add-pem-kegiatan').on('click', function(){
+    
+    let serializeData = $('#formAddKegiatan').serialize();
+    AddPembayaranKegiatan(serializeData);
+  });
+
+
+  // === === === ACTION HAPUS PEMBAYARAN KEGIATAN === === ===
+  $('#table-jns').on('click', '#dell-kegiatan-pers', function(){
+    let idPemKegiatan = $(this).data("id");
+    let labelJnsPembayaran = $(this).data("pem");
+
+    $.ajax({
+      method: "POST",
+      url: "pages/adm-katg/adm-katg-func.php",
+      dataType: "json",
+      data: {
+        "action" : "delpemKegiatan",
+        "idkegiatan" : idPemKegiatan
+      },
+      success: function(msg){
+        if(msg.status == 'not-ready'){
+          $('.header-delkegiatan').html(labelJnsPembayaran);
+          $('.list-pem-kegiatan').empty();
+          let show = '';
+          $.each(msg.data, function(key, val){
+              show += `
+              <p class="d-flex justify-content-between align-items-center" style="padding: 2px;">
+                  `+val.siswa+` <span class="label label-success">`+val.status+`</span>
+              </p>`;
+          });
+          $('.list-pem-kegiatan').append(show);
+          $('#modalDellKegiatan').modal('show');
+
+        }else if(msg.status == 'ready'){
+          Swal.fire({
+            title: "Hapus",
+            text: "Ingin hapus pembayaran "+ labelJnsPembayaran +" ?",
+            icon: "question",
+            confirmButtonText: "iya",
+            cancelButtonText: "tidak",
+            showCancelButton: true
+          }).then((result) => {
+            if(result.isConfirmed){
+              $('#loading').show();
+              DeletePembayaranKegiatan(idPemKegiatan);
+            }
+          });
+        }
+      }
+    });
+  });
+
+
+</script>
