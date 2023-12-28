@@ -1,23 +1,3 @@
-<!-- ========================LOADING======================== -->
-<style>
-  .loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.7);
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  font-size: 30px;
-}
-</style>
-<div id="loading" class="loading"><i class="fas fa-circle-notch fa-spin fa-lg"></i>&nbsp; Loading</div>
-<!-- ========================LOADING======================== -->
-
 <ul class="list-group">
     <li class="list-group-item header-list text-center bg-primary text-white h6"><i class="fas fa-file-invoice"></i>&nbsp; PEMBAYARAN SPP</li>
     <li class="list-group-item">
@@ -221,6 +201,7 @@
 <script>
 
     $(document).ready(function(){
+        $('#loading').show();
         
         // LIST DETAIL
         $('.list-detail-spp-siswa').hide();
