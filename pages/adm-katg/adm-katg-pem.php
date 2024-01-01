@@ -749,13 +749,14 @@
   // === === === ACTION TAMBAH PEMBYARAN UJIAN === === === 
   $('#btnadd-ujian-pem').on('click', function(){
     if($('#ujian-pem').val() == '' || $('#kls-ujian-pem').val() == '' || $('#tp-ujian-pem').val() == '' || $('#smtr-ujian-pem').val() == ''){
+      $('#modalAddUjian').modal('hide');
       Swal.fire({
         title: "WARNING",
         text: "Harap lengkapi semua Form",
         icon: "warning",
         showConfirmButton: true
       }).then((ok) => {
-        $('#modalAddSpp').modal('show');
+        $('#modalAddUjian').modal('show');
       });
 
     }else{
@@ -838,9 +839,22 @@
  
   // === === === ACTION TAMBAH PEMBAYARAN KEGIATAN === === ===
   $('#btn-add-pem-kegiatan').on('click', function(){
+    if($('#kegiatan-pem').val() == '' || $('#kls-kegiatan-pem').val() == '' || $('#prodi-kegiatan-pem').val() == '' || $('#nom-kegiatan-pem').val() == '' || $('#ccl-kegiatan-pem').val() == '' || $('#tp-kegiatan-pem').val() == '' || $('#smtr-kegiatan-pem').val() == ''){
+      $('#modalAddKegiatan').modal('hide');
+      Swal.fire({
+        title: "WARNING",
+        text: "Harap lengkapi semua Form",
+        icon: "warning",
+        showConfirmButton: true
+      }).then((ok) => {
+        $('#modalAddKegiatan').modal('show');
+      });
+      
+    }else{
+      let serializeData = $('#formAddKegiatan').serialize();
+      AddPembayaranKegiatan(serializeData);
+    }
     
-    let serializeData = $('#formAddKegiatan').serialize();
-    AddPembayaranKegiatan(serializeData);
   });
 
 

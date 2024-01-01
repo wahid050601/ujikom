@@ -412,7 +412,7 @@
 
                     var dataDetail = '';
                     $.each(msg.data, function(key, val){
-                        dataDetail += '<li class="list-group-item d-flex justify-content-between align-items-center"><span class="spp-name">'+ val.jns_pem +'</span><span class="spp-sts"><span class="label label-success badge-pill"><i class="fas fa-check"></i></span><span data-idspp="'+ val.id_jns +'" class="label btn-primary badge-pill show-detail-spp"><i class="fas fa-eye"></i></span></span></li>'
+                        dataDetail += '<li class="list-group-item d-flex justify-content-between align-items-center"><span class="spp-name">'+ val.jns_pem +'</span><span class="spp-sts"><span class="label label-success badge-pill"><i class="fas fa-check"></i></span><span data-idspp="'+ val.id +'" class="label btn-primary badge-pill show-detail-spp"><i class="fas fa-eye"></i></span></span></li>'
                     });
                     $('.list-detail-spp-siswa').append(dataDetail);
 

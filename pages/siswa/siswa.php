@@ -7,7 +7,6 @@
 
         <!-- Body -->
         <button class="btn btn-primary btn-mini rounded" id="btnAdd"><i class="fas fa-plus"></i>&nbsp; add</button>
-        <button class="btn btn-info btn-mini rounded"><i class="fas fa-upload"></i>&nbsp; import</button>
         <button class="btn btn-success btn-mini rounded"><i class="fas fa-download"></i>&nbsp; download</button>
 
         <div class="data-content mt-3">

@@ -103,7 +103,7 @@
 
                 try{
                     
-                    $query="select * from vw_sts_spp_siswa where id_jns = $idspp" ;
+                    $query="select * from vw_sts_spp_siswa where id = $idspp" ;
                     $prep = $koneksi->prepare($query);
                     $prep->execute();
                     $rest = $prep->get_result();
