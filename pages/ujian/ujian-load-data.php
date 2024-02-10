@@ -81,7 +81,32 @@
                     ]);
                 }
                 break;
+            
+            case "loadInfoPem" :
+                try {
+                    $idpem = $_POST["idpem"];
+                    // $idsiswa = $_POST["idsiswa"];
 
+                    // get info pembayaran
+                    $qSelectPem = "select * from tb_jns_pem where id_jns = " . $idpem;
+                    $execqSelectPem = mysqli_query($koneksi, $qSelectPem);
+                    $infoPem = [];
+                    while($row = mysqli_fetch_assoc($execqSelectPem)){
+                        $infoPem[] = $row;
+                    }
+
+                    echo json_encode([
+                        "status" => "success",
+                        "infopem" => $infoPem,
+                        
+                    ]);
+                } catch (Exception $th) {
+                    echo json_encode([
+                        "status" => "success",
+                        "infopem" => $th
+                    ]);
+                }
+                break;
         }
     }
     
