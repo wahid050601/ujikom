@@ -3,7 +3,7 @@
     <li class="list-group-item">
         
         <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-6">
 
             <!-- FORM PAYMENT -->
                 <div class="input-group">
@@ -98,7 +98,7 @@
 
 
             <!-- INFORMATION DETAIL -->
-            <div class="col-lg-5">
+            <div class="col-lg-6">
                 <div class="card border" style="box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;">
                     <div class="card-header text-center h6 border border-buttom"><i class="fas fa-search"></i>&nbsp; Detail Pembayaran SPP</div>
                     <div class="card-body">
@@ -202,6 +202,16 @@
 
     $(document).ready(function(){
         $('#loading').show();
+
+        // SET SELECT2
+        $('#spp-siswa-sl').select2({
+            placeholder: '__pilih siswa__',
+            theme: "classic"
+        });
+        $('#spp-sl').select2({
+            placeholder: '__pilih SPP__',
+            theme: "classic"
+        });
         
         // LIST DETAIL
         $('.list-detail-spp-siswa').hide();

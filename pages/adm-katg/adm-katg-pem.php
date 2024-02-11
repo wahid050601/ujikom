@@ -198,7 +198,7 @@
                 <option value="umum">Umum</option>
                 <option value="X">X <small>(sepuluh)</small></option>
                 <option value="XI">XI <small>(sebelas)</small></option>
-                <option value="XII">XII <small>(sebelas)</small></option>
+                <option value="XII">XII <small>(duabelas)</small></option>
               </select>
             </div>
           </div>

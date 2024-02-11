@@ -27,11 +27,21 @@
                         while($row = mysqli_fetch_assoc($execgetstatuspem)){
                             $datastatuspemsiswa[] = $row;
                         }
+
+                        // check sisa pem
+                        $checkpemsiswa = "select ifnull(sum(nom_pem),0) as ex_pem from tb_pem_ujian where id_siswa = ". $idsiswa ." and id_ujian = ". $idpem;
+                        $execcheckpemsiswa = mysqli_query($koneksi,$checkpemsiswa);
+                        $datapem = mysqli_fetch_assoc($execcheckpemsiswa);
+
+                        $checknompem = "select jns_val from tb_jns_pem where id_jns = ". $idpem;
+                        $execcheckpem = mysqli_query($koneksi,$checknompem);
+                        $nompem = mysqli_fetch_assoc($execcheckpem);
     
                         echo json_encode([
                             "status" => "success",
                             "infopem" => $infopem,
-                            "datapem" => $datastatuspemsiswa
+                            "datapem" => $datastatuspemsiswa,
+                            "sisapem" => $nompem["jns_val"]-$datapem["ex_pem"]
                         ]);
 
                     }elseif($_POST["trigger"] == "lunas"){
@@ -68,22 +78,41 @@
                 try {
                     $idsiswa = $_POST["idsiswa"];
                     $idpem = $_POST["idpem"];
-                    $nompem = $_POST["nompem"];
+                    // $nompem = $_POST["nompem"];
 
-                    // Check pembayaran
-                    $jenisPem = "select * from tb_jns_pem where id_jns = ". $idpem;
-                    $execjenisPem = mysqli_query($koneksi,$jenisPem);
-                    $infoPem = mysqli_fetch_assoc($execjenisPem);
+                    if($_POST["trigger"] == "validasi"){
+                        // Get val info pem
+                        $getvalinfopem = "select * from vw_sts_ujian_siswa where id = ". $idsiswa ." and id_jns = ". $idpem;
+                        $execvalpem = mysqli_query($koneksi,$getvalinfopem);
+                        $datavalpem = [];
+                        while($row = mysqli_fetch_assoc($execvalpem)){
+                            $datavalpem[] = $row;
+                        }
 
-                    // $statusCicilan = 
+                        // Get info pem
+                        $getinfopem = "select * from tb_jns_pem where id_jns = ". $idpem;
+                        $execpem = mysqli_query($koneksi, $getinfopem);
+                        $datainfopem = mysqli_fetch_assoc($execpem);
+
+                        // Get info siswa
+                        $getinfosiswa = "select * from tb_siswa where id = ". $idsiswa;
+                        $execinfosiswa = mysqli_query($koneksi, $getinfosiswa);
+                        $datasiswa = mysqli_fetch_assoc($execinfosiswa);
+                        
+
+                        echo json_encode([
+                            "status" => "success",
+                            "dataval" => $datavalpem,
+                            "datapem" => $datainfopem,
+                            "datasiswa" => $datasiswa
+                        ]);
+                    }
                     
-
-
-                    // echo json_encode();
-                    
-
                 } catch (Exception $th) {
-                    
+                    echo json_encode([
+                        "status" => "error",
+                        "info" => $th
+                    ]);
                 }
                 break;
         }

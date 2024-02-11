@@ -1,3 +1,10 @@
+<style>
+    .my-table tr th,td{
+        padding-right: 10px;
+        padding-top: 8px;
+    }
+</style>
+
 <ul class="list-group">
     <li class="list-group-item header-list text-center bg-primary text-white h6"><i class="fas fa-file-invoice"></i>&nbsp; PEMBAYARAN UJIAN</li>
     <li class="list-group-item">
@@ -51,9 +58,56 @@
                     </div>
                 </div>
                 <hr>
-                <!-- <div class="row">
-                    <div class="col-lg-3"><button type="button" class="btn btn-primary btn-sm btn-block " id="btn-val-pem-ujian"><i class="fas fa-check"></i>&nbsp; validasi</button></div>
-                </div> -->
+
+                <!-- TABLE DETAIL PROCESS PEM -->
+                <div class="tb-detail-pem" style="border: 1px solid lightgray; border-radius: 5px;">
+                    <table class="my-table mt-3 mb-3 ml-3 mr-3">
+                        <tr>
+                            <th width="10%">Nama</th>
+                            <th>:</th>
+                            <td class="tbu-nama"> </td>
+                        </tr>
+                        <tr>
+                            <th width="10%">No.Induk</th>
+                            <th>:</th>
+                            <td class="tbu-induk"> </td>
+                        </tr>
+                        <tr>
+                            <th width="10%">Kelas</th>
+                            <th>:</th>
+                            <td class="tbu-kelas"> </td>
+                        </tr>
+                        <tr>
+                            <th width="10%">Jurusan</th>
+                            <th>:</th>
+                            <td class="tbu-jurusan"> </td>
+                        </tr>
+                        <tr>
+                            <th width="10%">Pembayaran</th>
+                            <th>:</th>
+                            <td class="tbu-pem"></td>
+                        </tr>
+                        <tr>
+                            <th width="10%">Jumlah</th>
+                            <th>:</th>
+                            <td class="tbu-jumlah"></td>
+                        </tr>
+                        <tr>
+                            <th width="10%">Ket.Pembayaran</th>
+                            <th>:</th>
+                            <td class="tbu-ketpem"></td>
+                        </tr>
+                        <tr>
+                            <th width="10%">Validator</th>
+                            <th>:</th>
+                            <td class="tbu-admin"></td>
+                        </tr>
+                    </table>
+                    <div class="button-proc mt-3 mb-3 ml-3 mr-3">
+                        <button type="button" class="btn btn-primary btn-mini"><i class="fas fa-check"></i>&nbsp; process</button>
+                        <button type="button" class="btn btn-secondary btn-mini"><i class="fas fa-times"></i>&nbsp; batal</button>
+                    </div>
+                </div>
             </div>
 
             <!-- DETAIL PEMBAYARAN -->
@@ -63,11 +117,11 @@
                     <div class="card-body">
                         <!-- Notice -->
                         <div class="notice-detail" style="display: contents;">
-                            <div class="alert bg-warning text-dark mt-2x text-center" role="alert">pilih salah satu siswa &nbsp;<i class="fas fa-exclamation"></i></div>
+                            <div class="alert bg-warning text-dark mt-2 text-center" role="alert">pilih salah satu siswa &nbsp;<i class="fas fa-exclamation"></i></div>
                         </div>
                         
                         <!-- Data -->
-                        <span class="ujian-pem-null" style="display: none;"><i class="fas fa-hourglass-half fa-spin" ></i>&nbsp; siswa belum melakukan pembayaran Ujian</span>
+                        <div class="ujian-pem-null text-center" style="display: none;"><i class="fas fa-hourglass-half fa-spin" ></i>&nbsp; siswa belum melakukan pembayaran Ujian</div>
                         <ul class="list-group mt-2 list-detail-ujian-siswa">
 
                         </ul>
@@ -262,22 +316,33 @@
                 let formPemCcl = '';
                 if(msg.datapem == ''){
                     for(let i=1; i <= jmlccl; i++){
-                        formPemCcl += '<div clas="form-group"><input type="text" class="form-control form-control-sm mb-3" id="form-pem-ujian" placeholder="Cicilan ke-'+ i +' Rp. ..."></div>';
+                        let set_readonly = i != forloop ? 'readonly' : '';
+                        formPemCcl += '<div clas="form-group"><input type="text" class="form-control form-control-sm mb-3" id="form-pem-ujian" placeholder="Cicilan ke-'+ i +' Rp. ..." '+ set_readonly +'></div>';
                     }
-                    console.log("null");
                 }else{
                     $.each(msg.datapem, function(id,val){
                         // LOOP FOR READY VALUE
                         for(let i=1; i <= msg.datapem.length; i++){
-                            formPemCcl += '<div clas="form-group"><input type="text" class="form-control form-control-sm mb-3" id="form-pem-ujian" value="'+val.nom_pem+'"></div>';
+                            formPemCcl += '<div clas="form-group"><input type="text" class="form-control form-control-sm mb-3" value="'+val.nom_pem+'" readonly></div>';
                         }
     
                         // LOOP FOR EMPTY FORM
                         for(let i=forloop; i <= jmlccl; i++){
-                            formPemCcl += '<div clas="form-group"><input type="text" class="form-control form-control-sm mb-3" id="form-pem-ujian" placeholder="Cicilan ke-'+ i +' Rp. ..."></div>';
+                            if(forloop == jmlccl){
+                                formPemCcl += `
+                                <div clas="form-group">
+                                    <small style="color:red; text-style: italic;">*)pembayaran cicilan terakhir</small>
+                                    <input type="text" class="form-control form-control-sm mb-3" id="form-pem-ujian" value="`+msg.sisapem+`" readonly>
+                                </div>`;
+                            }else{
+                                let set_readonly = i != forloop ? 'readonly' : '';
+                                formPemCcl += `
+                                <div clas="form-group">
+                                    <input type="text" class="form-control form-control-sm mb-3" id="form-pem-ujian" placeholder="Cicilan ke-`+ i +` Rp. ..." `+ set_readonly +`>
+                                </div>`;
+                            }
                         }
                     });
-                    console.log("exist");
                 }
                 let buttonVal = '<button type="button" class="btn btn-primary btn-mini" id="btn-val-pem-ujian" onClick="valPemUjian()"><i class="fas fa-check"></i>&nbsp; validasi</button>';
                 $('.note-metode-pem').css('display', 'none');
@@ -321,7 +386,10 @@
 
     // === === === === === VALIDASI PEMBAYARAN
     function valPemUjian(){
+        $('#loading').show();
+
         if($('#form-pem-ujian').val() == ''){
+            
             Swal.fire({
                 title: 'warning',
                 text: 'lengkapi form input pembayaran terlebih dahulu',
@@ -333,25 +401,45 @@
             $pemexist = parseInt($('span.nompem').text());
 
             if($peminput > $pemexist){
+                $('#loading').hide();
                 Swal.fire({
                     title: 'warning',
-                    text: 'nominal pembayaran yang diinputkan melebihi jumlah nominal pembayaran',
+                    text: 'pembayaran yang diinputkan melebihi jumlah nominal pembayaran',
                     icon: 'warning',
                     showConfirmButton: true,
                 });
             }else{
+
                 $.ajax({
                     method: 'POST',
                     url: 'pages/ujian/ujian-func-data.php',
                     dataType: 'json',
                     data: {
                         "action": "valPemUjian",
+                        "trigger": "validasi",
                         "idsiswa": $('#sl-siswa').val().split('-')[0],
-                        "idpem": $('#sl-pem-ujian').val(),
-                        "nompem": $('#form-pem-ujian').val()
+                        "idpem": $('#sl-pem-ujian').val()
                     },
                     success: function(stsval){
-                        console.log(stsval);
+                        $('.tbu-nama').text(stsval.datasiswa["nama_siswa"]);
+                        $('.tbu-induk').text(stsval.datasiswa["nis_siswa"]);
+                        $('.tbu-kelas').text(stsval.datasiswa["kls_siswa"]);
+                        $('.tbu-jurusan').text(stsval.datasiswa["prod_siswa"]);
+                        $('.tbu-pem').text(stsval.datapem["jns_pem"]+' (Rp.'+ stsval.datapem["jns_val"] +')');
+                        $('.tbu-jumlah').text('Rp.'+$('#form-pem-ujian').val());
+                        
+                        let labelstatus = '';
+                        let labellunas = stsval.dataval.length + 1 == stsval.datapem["jns_ccl"] ? '<span class="label label-success"><i class="fas fa-check"></i> lunas</span>' : '';
+                        if(stsval.dataval == ''){
+                            labelstatus += '<span class="label label-primary" data-ccl="ccl-1">cicilan-1</span>';
+                        }else{
+                            let ccl = stsval.dataval.length + 1;
+                            labelstatus += '<span class="label label-primary" data-ccl="ccl-'+ccl+'">cicilan-'+ccl+'</span> ';
+                        }
+                        $('.tbu-ketpem').html(labelstatus+ ' ' +labellunas);
+                        $('.tbu-admin').html('<i class="fas fa-user"></i> Vina Elyza');
+
+                        $('#loading').hide();
                     }
                 });
 
