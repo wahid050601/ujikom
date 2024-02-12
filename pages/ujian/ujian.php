@@ -60,7 +60,7 @@
                 <hr>
 
                 <!-- TABLE DETAIL PROCESS PEM -->
-                <div class="tb-detail-pem" style="border: 1px solid lightgray; border-radius: 5px;">
+                <div class="tb-detail-pem" style="border: 1px solid lightgray; border-radius: 5px; display: none;">
                     <table class="my-table mt-3 mb-3 ml-3 mr-3">
                         <tr>
                             <th width="10%">Nama</th>
@@ -105,7 +105,7 @@
                     </table>
                     <div class="button-proc mt-3 mb-3 ml-3 mr-3">
                         <button type="button" class="btn btn-primary btn-mini"><i class="fas fa-check"></i>&nbsp; process</button>
-                        <button type="button" class="btn btn-secondary btn-mini"><i class="fas fa-times"></i>&nbsp; batal</button>
+                        <button type="button" class="btn btn-secondary btn-mini" id="btn-can-pem"><i class="fas fa-times"></i>&nbsp; batal</button>
                     </div>
                 </div>
             </div>
@@ -421,6 +421,16 @@
                         "idpem": $('#sl-pem-ujian').val()
                     },
                     success: function(stsval){
+                        $('select#sl-kelas').attr('disabled',true);
+                        $('select#sl-prodi').attr('disabled',true);
+                        $('select#sl-siswa').attr('disabled',true);
+                        $('select#sl-pem-ujian').attr('disabled',true);
+                        $('#btn-cicilan').addClass('btn-disabled disabled waves-effect waves-light');
+                        $('#btn-lunas').addClass('btn-disabled disabled waves-effect waves-light');
+                        $('#btn-val-pem-ujian').addClass('btn-disabled disabled waves-effect waves-light');
+                        $('#btn-val-pem-ujian').html('<i class="fas fa-spinner fa-pulse"></i>&nbsp; validasi');
+                        $('.tb-detail-pem td').html('');
+
                         $('.tbu-nama').text(stsval.datasiswa["nama_siswa"]);
                         $('.tbu-induk').text(stsval.datasiswa["nis_siswa"]);
                         $('.tbu-kelas').text(stsval.datasiswa["kls_siswa"]);
@@ -438,28 +448,39 @@
                         }
                         $('.tbu-ketpem').html(labelstatus+ ' ' +labellunas);
                         $('.tbu-admin').html('<i class="fas fa-user"></i> Vina Elyza');
-
+                        
+                        // Display table
+                        $('.tb-detail-pem').css('display', 'contents');
                         $('#loading').hide();
                     }
                 });
-
-                // let kelas = $('#sl-kelas').val();
-                // let prodi = $('#sl-prodi').val();
-                // let siswa = $('#sl-siswa').val();
-                // let pemUjian = $('#sl-pem-ujian').val();
-                // let nominal = $('#form-pem-ujian').val();
-
-                // let jsonData = {
-                //     kelas : $('#sl-kelas').val(),
-                //     prodi : $('#sl-prodi').val(),
-                //     siswa : $('#sl-siswa').val().split('-')[3],
-                //     pemUjian : $('#sl-pem-ujian').val(),
-                //     nominal : $('#form-pem-ujian').val()
-                // }
-
-                // console.log(jsonData);
             }
         }
     }
+
+    // Cancel Process
+    $('#btn-can-pem').on('click', function(){
+        Swal.fire({
+            title: 'Cancel',
+            text: 'Ingin Batalkan Proses Pembayaran ?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: "iya",
+            cancelButtonText: "tidak"
+        }).then((result) => {
+            if(result.isConfirmed){
+                $('select#sl-kelas').attr('disabled',false);
+                $('select#sl-prodi').attr('disabled',false);
+                $('select#sl-siswa').attr('disabled',false);
+                $('select#sl-pem-ujian').attr('disabled',false);
+                $('#btn-cicilan').removeClass('btn-disabled disabled waves-effect waves-light');
+                $('#btn-lunas').removeClass('btn-disabled disabled waves-effect waves-light');
+                $('#btn-val-pem-ujian').removeClass('btn-disabled disabled waves-effect waves-light');
+                $('#btn-val-pem-ujian').html('<i class="fas fa-check"></i>&nbsp; validasi');
+                $('.tb-detail-pem td').html('');
+                $('.tb-detail-pem').css('display','none');
+            }
+        });
+    });
 
 </script>
