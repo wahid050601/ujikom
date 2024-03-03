@@ -227,7 +227,7 @@
 
                 let selectOpt = '';
                 $.each(msg.data, function(key, val){
-                    selectOpt += '<option value="'+val.id+'-'+val.prod_siswa+'">'+val.nama_siswa+' - '+val.nis_siswa+'</option>';
+                    selectOpt += '<option value="'+val.id+'-'+val.prod_siswa+'">'+val.nama_siswa+' - '+val.nis_siswa+' - '+val.kls_siswa+' '+val.prod_siswa+'</option>';
                 });
                 $('#spp-siswa-sl').append(selectOpt);
                 $('#loading').hide();

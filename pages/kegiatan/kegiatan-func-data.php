@@ -8,7 +8,7 @@
     if(isset($action)){
         switch($action){
 
-            case "checkPemUjian" :
+            case "checkPemkegiatan" :
                 try {
 
                     if($_POST["trigger"] == "cicilan"){
@@ -21,7 +21,7 @@
                         $infopem = mysqli_fetch_assoc($execQuerygetpem);
     
                         // get status pembayaran
-                        $getstatuspem = "select * from tb_pem_ujian where id_siswa = ". $idsiswa ." and id_ujian = ". $idpem;
+                        $getstatuspem = "select * from tb_pem_kegiatan where id_siswa = ". $idsiswa ." and id_keg = ". $idpem;
                         $execgetstatuspem = mysqli_query($koneksi,$getstatuspem);
                         $datastatuspemsiswa = [];
                         while($row = mysqli_fetch_assoc($execgetstatuspem)){
@@ -29,7 +29,7 @@
                         }
 
                         // check sisa pem
-                        $checkpemsiswa = "select ifnull(sum(nom_pem),0) as ex_pem from tb_pem_ujian where id_siswa = ". $idsiswa ." and id_ujian = ". $idpem;
+                        $checkpemsiswa = "select ifnull(sum(nom_pem),0) as ex_pem from tb_pem_kegiatan where id_siswa = ". $idsiswa ." and id_keg = ". $idpem;
                         $execcheckpemsiswa = mysqli_query($koneksi,$checkpemsiswa);
                         $datapem = mysqli_fetch_assoc($execcheckpemsiswa);
 
@@ -48,7 +48,7 @@
                         $idpem = $_POST["idpem"];
                         $idsiswa = $_POST["idsiswa"];
 
-                        $checkpemsiswa = "select ifnull(sum(nom_pem),0) as ex_pem from tb_pem_ujian where id_siswa = ". $idsiswa ." and id_ujian = ". $idpem;
+                        $checkpemsiswa = "select ifnull(sum(nom_pem),0) as ex_pem from tb_pem_kegiatan where id_siswa = ". $idsiswa ." and id_keg = ". $idpem;
                         $execcheckpemsiswa = mysqli_query($koneksi,$checkpemsiswa);
                         $datapem = mysqli_fetch_assoc($execcheckpemsiswa);
 
@@ -74,7 +74,7 @@
                 break;
 
 
-            case "valPemUjian" :
+            case "valPemkegiatan" :
                 try {
 
                     if($_POST["trigger"] == "validasi"){
@@ -82,7 +82,7 @@
                         $idsiswa = $_POST["idsiswa"];
                         $idpem = $_POST["idpem"];
 
-                        $getvalinfopem = "select * from vw_sts_ujian_siswa where id = ". $idsiswa ." and id_jns = ". $idpem;
+                        $getvalinfopem = "select * from vw_sts_kegiatan_siswa where id = ". $idsiswa ." and id_jns = ". $idpem;
                         $execvalpem = mysqli_query($koneksi,$getvalinfopem);
                         $datavalpem = [];
                         while($row = mysqli_fetch_assoc($execvalpem)){
@@ -95,7 +95,7 @@
                         $datainfopem = mysqli_fetch_assoc($execpem);
 
                         // Get info pem siswa
-                        $getinfopemsiswa = "select coalesce(sum(nom_pem),0) as pem_siswa from tb_pem_ujian where id_siswa = ". $idsiswa;
+                        $getinfopemsiswa = "select coalesce(sum(nom_pem),0) as pem_siswa from tb_pem_kegiatan where id_siswa = ". $idsiswa;
                         $execpemsiswa = mysqli_query($koneksi,$getinfopemsiswa);
                         $datapemsiswa = mysqli_fetch_assoc($execpemsiswa);
 
@@ -124,7 +124,7 @@
                         $nompem = $_POST["nompem"];
                         $status = $_POST["status"];
 
-                        $qinsDatapem = "insert into tb_pem_ujian values (null,".$idsiswa.", ".$idpem.", 1, '".$ketpem."', ".$nompem.", '".$status."', now())";
+                        $qinsDatapem = "insert into tb_pem_kegiatan values (null,".$idsiswa.", ".$idpem.", 1, '".$ketpem."', ".$nompem.", '".$status."', now())";
                         $execqinsDatapem = mysqli_query($koneksi, $qinsDatapem);
                         
                         $status = $execqinsDatapem == true ? "success" : "failed";

@@ -3,6 +3,10 @@
         padding-right: 10px;
         padding-top: 8px;
     }
+
+    .my-shadow {
+        box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    }
 </style>
 
 <ul class="list-group">
@@ -50,7 +54,7 @@
                         <button type="button" class="btn btn-primary btn-mini rounded btn-disabled" disabled id="btn-lunas" title="Pembayaran Lunas"><i class="far fa-sticky-note"></i></button>
                     </div>
                     <div class="col-lg-10">
-                        <span style="color: red; font-style: italic; font-size: 10px; display: contents;" class="note-metode-pem"> *) Pilih metode pembayaran</span>
+                        <span style="color: red; font-style: italic; font-size: 10px; display: contents;" class="note-metode-pem"><i class="fas fa-arrow-left"></i>&nbsp; Pilih metode pembayaran</span>
                         <div class="show-form-pem">
                             <!-- FORM HERE -->
                             <!-- <button type="button" class="btn btn-primary btn-mini" id="btn-val-pem-ujian" style="display: none;"><i class="fas fa-check"></i>&nbsp; validasi</button> -->
@@ -104,9 +108,13 @@
                         </tr>
                     </table>
                     <div class="button-proc mt-3 mb-3 ml-3 mr-3">
-                        <button type="button" class="btn btn-primary btn-mini"><i class="fas fa-check"></i>&nbsp; process</button>
+                        <button type="button" class="btn btn-primary btn-mini" id="btn-sub-pem"><i class="fas fa-check"></i>&nbsp; process</button>
                         <button type="button" class="btn btn-secondary btn-mini" id="btn-can-pem"><i class="fas fa-times"></i>&nbsp; batal</button>
                     </div>
+                </div>
+
+                <div class="note-payment">
+                    <!-- Success Payment -->
                 </div>
             </div>
 
@@ -119,9 +127,13 @@
                         <div class="notice-detail" style="display: contents;">
                             <div class="alert bg-warning text-dark mt-2 text-center" role="alert">pilih salah satu siswa &nbsp;<i class="fas fa-exclamation"></i></div>
                         </div>
-                        
+                        <div class="loading-data" style="display: none;">
+                            <div class="h5 text-center"><i class="fas fa-spinner fa-pulse"></i> Loading ..</div>
+                        </div>
                         <!-- Data -->
-                        <div class="ujian-pem-null text-center" style="display: none;"><i class="fas fa-hourglass-half fa-spin" ></i>&nbsp; siswa belum melakukan pembayaran Ujian</div>
+                        <div class="ujian-pem-null" style="display: none;">
+                            <div class="text-center"><i class="fas fa-hourglass-half fa-spin" ></i>&nbsp; siswa belum melakukan pembayaran Ujian</div>
+                        </div>
                         <ul class="list-group mt-2 list-detail-ujian-siswa">
 
                         </ul>
@@ -135,6 +147,8 @@
 <script>
     // SELECT FORM
     $(document).ready(function(){
+        $('#loading').hide();
+
         $('#sl-kelas').select2({
             placeholder: '__pilih kelas__',
             theme: "classic"
@@ -198,25 +212,29 @@
     // SHOW INFORMATION PEMBAYARAN
     $('#sl-pem-ujian').on('change', function(){
         $('.info-sl-pem').text('');
-        let idpem = $(this).val();
-
-        $.ajax({
-            method: 'POST',
-            url: "pages/ujian/ujian-load-data.php",
-            dataType: 'json',
-            data: {
-                "action": "loadInfoPem",
-                "idpem": idpem,
-            },
-            success: function(msg){
-                if(msg.status == 'success'){
-                    let infopem = 'Jumlah Pembayaran Rp.<span class="nompem">'+ msg.infopem[0].jns_val +'</span> (Cicilan sebanyak '+ msg.infopem[0].jns_ccl +'x)';
-                    $('.info-sl-pem').html(infopem);
-                }else{
-                    $('.info-sl-pem').html('not information');
+        let idpem = $(this).val() == '' ? 'null' : $(this).val();
+        
+        if(idpem != 'null'){
+            $.ajax({
+                method: 'POST',
+                url: "pages/ujian/ujian-load-data.php",
+                dataType: 'json',
+                data: {
+                    "action": "loadInfoPem",
+                    "idpem": idpem,
+                },
+                success: function(msg){
+                    if(msg.status == 'success'){
+                        let infopem = 'Jumlah Pembayaran Rp.<span class="nompem">'+ msg.infopem[0].jns_val +'</span> (Cicilan sebanyak '+ msg.infopem[0].jns_ccl +'x)';
+                        $('.info-sl-pem').html(infopem);
+                    }else{
+                        $('.info-sl-pem').html(null);
+                    }
                 }
-            }
-        })
+            });
+        }else{
+            $('.info-sl-pem').html(null);
+        }
     })
 
 
@@ -231,7 +249,13 @@
         $('#btn-lunas').attr('disabled', true);
         // END FORM PEM
 
-        $(this).val() == '' ? $('.notice-detail').css('display', 'contents') : $('.notice-detail').css('display', 'none');
+        if($(this).val() == ''){
+            $('.notice-detail').css('display', 'contents');
+            $('.loading-data').css('display', 'none');
+        }else{
+            $('.notice-detail').css('display', 'none');
+            $('.loading-data').css('display', 'contents');
+        }
         
         let dataLoad = $('#sl-siswa').val();
         $.ajax({
@@ -254,23 +278,8 @@
                 $('#sl-pem-ujian').append(firstSelect).append(dataPemUjian);
 
                 // LOAD DETAIL PEMBAYARAN
-                if(msg.datainfopem == ''){
-                    $('.list-detail-ujian-siswa').empty();
-                    $('.ujian-pem-null').css('display', 'contents');
-                }else{
-                    let infoPem = '';
-                    $.each(msg.datainfopem, function(idx, val){
-                        infoPem += '<li class="list-group-item d-flex justify-content-between align-items-center">'+val.jns_pem+'<span>';
-                        for(let i=1; i <= val.jml_pem; i++){
-                            infoPem += '<span class="label label-primary">'+i+'x</span>';
-                        }
-                        infoPem += '</span></li>';
-                    });
-                    $('.ujian-pem-null').css('display', 'none');
-                    $('.list-detail-ujian-siswa').empty();
-                    $('.list-detail-ujian-siswa').append(infoPem);
-                    
-                }
+                let mydata = msg.datainfopem == '' ? 'null' : JSON.stringify(msg.datainfopem);
+                loadDetailpemUjianSiswa('multiDetail', dataLoad.split('-')[0]);
             }
         });
     });
@@ -280,15 +289,15 @@
         $('.note-metode-pem').css('display', 'contents');
         $('.show-form-pem').empty();
         if($(this).val() == ''){
+            $('.note-payment').empty();
             $('#btn-cicilan').addClass('btn-disabled');
             $('#btn-cicilan').attr('disabled', true);
             $('#btn-lunas').addClass('btn-disabled');
             $('#btn-lunas').attr('disabled', true);
         }else{
-            $('#btn-cicilan').removeClass('btn-disabled');
-            $('#btn-cicilan').attr('disabled', false);
-            $('#btn-lunas').removeClass('btn-disabled');
-            $('#btn-lunas').attr('disabled', false);
+            let idsiswa = $('#sl-siswa').val().split('-')[0];
+            let idpem = $(this).val();
+            loadDetailPemKW(idsiswa,idpem, 'load');
         }
     });
 
@@ -384,7 +393,7 @@
         });
     });
 
-    // === === === === === VALIDASI PEMBAYARAN
+    // === === === === === VALIDASI PEMBAYARAN === === === === ===
     function valPemUjian(){
         $('#loading').show();
 
@@ -439,12 +448,14 @@
                         $('.tbu-jumlah').text('Rp.'+$('#form-pem-ujian').val());
                         
                         let labelstatus = '';
-                        let labellunas = stsval.dataval.length + 1 == stsval.datapem["jns_ccl"] ? '<span class="label label-success"><i class="fas fa-check"></i> lunas</span>' : '';
+                        // console.log(parseInt($('#form-pem-ujian').val()) + parseInt(stsval.lastpem));
+                        let labellunas = (parseInt($('#form-pem-ujian').val()) + parseInt(stsval.lastpem)) == stsval.datapem["jns_val"] ? '<span class="label label-success"><i class="fas fa-check"></i> lunas</span>' : '';
+                        let stslunas = (parseInt($('#form-pem-ujian').val()) + parseInt(stsval.lastpem)) == stsval.datapem["jns_val"] ? '-l' : '';
                         if(stsval.dataval == ''){
-                            labelstatus += '<span class="label label-primary" data-ccl="ccl-1">cicilan-1</span>';
+                            labelstatus += '<span class="label label-primary pem-proc-l" data-ccl="ccl-1'+stslunas+'">cicilan-1</span>';
                         }else{
                             let ccl = stsval.dataval.length + 1;
-                            labelstatus += '<span class="label label-primary" data-ccl="ccl-'+ccl+'">cicilan-'+ccl+'</span> ';
+                            labelstatus += '<span class="label label-primary pem-proc-l" data-ccl="ccl-'+ccl+''+stslunas+'">cicilan-'+ccl+'</span> ';
                         }
                         $('.tbu-ketpem').html(labelstatus+ ' ' +labellunas);
                         $('.tbu-admin').html('<i class="fas fa-user"></i> Vina Elyza');
@@ -482,5 +493,258 @@
             }
         });
     });
+
+    // Submit Process
+    $('#btn-sub-pem').on('click', function(){
+        let status_pem = $('table tr td.tbu-ketpem').text().split(' ');
+        status_pem = status_pem.length > 2 ? status_pem.pop() : status_pem[0];
+        // console.log(status_pem);
+        let jasondata = {
+            action: "valPemUjian",
+            trigger: "procpem",
+            siswa: $('#sl-siswa').val().split('-')[0],
+            idpem: $('#sl-pem-ujian').val(),
+            ketpem: $('table tr td.tbu-ketpem span.pem-proc-l').data('ccl'),
+            nompem: parseInt($('#form-pem-ujian').val()),
+            status: status_pem
+        }
+
+        Swal.fire({
+            title: 'Proses',
+            text: 'Ingin Proses Pembayaran ?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: "iya",
+            cancelButtonText: "tidak"
+        }).then((result) => {
+            if(result.isConfirmed){
+                $.ajax({
+                    method: 'POST',
+                    url: 'pages/ujian/ujian-func-data.php',
+                    dataType: 'json',
+                    data: jasondata,
+                    success: function(stss){
+                        if(stss.status == 'success'){
+                            Swal.fire({
+                                title: stss.status,
+                                text: stss.info,
+                                icon: stss.status,
+                                showConfirmButton: true
+                            }).then((ok) => {
+                                $('select#sl-kelas').attr('disabled',false);
+                                $('select#sl-prodi').attr('disabled',false);
+                                $('select#sl-siswa').attr('disabled',false);
+                                $('select#sl-pem-ujian').attr('disabled',false);
+                                $('.tb-detail-pem').css('display', 'none');
+                                $('.show-form-pem').empty();
+
+                                let idsiswa = $('#sl-siswa').val().split('-')[0];
+                                let idpem = $('#sl-pem-ujian').val();
+                                loadDetailPemKW(idsiswa,idpem, 'pay');
+                            })
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+
+    // === === === === === FUNCTION LOAD DETAIL PEMBAYARAN === === === === === 
+    // load data detail pembayaran
+    function loadDetailpemUjianSiswa(kat, idsiswa, idpem = 0){
+
+        if(kat == 'multiDetail'){
+            $.ajax({
+                method: 'POST',
+                url: 'pages/ujian/ujian-load-data.php',
+                dataType: 'json',
+                data: {
+                    "action": "loadDetailPemUjian",
+                    "trigger": kat,
+                    "idpem": idpem,
+                    "idsiswa": idsiswa
+                },
+                success: function(msg){
+                    if(msg.data == ''){
+                        $('.loading-data').css('display', 'none');
+                        $('.list-detail-ujian-siswa').empty();
+                        $('.ujian-pem-null').css('display', 'contents');
+                    }else{
+                        let infoPem = '';
+                        $.each(msg.data, function(idx, val){
+                            let lunas = val.total_pem == val.jns_val ? '<span class="label label-success"><i class="fas fa-check"></i></span>' : '';
+                            infoPem += '<li class="list-group-item d-flex justify-content-between align-items-center">'+val.jns_pem+'<span>';
+                            for(let i=1; i <= val.jml_pem; i++){
+                                infoPem += '<span class="label label-primary">'+i+'x</span>';
+                            }
+                            infoPem += lunas+'</span></li>';
+                        });
+                        $('.ujian-pem-null').css('display', 'none');
+                        $('.loading-data').css('display', 'none');
+                        $('.list-detail-ujian-siswa').empty();
+                        $('.list-detail-ujian-siswa').append(infoPem);
+                        
+                    }
+                }
+            });
+
+        }else if(kat == 'singleDetail'){
+
+        }
+    }
+
+    // load detail pembayaran (kwitansi)
+    function loadDetailPemKW(idsiswa,idpem, trigger){
+        $.ajax({
+            method: 'POST',
+            url: 'pages/ujian/ujian-load-data.php',
+            dataType: 'json',
+            data: {
+                "action": "loadpemKW",
+                "idsiswa": idsiswa,
+                "idpem": idpem,
+                "trigger": trigger,
+            },
+            success: function(data){
+
+                // LOAD MODE
+                if(data.load.active == 'true'){
+                    if(data.load.load_ketlunas == 'true'){
+                        $('#btn-cicilan').attr('disabled', true);
+                        $('#btn-cicilan').addClass('btn-disabled disabled waves-effect waves-light');
+                        $('#btn-lunas').attr('disabled', true);
+                        $('#btn-lunas').addClass('btn-disabled disabled waves-effect waves-light');
+        
+                        let cardHistPayment = '';
+                        $.each(data.load.load_datapem,function(id,val){
+                            let statuspem = val.status_pem != 'lunas' ? '<i class="fas fa-copy"></i>&nbsp; '+ val.status_pem : '<i class="fas fa-check"></i>&nbsp; lunas';
+                            cardHistPayment += `
+                            <div class="card-body mb-3 my-shadow">
+                                <h6 class="card-title">
+                                    <div class="text-right"><span class="label label-primary">${statuspem}</span></div>
+                                    <i class="fas fa-th-large text-primary"></i>&nbsp; ${val.jns_pem}
+                                </h6>
+                                <br>
+                                <div class="card-text">
+                                    <table class="my-table">
+                                        <tr>
+                                            <th>Nama</th>
+                                            <th>:</th>
+                                            <td>${val.nama_siswa}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>No.Induk</th>
+                                            <th>:</th>
+                                            <td>${val.nis_siswa}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Kelas</th>
+                                            <th>:</th>
+                                            <td>${val.kls_siswa}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tanggal</th>
+                                            <th>:</th>
+                                            <td>${val.tanggal_pem}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Pembayaran</th>
+                                            <th>:</th>
+                                            <td>Rp.${val.nom_pem}</td>
+                                        </tr>
+                                    </table>
+                                    <div class="validator text-right">
+                                        <span class="text-primary"><i class="fas fa-signature"></i>&nbsp; Validate By</span>
+                                        <br>
+                                        <span style="font-size: 11px; font-style: italic; border-bottom: 1px solid grey;">${val.nama_adm}</span>
+                                    </div>
+                                </div>
+                            </div>`;
+                        });
+        
+                        $('.note-payment').empty();
+                        $('.note-payment').html(cardHistPayment);
+
+                    }else if(data.load.load_ketlunas == 'false' || data.load.load_ketlunas == 'null'){
+                        $('.note-payment').empty();
+                        $('#btn-cicilan').attr('disabled', false);
+                        $('#btn-cicilan').removeClass('btn-disabled disabled waves-effect waves-light');
+                        $('#btn-lunas').attr('disabled', false);
+                        $('#btn-lunas').removeClass('btn-disabled disabled waves-effect waves-light');
+                    }
+
+                }
+
+
+                // PAY MODE
+                if(data.pay.active == 'true'){
+                    // console.log(data.pay);
+                    let cardHistPayment = '';
+                    let statuspem = data.pay.pay_datapem.status_pem == 'lunas' ? '<i class="fas fa-copy"></i>&nbsp; lunas' : '<i class="fas fa-copy"></i>&nbsp; '+ data.pay.pay_datapem.status_pem;
+                    cardHistPayment += `
+                    <div class="card-body mb-3 my-shadow">
+                        <h6 class="card-title">
+                            <div class="text-right"><span class="label label-primary">${statuspem}</span></div>
+                            <i class="fas fa-th-large text-primary"></i>&nbsp; ${data.pay.pay_datapem.jns_pem}
+                        </h6>
+                        <br>
+                        <div class="card-text">
+                            <table class="my-table">
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>:</th>
+                                    <td>${data.pay.pay_datapem.nama_siswa}</td>
+                                </tr>
+                                <tr>
+                                    <th>No.Induk</th>
+                                    <th>:</th>
+                                    <td>${data.pay.pay_datapem.nis_siswa}</td>
+                                </tr>
+                                <tr>
+                                    <th>Kelas</th>
+                                    <th>:</th>
+                                    <td>${data.pay.pay_datapem.kls_siswa}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal</th>
+                                    <th>:</th>
+                                    <td>${data.pay.pay_datapem.tanggal_pem}</td>
+                                </tr>
+                                <tr>
+                                    <th>Pembayaran</th>
+                                    <th>:</th>
+                                    <td>Rp.${data.pay.pay_datapem.nom_pem}</td>
+                                </tr>
+                            </table>
+                            <div class="d-flex justify-content-between mt-3">
+                                <div class="button-cancel">
+                                    <button type="button" class="btn btn-secondary btn-mini" id="close-pay"><i class="fas fa-times"></i>&nbsp;tutup</button>
+                                </div>
+                                <div class="validator text-right">
+                                    <span class="text-primary"><i class="fas fa-signature"></i>&nbsp; Validate By</span>
+                                    <br>
+                                    <span style="font-size: 11px; font-style: italic; border-bottom: 1px solid grey;">${data.pay.pay_datapem.nama_adm}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                    
+                    loadDetailpemUjianSiswa('multiDetail',idsiswa);
+                    $('.note-payment').empty();
+                    $('.note-payment').html(cardHistPayment);
+
+                    $('#close-pay').on('click', function(){
+                        // alert("terpanggil");
+                        $('#sl-pem-ujian').val('').trigger('change');
+
+                        $('#btn-cicilan').removeClass('disabled waves-effect waves-light').attr('disabled', true);
+                        $('#btn-lunas').removeClass('disabled waves-effect waves-light').attr('disabled', true);
+                    });
+                }
+            }
+        })
+    }
+
 
 </script>

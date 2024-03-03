@@ -32,7 +32,7 @@
                 }
                 break;
 
-            case "loadDetailPemUjian" :
+            case "loadDetailPemkegiatan" :
                 try {
                     $idsiswa = $_POST["idsiswa"];
 
@@ -47,7 +47,7 @@
                         $sts_info = "multi";
 
                         // get data information siswa
-                        $qgetinfopem = "select b.jns_val, b.jns_ccl, count(*) as jml_pem, sum(a.nom_pem) as total_pem, a.id_jns, a.jns_pem from vw_sts_ujian_siswa a
+                        $qgetinfopem = "select b.jns_val, b.jns_ccl, count(*) as jml_pem, sum(a.nom_pem) as total_pem, a.id_jns, a.jns_pem from vw_sts_kegiatan_siswa a
                         left join tb_jns_pem b on a.id_jns = b.id_jns where a.id = ". $idsiswa ." group by id_jns";
                         $execDetailM = mysqli_query($koneksi, $qgetinfopem);
                         
@@ -66,7 +66,7 @@
                         $idpem = $_POST["idpem"];
 
                         $sts_info = "single";
-                        $qgetinfodetailpem = "select * from vw_sts_ujian_siswa where id = ". $idsiswa ." and id_jns = ". $idpem;
+                        $qgetinfodetailpem = "select * from vw_sts_kegiatan_siswa where id = ". $idsiswa ." and id_jns = ". $idpem;
                         $execDetailS = mysqli_query($koneksi, $qgetinfodetailpem);
 
                         $status = $execDetailS == true ? "success" : "error";
@@ -96,7 +96,7 @@
                 }
                 break;
 
-            case "loadPemUjian" :
+            case "loadPemkegiatan" :
                 try {
                     $idSiswa = explode('-', $_POST["dataload"])[0];
                     $kelas = explode('-', $_POST["dataload"])[1];
@@ -113,8 +113,8 @@
                     $queryGetPem = "
                     select * from tb_jns_pem 
                     where kelas_pem in ('$kelas','UMUM') 
-                    and jns_ket in ('$prodi','UMUM')
-                    and jns_katg = 'ujian'";
+                    and jns_ket in ('$prodi','UMUM')  
+                    and jns_katg = 'kegiatan'";
 
                     $execQueryPem = mysqli_query($koneksi, $queryGetPem);
                     $dataPemUjian = [];
@@ -176,7 +176,7 @@
                     if($_POST["trigger"] == 'load'){
                         // GET DATA
                         $active_load = 'true';
-                        $qgethistload = "select b.kls_siswa, a.* from vw_sts_ujian_siswa a
+                        $qgethistload = "select b.kls_siswa, a.* from vw_sts_kegiatan_siswa a
                         left join tb_siswa b on b.id = a.id where a.id = ". $idsiswa ." and a.id_jns = ". $idpem;
                         $exechistload = mysqli_query($koneksi,$qgethistload);
                         while($row = mysqli_fetch_assoc($exechistload)){
@@ -184,7 +184,7 @@
                         }
 
                         // CHECK PEM
-                        $qcheckpem = "select sum(nom_pem) as sum, jns_val from vw_sts_ujian_siswa where id = ". $idsiswa ." and id_jns = ". $idpem ." group by id_jns";
+                        $qcheckpem = "select sum(nom_pem) as sum, jns_val from vw_sts_kegiatan_siswa where id = ". $idsiswa ." and id_jns = ". $idpem ." group by id_jns";
                         $execcheckpem = mysqli_query($koneksi,$qcheckpem);
                         $checkdatapem = mysqli_fetch_assoc($execcheckpem);
 
@@ -197,7 +197,7 @@
                     }elseif($_POST["trigger"] == 'pay'){
                         // GET DATA
                         $active_pay = 'true';
-                        $qgethistpay = "select * from vw_sts_ujian_siswa where id = ". $idsiswa ." and id_jns = ". $idpem;
+                        $qgethistpay = "select * from vw_sts_kegiatan_siswa where id = ". $idsiswa ." and id_jns = ". $idpem;
                         $exechistpay = mysqli_query($koneksi,$qgethistpay);
                         while($row = mysqli_fetch_assoc($exechistpay)){
                             $histpayment[] = $row;
