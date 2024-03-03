@@ -6,6 +6,7 @@
         <hr>
 
         <div class="btn-pem">
+            <span style="color: red; font-style: italic; font-size: 11px;">*) Pilih salah satu jenis pembayaran</span>
             <div class="card border text-center">
                 <ul class="list-group">
                     <li class="list-group-item list-btn-pem">
@@ -62,6 +63,7 @@
                     $('.list-btn-pem').append(kategori);
 
                 }
+                $('#loading').hide();
             }
         });
     })
