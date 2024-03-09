@@ -27,9 +27,9 @@
                     // PROCESS PEMBAYARAN
                     $query = "
                     insert into tb_jns_pem values 
-                    (null, concat('SPP Bulan $bulan ', year(NOW())), 'spp', $tkj, 1, '$tp', '$smtr', 'TKJ'), 
-                    (null, concat('SPP Bulan $bulan ', year(NOW())), 'spp', $akl, 1, '$tp', '$smtr', 'AKL'), 
-                    (null, concat('SPP Bulan $bulan ', year(NOW())), 'spp', $bdp, 1, '$tp', '$smtr', 'BDP')
+                    (null, concat('SPP Bulan $bulan ', year(NOW())), 'UMUM', 'spp', $tkj, 1, '$tp', '$smtr', 'TKJ'), 
+                    (null, concat('SPP Bulan $bulan ', year(NOW())), 'UMUM', 'spp', $akl, 1, '$tp', '$smtr', 'AKL'), 
+                    (null, concat('SPP Bulan $bulan ', year(NOW())), 'UMUM', 'spp', $bdp, 1, '$tp', '$smtr', 'BDP')
                     ";
 
                     if(mysqli_query($koneksi, $query)) {
@@ -174,7 +174,7 @@
                 if(preg_match("/undefined/i", $_POST["umum"])  == 0){
                     $ujian = $pembayaran_ujian. "-Kelas " .$kelas_pem_ujian; //desc
                     $exp_pem = explode("-", $_POST["umum"]);
-                    $umum = "(null, '$ujian', 'ujian', $exp_pem[0], $exp_pem[1], '$tp_pem_ujian', '$smtr_pem_ujian', 'UMUM')";
+                    $umum = "(null, '$ujian', '$kelas_pem_ujian', 'ujian', $exp_pem[0], $exp_pem[1], '$tp_pem_ujian', '$smtr_pem_ujian', 'UMUM')";
                     array_push($values_query, $umum);
                 }
 
@@ -182,7 +182,7 @@
                 if(preg_match("/undefined/i", $_POST["tkj"])  == 0){
                     $ujian = $pembayaran_ujian. "-Kelas " .$kelas_pem_ujian. " TKJ"; //desc
                     $exp_pem = explode("-", $_POST["tkj"]);
-                    $tkj = "(null, '$ujian', 'ujian', $exp_pem[0], $exp_pem[1], '$tp_pem_ujian', '$smtr_pem_ujian', 'TKJ')";
+                    $tkj = "(null, '$ujian', '$kelas_pem_ujian', 'ujian', $exp_pem[0], $exp_pem[1], '$tp_pem_ujian', '$smtr_pem_ujian', 'TKJ')";
                     array_push($values_query, $tkj);
                 }
                 
@@ -190,7 +190,7 @@
                 if(preg_match("/undefined/i", $_POST["akl"])  == 0){
                     $ujian = $pembayaran_ujian. "-Kelas " .$kelas_pem_ujian. " AKL"; //desc
                     $exp_pem = explode("-", $_POST["akl"]);
-                    $akl = "(null, '$ujian', 'ujian', $exp_pem[0], $exp_pem[1], '$tp_pem_ujian', '$smtr_pem_ujian', 'AKL')";
+                    $akl = "(null, '$ujian', '$kelas_pem_ujian', 'ujian', $exp_pem[0], $exp_pem[1], '$tp_pem_ujian', '$smtr_pem_ujian', 'AKL')";
                     array_push($values_query, $akl);
                 }
                 
@@ -198,7 +198,7 @@
                 if(preg_match("/undefined/i", $_POST["bdp"])  == 0){
                     $ujian = $pembayaran_ujian. "-Kelas " .$kelas_pem_ujian. " BDP"; //desc
                     $exp_pem = explode("-", $_POST["bdp"]);
-                    $bdp = "(null, '$ujian', 'ujian', $exp_pem[0], $exp_pem[1], '$tp_pem_ujian', '$smtr_pem_ujian', 'BDP')";
+                    $bdp = "(null, '$ujian', '$kelas_pem_ujian', 'ujian', $exp_pem[0], $exp_pem[1], '$tp_pem_ujian', '$smtr_pem_ujian', 'BDP')";
                     array_push($values_query, $bdp);
                 }
                 $imp_query = implode("," ,$values_query );
@@ -300,7 +300,7 @@
                 $checkSts = mysqli_fetch_row($checkVal);
 
                 if($checkSts == null){
-                    $query1 = "insert into tb_jns_pem values (null, '$val_data', 'kegiatan', $nom_kegiatan, $ccl_kegiatan, '$tp_kegiatan', '$smtr_kegiatan', '$prodi_kegiatan')";
+                    $query1 = "insert into tb_jns_pem values (null, '$val_data', '".strtoupper($kls_kegiatan)."', 'kegiatan', $nom_kegiatan, $ccl_kegiatan, '$tp_kegiatan', '$smtr_kegiatan', '$prodi_kegiatan')";
                     $execQ = mysqli_query($koneksi, $query1);
                     if($execQ){
                         echo json_encode([

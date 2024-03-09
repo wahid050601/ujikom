@@ -128,47 +128,47 @@
                 
                 if(msg.status == "success"){
 
-                    $(document).ready(function(){
+                    // $(document).ready(function(){
 
-                        let datapem = '';
-                        $.each(msg.data, function(key, val){
-                            let button = '<span id="dell-ujian-pers" data-id="'+val.id+'" data-pem="'+val.pem+'" class="text-danger" style="font-size: 12px"><i class="fas fa-trash"></i></span>';
-                            let buttonKegiatan = '<span id="dell-kegiatan-pers" data-id="'+val.id+'" data-pem="'+val.pem+'" class="text-danger" style="font-size: 12px"><i class="fas fa-trash"></i></span>';
-                            datapem += `
-                            <tr>
-                                <td>`+val.num+`</td>`;
-                                if(kategori == 'ujian'){
-                                    datapem += `<td>`+button+` `+val.pem+`</td>`;
-                                }else if(kategori == 'kegiatan'){
-                                    datapem += `<td>`+buttonKegiatan+` `+val.pem+`</td>`;
-                                }else{
-                                    datapem += `<td>`+val.pem+`</td>`;
-                                }
-                                datapem += `<td>`+val.ket+`</td>
-                                <td>Rp. `+val.nominal+`,-</td>
-                                <td>`+val.cicil+` x</td>
-                                <td>`+val.tp+` `+val.smtr+`</td>
-                                <td>`+val.katg+`</td>
-                            </tr>`;
-                        });
-                        $('#show-pem').append(datapem);
-
-                        $('#table-jns').DataTable({
-                            processing: true,
-                            serverside: true,
-                            // select: true,
-                            scrollCollapse: true,
-                            scrollX: true,
-                            scrollY: 300,
-                            searching: false,
-                            info: false,
-                            paging: true,
-                        });
-
-                        $('#table-jns_length').css('display', 'none');
-                        $('#loading').hide();
-
+                    let datapem = '';
+                    $.each(msg.data, function(key, val){
+                        let button = '<span id="dell-ujian-pers" data-id="'+val.id+'" data-pem="'+val.pem+'" class="text-danger" style="font-size: 12px"><i class="fas fa-trash"></i></span>';
+                        let buttonKegiatan = '<span id="dell-kegiatan-pers" data-id="'+val.id+'" data-pem="'+val.pem+'" class="text-danger" style="font-size: 12px"><i class="fas fa-trash"></i></span>';
+                        datapem += `
+                        <tr>
+                            <td>`+val.num+`</td>`;
+                            if(kategori == 'ujian'){
+                                datapem += `<td>`+button+` `+val.pem+`</td>`;
+                            }else if(kategori == 'kegiatan'){
+                                datapem += `<td>`+buttonKegiatan+` `+val.pem+`</td>`;
+                            }else{
+                                datapem += `<td>`+val.pem+`</td>`;
+                            }
+                            datapem += `<td>`+val.ket+`</td>
+                            <td>Rp. `+val.nominal+`,-</td>
+                            <td>`+val.cicil+` x</td>
+                            <td>`+val.tp+` `+val.smtr+`</td>
+                            <td>`+val.katg+`</td>
+                        </tr>`;
                     });
+                    $('#show-pem').append(datapem);
+
+                    $('#table-jns').DataTable({
+                        processing: true,
+                        serverside: true,
+                        // select: true,
+                        scrollCollapse: true,
+                        scrollX: true,
+                        scrollY: 300,
+                        searching: false,
+                        info: false,
+                        paging: true,
+                    });
+
+                    $('#table-jns_length').css('display', 'none');
+                    $('#loading').hide();
+
+                    // });
 
                 }else{
 
