@@ -6,111 +6,111 @@
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-      <!-- Meta -->
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="description" content="Mega Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
-      <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
-      <meta name="author" content="codedthemes" />
-      <!-- Favicon icon -->
-      <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Mega Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
+    <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
+    <meta name="author" content="codedthemes" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
     <!-- waves.css -->
     <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
-      <!-- Required Fremwork -->
-      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
-      <!-- waves.css -->
-      <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
-      <!-- themify icon -->
-      <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
-      <!-- Font Awesome -->
-      <link rel="stylesheet" type="text/css" href="assets/icon/font-awesome/css/all.min.css">
-      <!-- scrollbar.css -->
-      <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
+    <!-- waves.css -->
+    <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- themify icon -->
+    <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="assets/icon/font-awesome/css/all.min.css">
+    <!-- scrollbar.css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
 
-      <!-- DataTables Pack -->
-      <link rel="stylesheet" href="assets/datatable-pack/datables/dataTables.min.css">
-      <link rel="stylesheet" href="assets/datatable-pack/autofill/autoFill.bootstrap4.min.css">
-      <link rel="stylesheet" href="assets/datatable-pack/buttons/buttons.bootstrap4.min.css">
-      <link rel="stylesheet" href="assets/datatable-pack/colreorders/colReorder.bootstrap4.min.css">
-      <link rel="stylesheet" href="assets/datatable-pack/fixedcolumns/fixedColumns.bootstrap4.min.css">
-      <link rel="stylesheet" href="assets/datatable-pack/fixedheaders/fixedHeader.bootstrap4.min.css">
-      <link rel="stylesheet" href="assets/datatable-pack/scrollers/scroller.bootstrap4.min.css">
-      <link rel="stylesheet" href="assets/datatable-pack/scrollers/scroller.bootstrap4.min.css">
-      <link rel="stylesheet" href="assets/datatable-pack/searchbuilders/searchBuilder.bootstrap4.min.css">
-      <link rel="stylesheet" href="assets/datatable-pack/selects/select.dataTables.min.css">
+    <!-- DataTables Pack -->
+    <link rel="stylesheet" href="assets/datatable-pack/datables/dataTables.min.css">
+    <link rel="stylesheet" href="assets/datatable-pack/autofill/autoFill.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/datatable-pack/buttons/buttons.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/datatable-pack/colreorders/colReorder.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/datatable-pack/fixedcolumns/fixedColumns.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/datatable-pack/fixedheaders/fixedHeader.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/datatable-pack/scrollers/scroller.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/datatable-pack/scrollers/scroller.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/datatable-pack/searchbuilders/searchBuilder.bootstrap4.min.css">
+    <link rel="stylesheet" href="assets/datatable-pack/selects/select.dataTables.min.css">
 
 
-      <!-- Sweet Alert -->
-      <link rel="stylesheet" href="assets/sweetalert/sweetalert2.min.css">
-      <!-- Select2 -->
-      <link rel="stylesheet" href="assets/select2/select2.css">
-      <!-- am chart export.css -->
-        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-      <!-- Style.css -->
-      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  </head>
+    <!-- Sweet Alert -->
+    <link rel="stylesheet" href="assets/sweetalert/sweetalert2.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="assets/select2/select2.css">
+    <!-- am chart export.css -->
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+</head>
 
-  <body>
-  <!-- Pre-loader start -->
-  <!-- <div class="theme-loader">
-      <div class="loader-track">
-          <div class="preloader-wrapper">
-              <div class="spinner-layer spinner-blue">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-              <div class="spinner-layer spinner-red">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-            
-              <div class="spinner-layer spinner-yellow">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-            
-              <div class="spinner-layer spinner-green">
-                  <div class="circle-clipper left">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="gap-patch">
-                      <div class="circle"></div>
-                  </div>
-                  <div class="circle-clipper right">
-                      <div class="circle"></div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div> -->
-  <!-- Pre-loader end -->
+<body>
+<!-- Pre-loader start -->
+<!-- <div class="theme-loader">
+    <div class="loader-track">
+        <div class="preloader-wrapper">
+            <div class="spinner-layer spinner-blue">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+            <div class="spinner-layer spinner-red">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        
+            <div class="spinner-layer spinner-yellow">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        
+            <div class="spinner-layer spinner-green">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<!-- Pre-loader end -->
 <!-- ========================LOADING======================== -->
 <style>
 .loading {
@@ -213,53 +213,23 @@ font-size: 30px;
                             </ul>
 
                             <!-- Dashboard -->
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Dashboard</div>
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"><i class="fa fa-home"></i> Dashboard</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
                                     <a href="#" onclick="HtmlLoad('pages/dashboard/dashboard.php')" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="fa fa-home"></i><b>D</b></span>
+                                        <span class="pcoded-micon"><i class="fa fa-genderless"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Dashboard</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                             </ul>
 
-                            <!-- Main Menu -->
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Main Menu</div>
+                            <!-- Akademik -->
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"><i class="fas fa-graduation-cap"></i> Akademik</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="fas fa-wallet"></i></span>
-                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Pembayaran</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                    <ul class="pcoded-submenu">
-                                        <li class=" ">
-                                            <a href="#" onclick="HtmlLoad('pages/spp/spp.php')" class="waves-effect waves-dark" id="mn-bayaran-spp">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i class="ti-control-record"></i>&nbsp; SPP</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="#" onclick="HtmlLoad('pages/ujian/ujian.php')" class="waves-effect waves-dark" id="mn-ujian-spp">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i class="ti-control-record"></i>&nbsp; Ujian</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="#" onclick="HtmlLoad('pages/kegiatan/kegiatan.php')" class="waves-effect waves-dark" id="mn-kegiatan-spp">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i class="ti-control-record"></i>&nbsp; Kegiatan</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="pcoded-hasmenu">
-                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="fas fa-user-graduate"></i></span>
+                                        <span class="pcoded-micon"><i class="fas fa-genderless"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Data Siswa</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
@@ -267,14 +237,14 @@ font-size: 30px;
                                         <li class=" ">
                                             <a href="#" onclick="HtmlLoad('pages/siswa/siswa.php')" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i class="ti-control-record"></i>&nbsp; Siswa Aktif</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i class="fas fa-angle-right"></i></i>&nbsp; Siswa Aktif</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class=" ">
                                             <a href="#" onclick="HtmlLoad('pages/siswa/siswa-non.php')" class="waves-effect waves-dark" id="mn-siswa-nonaktif">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i class="ti-control-record"></i>&nbsp; Siswa Nonaktif</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i class="fas fa-angle-right"></i></i>&nbsp; Siswa Nonaktif</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -283,8 +253,8 @@ font-size: 30px;
                             </ul>
                             <!-- end MENU -->
 
-                            <!-- Managemen PEMBAYARAN -->
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation">Administrasi</div>
+                            <!-- Managemen pembayaran -->
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"><i class="fas fa-book"></i> Administrasi</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="">
                                     <a href="#" onclick="HtmlLoad('pages/adm-katg/adm-katg.php')" class="waves-effect waves-dark">
@@ -293,14 +263,29 @@ font-size: 30px;
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-
-                                <!-- <li class="">
-                                    <a href="#" onclick="HtmlLoad('pages/adm-pem/adm-pem.php')" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="fas fa-genderless"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Jenis Pembayaran</span>
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fas fa-genderless"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Catatan Keuangan</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                </li> -->
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="#" onclick="HtmlLoad('pages/keuangan/pemasukan.php')" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i class="fas fa-angle-right"></i></i>&nbsp; Catatan Pemasukan</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="#" onclick="HtmlLoad('pages/keuangan/pengeluaran.php')" class="waves-effect waves-dark" id="mn-siswa-nonaktif">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i class="fas fa-angle-right"></i></i>&nbsp; Catatan Pengeluaran</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -388,6 +373,7 @@ font-size: 30px;
         function HtmlLoad(url) {
             $('.show-page').empty();
             $('.show-page').load(url);
+            $('#loading').show();
             
         }
 
@@ -395,6 +381,7 @@ font-size: 30px;
         function HtmlLoadPem(urldata) {
             $('.page-pem').empty();
             $('.page-pem').load(urldata);
+            $('#loading').show();
         }
 
         $(document).ready(function(){
