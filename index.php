@@ -19,7 +19,7 @@
     <!-- Favicon icon -->
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet"> -->
     <!-- waves.css -->
     <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
@@ -51,7 +51,7 @@
     <!-- Select2 -->
     <link rel="stylesheet" href="assets/select2/select2.css">
     <!-- am chart export.css -->
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <!-- <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" /> -->
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
@@ -237,14 +237,14 @@ font-size: 30px;
                                         <li class=" ">
                                             <a href="#" onclick="HtmlLoad('pages/siswa/siswa.php')" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i class="fas fa-angle-right"></i></i>&nbsp; Siswa Aktif</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Siswa Aktif</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class=" ">
                                             <a href="#" onclick="HtmlLoad('pages/siswa/siswa-non.php')" class="waves-effect waves-dark" id="mn-siswa-nonaktif">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i class="fas fa-angle-right"></i></i>&nbsp; Siswa Nonaktif</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Siswa Nonaktif</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -266,21 +266,44 @@ font-size: 30px;
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fas fa-genderless"></i></span>
-                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Catatan Keuangan</span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Keuangan</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class=" ">
                                             <a href="#" onclick="HtmlLoad('pages/keuangan/pemasukan.php')" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i class="fas fa-angle-right"></i></i>&nbsp; Catatan Pemasukan</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Catatan Pemasukan</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class=" ">
                                             <a href="#" onclick="HtmlLoad('pages/keuangan/pengeluaran.php')" class="waves-effect waves-dark" id="mn-siswa-nonaktif">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i class="fas fa-angle-right"></i></i>&nbsp; Catatan Pengeluaran</span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Catatan Pengeluaran</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="pcoded-hasmenu">
+                                    <a href="javascript:void(0)" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fas fa-genderless"></i></span>
+                                        <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Rekapitulasi</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                    <ul class="pcoded-submenu">
+                                        <li class=" ">
+                                            <a href="#" onclick="HtmlLoad('pages/keuangan/pemasukan.php')" class="waves-effect waves-dark">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Rekap Keuangan</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                        <li class=" ">
+                                            <a href="#" onclick="HtmlLoad('pages/keuangan/pengeluaran.php')" class="waves-effect waves-dark" id="mn-siswa-nonaktif">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Rekap Pembayaran</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -328,12 +351,12 @@ font-size: 30px;
     <!-- Chart js -->
     <script type="text/javascript" src="assets/js/chart.js/Chart.js"></script>
     <!-- amchart js -->
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <!-- <script src="https://www.amcharts.com/lib/3/amcharts.js"></script> -->
     <script src="assets/pages/widget/amchart/gauge.js"></script>
     <script src="assets/pages/widget/amchart/serial.js"></script>
     <script src="assets/pages/widget/amchart/light.js"></script>
     <script src="assets/pages/widget/amchart/pie.min.js"></script>
-    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <!-- <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script> -->
     <!-- Icon/Fontawesom -->
     <script src="assets/icon/font-awesome/js/all.min.js"></script>
 
@@ -381,7 +404,6 @@ font-size: 30px;
         function HtmlLoadPem(urldata) {
             $('.page-pem').empty();
             $('.page-pem').load(urldata);
-            $('#loading').show();
         }
 
         $(document).ready(function(){

@@ -8,8 +8,9 @@ services:
     volumes:
       # - ./:/usr/local/apache2/htdocs/myapps
       - ./:/var/www/html/myapps
+      # - D:/Wahid Prayogo/My-Apps/project-umat:/var/www/html/project-umat
     environment:
-      DB_HOST: host.docker.internal
+      DB_HOST: localhost
       DB_PORT: 3306
       DB_USER: root
       DB_PASSWORD: wahid561

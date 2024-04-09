@@ -619,10 +619,12 @@
                         let cardHistPayment = '';
                         $.each(data.load.load_datapem,function(id,val){
                             let statuspem = val.status_pem != 'lunas' ? '<i class="fas fa-copy"></i>&nbsp; '+ val.status_pem : '<i class="fas fa-check"></i>&nbsp; lunas';
+                            let dataKwitansi = 'pem=kegiatan&idsiswa='+val.id+'&idjns='+val.id_jns+'&idpem='+val.id_pem_keg;
+                            let buttonPrint = '<a href="processing/pdf.php?'+dataKwitansi+'" target="_blank" class="label label-primary" id="print-kwt-payspp"><i class="fas fa-print"></i></a>';
                             cardHistPayment += `
                             <div class="card-body mb-3 my-shadow">
                                 <h6 class="card-title">
-                                    <div class="text-right"><span class="label label-primary">${statuspem}</span></div>
+                                    <div class="text-right">${buttonPrint}<span class="label label-primary">${statuspem}</span></div>
                                     <i class="fas fa-th-large text-primary"></i>&nbsp; ${val.jns_pem}
                                 </h6>
                                 <br>
@@ -682,10 +684,12 @@
                     // console.log(data.pay);
                     let cardHistPayment = '';
                     let statuspem = data.pay.pay_datapem.status_pem == 'lunas' ? '<i class="fas fa-copy"></i>&nbsp; lunas' : '<i class="fas fa-copy"></i>&nbsp; '+ data.pay.pay_datapem.status_pem;
+                    let dataKwitansi = 'pem=kegiatan&idsiswa='+data.pay.pay_datapem.id+'&idjns='+data.pay.pay_datapem.id_jns+'&idpem='+data.pay.pay_datapem.id_pem_keg;
+                    let buttonPrint = '<a href="processing/pdf.php?'+dataKwitansi+'" target="_blank" class="label label-primary" id="print-kwt-payspp"><i class="fas fa-print"></i></a>';
                     cardHistPayment += `
                     <div class="card-body mb-3 my-shadow">
                         <h6 class="card-title">
-                            <div class="text-right"><span class="label label-primary">${statuspem}</span></div>
+                            <div class="text-right">${buttonPrint}<span class="label label-primary">${statuspem}</span></div>
                             <i class="fas fa-th-large text-primary"></i>&nbsp; ${data.pay.pay_datapem.jns_pem}
                         </h6>
                         <br>

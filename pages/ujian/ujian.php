@@ -242,6 +242,7 @@
     $('#sl-siswa').on('change', function(){
         // FORM PEM SECTION
         $('.note-metode-pem').css('display', 'contents');
+        $('.note-payment').empty();
         $('.show-form-pem').empty();
         $('#btn-cicilan').addClass('btn-disabled');
         $('#btn-cicilan').attr('disabled', true);
@@ -573,6 +574,7 @@
                     }else{
                         let infoPem = '';
                         $.each(msg.data, function(idx, val){
+                            let showBtnDetail = '<span class="label label-primary"><i class="fas fa-eye"></i></span>';
                             let lunas = val.total_pem == val.jns_val ? '<span class="label label-success"><i class="fas fa-check"></i></span>' : '';
                             infoPem += '<li class="list-group-item d-flex justify-content-between align-items-center">'+val.jns_pem+'<span>';
                             for(let i=1; i <= val.jml_pem; i++){
@@ -619,10 +621,12 @@
                         let cardHistPayment = '';
                         $.each(data.load.load_datapem,function(id,val){
                             let statuspem = val.status_pem != 'lunas' ? '<i class="fas fa-copy"></i>&nbsp; '+ val.status_pem : '<i class="fas fa-check"></i>&nbsp; lunas';
+                            let dataKwitansi = 'pem=ujian&idsiswa='+val.id+'&idjns='+val.id_jns+'&idpem='+val.id_pem_ujian;
+                            let buttonPrint = '<a href="processing/pdf.php?'+dataKwitansi+'" target="_blank" class="label label-primary" id="print-kwt-payspp"><i class="fas fa-print"></i></a>';
                             cardHistPayment += `
                             <div class="card-body mb-3 my-shadow">
                                 <h6 class="card-title">
-                                    <div class="text-right"><span class="label label-primary">${statuspem}</span></div>
+                                    <div class="text-right">${buttonPrint}<span class="label label-primary">${statuspem}</span></div>
                                     <i class="fas fa-th-large text-primary"></i>&nbsp; ${val.jns_pem}
                                 </h6>
                                 <br>
@@ -682,10 +686,12 @@
                     // console.log(data.pay);
                     let cardHistPayment = '';
                     let statuspem = data.pay.pay_datapem.status_pem == 'lunas' ? '<i class="fas fa-copy"></i>&nbsp; lunas' : '<i class="fas fa-copy"></i>&nbsp; '+ data.pay.pay_datapem.status_pem;
+                    let dataKwitansi = 'pem=ujian&idsiswa='+data.pay.pay_datapem.id+'&idjns='+data.pay.pay_datapem.id_jns+'&idpem='+data.pay.pay_datapem.id_pem_ujian;
+                    let buttonPrint = '<a href="processing/pdf.php?'+dataKwitansi+'" target="_blank" class="label label-primary" id="print-kwt-payspp"><i class="fas fa-print"></i></a>';
                     cardHistPayment += `
                     <div class="card-body mb-3 my-shadow">
                         <h6 class="card-title">
-                            <div class="text-right"><span class="label label-primary">${statuspem}</span></div>
+                            <div class="text-right">${buttonPrint}'<span class="label label-primary">${statuspem}</span></div>
                             <i class="fas fa-th-large text-primary"></i>&nbsp; ${data.pay.pay_datapem.jns_pem}
                         </h6>
                         <br>

@@ -87,8 +87,8 @@
                             <p>Status : <span class="text-success"><i class="fas fa-check"></i> Lunas</span></p>
                         </div>
                         <div class="button-show-pay">
-                            <button type="button" class="btn btn-primary btn-sm" id="print-kwt-payspp"><i class="fas fa-print"></i> Print</button>
-                            <button type="button" class="btn btn-secondary btn-sm" id="btnclose-payspp"><i class="fas fa-times"></i> Tutup</button>
+                            <!-- <a href="processing/pdf.php" target="_blank" class="btn btn-primary btn-sm" id="print-kwt-payspp"><i class="fas fa-print"></i> Print</a> -->
+                            <!-- <button type="button" class="btn btn-secondary btn-sm" id="btnclose-payspp"><i class="fas fa-times"></i> Tutup</button> -->
                         </div>
                     </div>
                 </div>
@@ -186,9 +186,8 @@
                 </table>
 
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-print"></i>&nbsp; print</button>
-                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; tutup</button>
+            <div class="modal-footer button-set-detail-spp">
+                <!-- BUTTON HERE -->
             </div>
         </div>
     </div>
@@ -326,24 +325,7 @@
                 }
             });
             
-        })
-
-        // Action Cancel Show Pay SPP (Ready)
-        $('#btnclose-payspp').on('click', function(){
-            $('span.icon').html('<i class="fas fa-check"></i>');
-            $('#btn-gnr-spp').removeClass('btn-disabled disabled waves-effect waves-light');
-            $('#btn-gnr-spp').attr('disabled', false);
-
-            $('#spp-siswa-sl').attr('disabled', false);
-            $('#spp-sl').attr('disabled', false);
-            $('.header-payspp-siswa').empty();
-            $('.nama-siswa').empty();
-            $('.nis-siswa').empty();
-            $('.nis-nisn-siswa').empty();
-            $('.tgl-pem-siswa').empty();
-            $('.validator-siswa').empty();
-            $('.info-payspp-show').css('display', 'none');
-        })
+        });
 
         // Action Process Button
         $('#btn-proc-spp').on('click', function(){
@@ -450,6 +432,10 @@
                                     $('#show-sts').html('<span class="label label-success"><i class="fas fa-check"></i></i>&nbsp; '+val.status_spp+'</span>');
                                     $('#show-tgl').html(val.tanggal_pem);
                                     $('#show-adm').html(val.nama_adm);
+                                    let dataKwitansi = 'pem=spp&idsiswa='+val.id+'&idjns='+val.id_jns+'&idpem='+val.id_pem_spp;
+                                    let buttonPrint = '<a href="processing/pdf.php?'+dataKwitansi+'" target="_blank" class="btn btn-primary btn-sm" id="print-kwt-payspp"><i class="fas fa-print"></i> Print</a>';
+                                    let btnCancel = '<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal"><i class="fas fa-times"></i>&nbsp; tutup</button>';
+                                    $('.button-set-detail-spp').empty().append(buttonPrint+ ' ' +btnCancel);
                                 });
                             }
                         });
@@ -490,6 +476,28 @@
                         $('.nis-nisn-siswa').html(val.nis_siswa);
                         $('.tgl-pem-siswa').html(val.tanggal_pem);
                         $('.validator-siswa').html(val.nama_adm);
+                        let dataKwitansi = 'pem=spp&idsiswa='+val.id+'&idjns='+val.id_jns+'&idpem='+val.id_pem_spp;
+                        let buttonPrint = '<a href="processing/pdf.php?'+dataKwitansi+'" target="_blank" class="btn btn-primary btn-sm" id="print-kwt-payspp"><i class="fas fa-print"></i> Print</a>';
+                        let buttonExit = '<button type="button" class="btn btn-secondary btn-sm" id="btnclose-payspp"><i class="fas fa-times"></i> Tutup</button>';
+                        $('.button-show-pay').empty().append(buttonPrint+' '+buttonExit);
+
+                        // Action Cancel Show Pay SPP (Ready)
+                        $('#btnclose-payspp').on('click', function(){
+                            $('span.icon').html('<i class="fas fa-check"></i>');
+                            $('#btn-gnr-spp').removeClass('btn-disabled disabled waves-effect waves-light');
+                            $('#btn-gnr-spp').attr('disabled', false);
+
+                            $('#spp-siswa-sl').attr('disabled', false);
+                            $('#spp-sl').attr('disabled', false);
+                            $('.header-payspp-siswa').empty();
+                            $('.nama-siswa').empty();
+                            $('.nis-siswa').empty();
+                            $('.nis-nisn-siswa').empty();
+                            $('.tgl-pem-siswa').empty();
+                            $('.validator-siswa').empty();
+                            $('.info-payspp-show').css('display', 'none');
+                        });
+                        
                     });
                 }else if(msg.status == 'readypay'){
                     $('.info-payspp-show').css('display', 'none');

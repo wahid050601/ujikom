@@ -52,7 +52,7 @@
 
 <!-- JQUERY -->
 <script>
-    $(document).ready(function(){
+    // $(document).ready(function(){
         $('#loading').show();
 
         // LOAD KATEGORI PEMBAYARAN
@@ -105,7 +105,7 @@
             loadDataMasterPem(kategoriPem);
 
         });
-    });
+    // });
 
     // FUNC===LOAD MASTER DATA JENIS PEMBAYARAN
     function loadDataMasterPem(kategori){
