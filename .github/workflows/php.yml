@@ -1,39 +1,36 @@
-name: PHP Composer
+name: CI for PHP Application
 
+# Menentukan event yang memicu workflow
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
-permissions:
-  contents: read
-
+# Mendefinisikan job yang akan dijalankan
 jobs:
   build:
-
+    # Menentukan runner yang digunakan
     runs-on: ubuntu-latest
 
+    # Langkah-langkah dalam job
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
-
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
       with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+        php-version: '7.4' # Versi PHP yang diinginkan
+        extensions: mbstring, intl, mysqli # Ekstensi PHP yang diperlukan
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+    - name: Validate PHP syntax
+      run: find . -name "*.php" -print0 | xargs -0 -n1 php -l
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
 
-    # - name: Run test suite
-    #   run: composer run-script test
+    - name: Run PHPUnit tests
+      run: vendor/bin/phpunit --configuration phpunit.xml
