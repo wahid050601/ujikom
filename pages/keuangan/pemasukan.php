@@ -135,8 +135,8 @@
             success: function(list){
 
                 let tableData = `
-                <table class="table table-bordered table-sm table-list-pemasukan">
-                    <thead>
+                <table class="table table-bordered table-xs table-list-pemasukan">
+                    <thead class="bg-primary">
                         <tr>
                             <th>Tanggal</th>
                             <th>ID Pembayaran</th>
