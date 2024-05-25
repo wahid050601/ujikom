@@ -7,6 +7,8 @@
 
         <!-- Body -->
         <button class="btn btn-primary btn-mini rounded" id="btnAdd"><i class="fas fa-plus"></i>&nbsp; add</button>
+        <button class="btn btn-primary btn-mini rounded" id="btnEdit"><i class="fas fa-pencil-alt"></i>&nbsp; edit</button>
+        <button class="btn btn-primary btn-mini rounded" id="btnDell"><i class="fas fa-trash"></i>&nbsp; delete</button>
         <button class="btn btn-success btn-mini rounded"><i class="fas fa-download"></i>&nbsp; download</button>
 
         <div class="data-content mt-3">
@@ -14,7 +16,7 @@
                 <thead>
                     <tr class="bg-primary">
                         <td class="text-center">No</td>
-                        <td class="text-center">Action</td>
+                        <!-- <td class="text-center">Action</td> -->
                         <td class="text-center">No.Induk</td>
                         <td class="text-center">NISN</td>
                         <td class="text-center">Nama</td>
@@ -138,6 +140,50 @@
                         <div class="form-group">
                             <label for="email">E-Mail</label>
                             <input type="email" class="form-control form-control-sm" id="email" name="email">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="kelas">Kelas</label>
+                            <select id="kelas" name="kelas" class="custom-select custom-select-sm" style="width: 100%;">
+                                <option value="">_pilih kelas_</option>
+                                <option value="X">X (sepuluh)</option>
+                                <option value="XI">XI (sebelas)</option>
+                                <option value="XII">XII (duabelas)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="prodi">Program Studi</label>
+                            <select id="prodi" name="prodi" class="custom-select custom-select-sm" style="width: 100%;">
+                                <option value="">_pilih prodi_</option>
+                                <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
+                                <option value="Akuntansi Keuangan dan Lembaga">Akuntansi Keuangan dan Lembaga</option>
+                                <option value="Bisnis Daring dan Pemasaran">Bisnis Daring dan Pemasaran</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="tp">Tahun Pelajaran</label>
+                            <input type="text" id="tp" name="tp" class="form-control form-control-sm" placeholder="Ex : 2018/2019">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="status">Status Siswa</label>
+                            <select id="status" name="status" class="custom-select custom-select-sm" style="width: 100%;">
+                                <option value="aktif">Aktif</option>
+                                <option value="nonaktif">Nonaktif</option>
+                                <option value="pindahan">Pindahan</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -270,47 +316,7 @@
     $(document).ready(function(){
 
         // Load first page data siswa
-        $.ajax({
-            method: "POST",
-            url: "pages/siswa/siswa-load.php",
-            dataType: "json",
-            data: {"action" : "getDataSiswa"},
-            success: function(datas){
-                let datatablesiswa = '';
-                let number = 1;
-
-                $.each(datas.datatable.data, function(id,val){
-                    datatablesiswa +=`
-                    <tr>
-                        <th>${number++}</th>
-                        <td>${val.btn}</td>
-                        <td>${val.nis_siswa}</td>
-                        <td>${val.nisn_siswa}</td>
-                        <td>${val.nama_siswa}</td>
-                        <td>${val.jk_siswa}</td>
-                        <td>${val.kls_siswa}</td>
-                        <td>${val.prod_siswa}</td>
-                        <td>${val.tp_siswa}</td>
-                        <td>${val.tplahir_siswa}</td>
-                        <td>${val.tglahir_siswa}</td>
-                        <td>${val.alamat_siswa}</td>
-                        <td>${val.ibu_siswa}</td>
-                        <td>${val.ayah_siswa}</td>
-                        <td>${val.tlp_siswa}</td>
-                        <td>${val.email_siswa}</td>
-                    </tr>`;
-                });
-                $('.show-data-siswa').append(datatablesiswa);
-                $('#tb-siswa').DataTable({
-                    processing: true,
-                    serverside: true,
-                    selected: true,
-                    scrollX: true,
-                });
-
-                $('#loading').hide();
-            }
-        });
+        loadDataSiswa();
 
         // Tambah data siswa
         $('#btnAdd').on('click', function(){
@@ -362,37 +368,46 @@
 
 
         // Update data Siswa
-        $('#tb-siswa').on('click', '#btnEdit', function(){
-            var idsiswa = $(this).data('id');
-
-            $.ajax({
-                type: 'POST',
-                url: 'pages/siswa/siswa-load.php',
-                dataType: 'json',
-                data: {
-                    "action" : "getDetailSiswa",
-                    "idsiswa" : idsiswa
-                },
-                success: function(data) {
-                    $.each(data.datasiswa, function(index, value) {
-                        $('#idsiswa').val(value.id);
-                        $('#edit-nis').val(value.nis_siswa);
-                        $('#edit-nisn').val(value.nisn_siswa);
-                        $('#edit-nama').val(value.nama_siswa);
-                        $('#edit-jk').val(value.jk_siswa);
-                        $('#edit-tplahir').val(value.tplahir_siswa);
-                        $('#edit-tglahir').val(value.tglahir_siswa);
-                        $('#edit-alamat').val(value.alamat_siswa);
-                        $('#edit-ibu').val(value.ibu_siswa);
-                        $('#edit-ayah').val(value.ayah_siswa);
-                        $('#edit-tlp').val(value.tlp_siswa);
-                        $('#edit-email').val(value.email_siswa);
-                    })
-                }
-            });
-            $('#editModal').modal('show');
+        $('#btnEdit').on('click', function(){
+            if($('table#tb-siswa tr.selected').length > 0){
+                $('#loading').show();
+                let idSiswa =  $('tr.selected').data('id');
+                
+                $.ajax({
+                    type: 'POST',
+                    url: 'pages/siswa/siswa-load.php',
+                    dataType: 'json',
+                    data: {
+                        "action" : "getDetailSiswa",
+                        "idsiswa" : idSiswa
+                    },
+                    success: function(data) {
+                        $.each(data.datasiswa, function(index, value) {
+                            $('#idsiswa').val(value.id);
+                            $('#edit-nis').val(value.nis_siswa);
+                            $('#edit-nisn').val(value.nisn_siswa);
+                            $('#edit-nama').val(value.nama_siswa);
+                            $('#edit-jk').val(value.jk_siswa);
+                            $('#edit-tplahir').val(value.tplahir_siswa);
+                            $('#edit-tglahir').val(value.tglahir_siswa);
+                            $('#edit-alamat').val(value.alamat_siswa);
+                            $('#edit-ibu').val(value.ibu_siswa);
+                            $('#edit-ayah').val(value.ayah_siswa);
+                            $('#edit-tlp').val(value.tlp_siswa);
+                            $('#edit-email').val(value.email_siswa);
+                        })
+                    }
+                });
+                $('#editModal').modal('show');
+                $('#loading').hide();
+            }else{
+                Swal.fire({
+                    title: "warning",
+                    text: "pilih salah satu siswa",
+                    icon: "warning",
+                });
+            }
         });
-
         $('#editModal').on('click', '#editsiswa', function(){
             event.preventDefault();
 
@@ -424,38 +439,95 @@
 
 
         // Delete data Siswa
-        $('#tb-siswa').on('click', '#btnDell', function(){
-            var idsiswa = $(this).data('id');
-            
-            Swal.fire({
-                title: 'Delete',
-                text: 'Ingin hapus data siswa ?',
-                icon: 'question',
-                showCancelButton: true,
-                confirmButtonText: "yes"
-            }).then((result) => {
-                if(result.isConfirmed){
-                    $.ajax({
-                        method: 'POST',
-                        url: 'pages/siswa/siswa-func.php',
-                        data: 'action=del&id=' + idsiswa,
-                        dataType: 'json',
-                        success: function(msg){
-                            Swal.fire({
-                                title: msg.status,
-                                text: msg.info,
-                                icon: msg.status,
-                                showConfirmButton: false,
-                                timer: 1500
-                            }).then((ok) => {
-                                $('.show-page').empty();
-                                $('.show-page').load('pages/siswa/siswa.php');
-                            })
-                        }
+        $('#btnDell').on('click', function(){
+            if($('table#tb-siswa tr.selected').length > 0){
+                // $('#loading').show();
+                let idSiswa =  $('tr.selected').data('id');
 
-                    })
-                }
-            })
+                Swal.fire({
+                    title: 'Delete',
+                    text: 'Ingin hapus data siswa ?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: "yes"
+                }).then((result) => {
+                    if(result.isConfirmed){
+                        $('#loading').show();
+                        $.ajax({
+                            method: 'POST',
+                            url: 'pages/siswa/siswa-func.php',
+                            data: 'action=del&id=' + idSiswa,
+                            dataType: 'json',
+                            success: function(msg){
+                                $('#loading').hide();
+                                Swal.fire({
+                                    title: msg.status,
+                                    text: msg.info,
+                                    icon: msg.status,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                }).then((ok) => {
+                                    $('.show-page').empty();
+                                    $('.show-page').load('pages/siswa/siswa.php');
+                                })
+                            }
+
+                        })
+                    }
+                })
+
+            }else{
+                Swal.fire({
+                    title: "warning",
+                    text: "pilih salah satu siswa",
+                    icon: "warning",
+                });
+            }
         });
    });
+
+   function loadDataSiswa(){
+        $.ajax({
+            method: "POST",
+            url: "pages/siswa/siswa-load.php",
+            dataType: "json",
+            data: {"action" : "getDataSiswa"},
+            success: function(datas){
+                let datatablesiswa = '';
+                let number = 1;
+
+                $.each(datas.datatable.data, function(id,val){
+                    datatablesiswa +=`
+                    <tr data-id="${val.id}">
+                        <th>${number++}</th>
+                        <!--<td>${val.btn}</td>-->
+                        <td>${val.nis_siswa}</td>
+                        <td>${val.nisn_siswa}</td>
+                        <td>${val.nama_siswa}</td>
+                        <td>${val.jk_siswa}</td>
+                        <td>${val.kls_siswa}</td>
+                        <td>${val.prod_siswa}</td>
+                        <td>${val.tp_siswa}</td>
+                        <td>${val.tplahir_siswa}</td>
+                        <td>${val.tglahir_siswa}</td>
+                        <td>${val.alamat_siswa}</td>
+                        <td>${val.ibu_siswa}</td>
+                        <td>${val.ayah_siswa}</td>
+                        <td>${val.tlp_siswa}</td>
+                        <td>${val.email_siswa}</td>
+                    </tr>`;
+                });
+                $('.show-data-siswa').append(datatablesiswa);
+                var tableSiswa = $('#tb-siswa').DataTable({
+                    processing: true,
+                    serverside: true,
+                    select: true,
+                    selected: true,
+                    scrollX: true
+                });
+
+                $('#loading').hide();
+            }
+        });
+   }
 </script>

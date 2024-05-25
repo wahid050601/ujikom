@@ -10,7 +10,7 @@
             case 'getDataSiswa':
                 try{
                     
-                    $query_getsiswa = "SELECT * FROM tb_siswa WHERE status_siswa = 'aktif' ORDER BY nama_siswa ASC";
+                    $query_getsiswa = "SELECT * FROM tb_siswa WHERE status_siswa in ('aktif','pindahan') ORDER BY nama_siswa ASC";
                     $exec_data_siswa = mysqli_query($koneksi, $query_getsiswa);
                     $data_siswa = [];
                     while($row = mysqli_fetch_assoc($exec_data_siswa)) {

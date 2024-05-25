@@ -23,10 +23,14 @@
                     $ayah = htmlspecialchars($_POST["ayah"]);
                     $tlp = htmlspecialchars($_POST["tlp"]);
                     $email = htmlspecialchars($_POST["email"]);
+                    $kelas = htmlspecialchars($_POST["kelas"]);
+                    $prodi = htmlspecialchars($_POST["prodi"]);
+                    $tp = htmlspecialchars($_POST["tp"]);
+                    $status = htmlspecialchars($_POST["status"]);
 
                     //Query Insert
-                    $query = "INSERT INTO tb_siswa (nis_siswa,nisn_siswa,nama_siswa,jk_siswa,tplahir_siswa,tglahir_siswa,alamat_siswa,ibu_siswa,ayah_siswa,tlp_siswa,email_siswa,status_siswa)
-                    VALUES ('$nis', '$nisn', '$nama', '$jk', '$tplahir', '$tglahir', '$alamat', '$ibu', '$ayah', '$tlp', '$email', 'aktif')";
+                    $query = "INSERT INTO tb_siswa (nis_siswa,nisn_siswa,nama_siswa,jk_siswa,kls_siswa,prod_siswa,tp_siswa,tplahir_siswa,tglahir_siswa,alamat_siswa,ibu_siswa,ayah_siswa,tlp_siswa,email_siswa,status_siswa)
+                    VALUES ('$nis', '$nisn', '$nama', '$jk', '$kelas', '$prodi', '$tp', '$tplahir', '$tglahir', '$alamat', '$ibu', '$ayah', '$tlp', '$email', '$status')";
                     
                     //Process
                     if (mysqli_query($koneksi, $query)) {
