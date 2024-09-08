@@ -109,6 +109,7 @@
 
     // FUNC===LOAD MASTER DATA JENIS PEMBAYARAN
     function loadDataMasterPem(kategori){
+        $('#loading').show();
         $.ajax({
             method: "POST",
             url: "pages/adm-katg/adm-katg-load.php",
@@ -171,7 +172,7 @@
                     // });
 
                 }else{
-
+                    $('#loading').show();
                     $('.notice-pem').css('display', 'none');
                     $('#table-jns').DataTable({
                         processing: true,
