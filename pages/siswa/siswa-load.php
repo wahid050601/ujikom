@@ -1,16 +1,23 @@
 <?php
+    // header('Access-Control-Allow-Origin: *');
+    // header('Content-Type: application/json');
+    // $data = json_decode(file_get_contents('php://input'), true);
     // Connection
     require "../../connection/conn.php";
-
-    $action = $_POST["action"];
     
     if(isset($_POST["action"])) {
+        $action = $_POST["action"];
+
         switch ($action) {
 
             case 'getDataSiswa':
                 try{
                     
-                    $query_getsiswa = "SELECT * FROM tb_siswa WHERE status_siswa in ('aktif','pindahan') ORDER BY nama_siswa ASC";
+                    $query_getsiswa = "
+                    SELECT a.*, coalesce(c.nama_rbl, '') as nama_rbl , coalesce(substring_index(c.tp_rbl, ' ', -1), '') as smtr  FROM tb_siswa a
+                    left join tb_rombel_siswa_stg b on a.id = b.id_siswa
+                    left join tb_rombel_siswa c on c.id_rbl = b.id_rbl
+                    WHERE status_siswa in ('aktif','pindahan') ORDER BY nama_siswa ASC";
                     $exec_data_siswa = mysqli_query($koneksi, $query_getsiswa);
                     $data_siswa = [];
                     while($row = mysqli_fetch_assoc($exec_data_siswa)) {

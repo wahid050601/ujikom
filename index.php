@@ -250,6 +250,13 @@ font-size: 30px;
                                         </li>
                                     </ul>
                                 </li>
+                                <li class="">
+                                    <a href="#" onclick="HtmlLoad('pages/rombel/rombel.php')" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fas fa-genderless"></i><b>R</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Rombel Siswa</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                             </ul>
                             <!-- end MENU -->
 
@@ -294,14 +301,14 @@ font-size: 30px;
                                     </a>
                                     <ul class="pcoded-submenu">
                                         <li class=" ">
-                                            <a href="#" onclick="HtmlLoad('pages/keuangan/pemasukan.php')" class="waves-effect waves-dark">
+                                            <a href="#" onclick="HtmlLoad('pages/rekapitulasi/rekapitulasi-keuangan.php')" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Rekap Keuangan</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                         <li class=" ">
-                                            <a href="#" onclick="HtmlLoad('pages/keuangan/pengeluaran.php')" class="waves-effect waves-dark" id="mn-siswa-nonaktif">
+                                            <a href="#" onclick="HtmlLoad('pages/rekapitulasi/rekapitulasi-pembayaran.php')" class="waves-effect waves-dark" id="mn-siswa-nonaktif">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Rekap Pembayaran</span>
                                                 <span class="pcoded-mcaret"></span>

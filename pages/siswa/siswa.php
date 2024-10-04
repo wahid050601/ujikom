@@ -24,6 +24,8 @@
                         <td class="text-center">Kelas</td>
                         <td class="text-center">Program Studi</td>
                         <td class="text-center">TP</td>
+                        <td class="text-center">Rombel</td>
+                        <td class="text-center">Semester</td>
                         <td class="text-center">Tempat Lahir</td>
                         <td class="text-center">Tanggal Lahir</td>
                         <td class="text-center">Alamat</td>
@@ -314,7 +316,6 @@
 
 <script>
     $(document).ready(function(){
-
         // Load first page data siswa
         loadDataSiswa();
 
@@ -487,12 +488,14 @@
    });
 
    function loadDataSiswa(){
+    // $('#loading').hide();
         $.ajax({
             method: "POST",
             url: "pages/siswa/siswa-load.php",
             dataType: "json",
             data: {"action" : "getDataSiswa"},
             success: function(datas){
+                
                 let datatablesiswa = '';
                 let number = 1;
 
@@ -508,6 +511,8 @@
                         <td>${val.kls_siswa}</td>
                         <td>${val.prod_siswa}</td>
                         <td>${val.tp_siswa}</td>
+                        <td>${val.nama_rbl}</td>
+                        <td>${val.smtr}</td>
                         <td>${val.tplahir_siswa}</td>
                         <td>${val.tglahir_siswa}</td>
                         <td>${val.alamat_siswa}</td>
