@@ -143,8 +143,8 @@ font-size: 30px;
                         <a class="mobile-menu waves-effect waves-light" id="mobile-collapse" href="#!">
                             <i class="ti-menu"></i>
                         </a>
-                        <a href="index.html">
-                            <img class="img-fluid" src="assets/images/logo.png" alt="Theme-Logo" />
+                        <a href="index.php">
+                            <img class="img-fluid" src="assets/images/logo-apps.png" alt="Theme-Logo" width="100px" />
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
