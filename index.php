@@ -253,7 +253,7 @@ font-size: 30px;
                                 <li class="">
                                     <a href="#" onclick="HtmlLoad('pages/rombel/rombel.php')" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fas fa-genderless"></i><b>R</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Rombel Siswa</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Rombel & Prodi</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -398,6 +398,14 @@ font-size: 30px;
     <script type="text/javascript" src="assets/js/script.js "></script>
 
     <script>
+
+        // Login check
+        var tokenLogin = localStorage.getItem('loginToken');
+        if(tokenLogin == null){
+            alert('Token login tidak ada');
+        }else{
+            alert('Token : ' + tokenLogin);
+        }
         
         // Load URL PAGES
         function HtmlLoad(url) {
@@ -408,9 +416,12 @@ font-size: 30px;
         }
 
         // Load URL PEMBAYARAN
-        function HtmlLoadPem(urldata) {
+        function HtmlLoadPem(urldata,idbtn) {
             $('.page-pem').empty();
             $('.page-pem').load(urldata);
+
+            $('.btn-pem-show').removeClass('btn-danger').addClass('btn-primary');
+            $('#mn-'+ idbtn).removeClass('btn-primary').addClass('btn-danger');
         }
 
         $(document).ready(function(){

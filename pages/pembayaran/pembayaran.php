@@ -58,7 +58,7 @@
 
                     let kategori = '';
                     $.each(data.data, function(key, val){
-                        kategori += '<a href="#" onclick="HtmlLoadPem('+"'pages/"+val.katg_pem+"/"+val.katg_pem+".php'"+')" class="btn btn-primary btn-sm ml-2 mr-2 btn-pem-show" style="text-transform: uppercase;" id="mn-'+val.katg_pem+'"><i class="fas fa-cog fa-spin"></i>'+val.katg_pem+'</a>';
+                        kategori += '<a href="#" onclick="HtmlLoadPem('+"'pages/"+val.katg_pem+"/"+val.katg_pem+".php'"+',\''+ val.katg_pem +'\')" class="btn-pem-show btn btn-primary btn-sm ml-2 mr-2" style="text-transform: uppercase;" id="mn-'+val.katg_pem+'"><i class="fas fa-cog fa-spin"></i>'+val.katg_pem+'</a>';
                     });
                     $('.list-btn-pem').append(kategori);
 

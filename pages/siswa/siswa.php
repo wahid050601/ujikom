@@ -162,10 +162,10 @@
                         <div class="form-group">
                             <label for="prodi">Program Studi</label>
                             <select id="prodi" name="prodi" class="custom-select custom-select-sm" style="width: 100%;">
-                                <option value="">_pilih prodi_</option>
+                                <!-- <option value="">_pilih prodi_</option>
                                 <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
                                 <option value="Akuntansi Keuangan dan Lembaga">Akuntansi Keuangan dan Lembaga</option>
-                                <option value="Bisnis Daring dan Pemasaran">Bisnis Daring dan Pemasaran</option>
+                                <option value="Bisnis Daring dan Pemasaran">Bisnis Daring dan Pemasaran</option> -->
                             </select>
                         </div>
                     </div>
@@ -316,6 +316,26 @@
 
 <script>
     $(document).ready(function(){
+
+        $.ajax({
+            method: 'POST',
+            url: "pages/siswa/siswa-load.php",
+            dataType: 'json',
+            data: {'action': 'loadProdi'},
+            success: function(prodi){
+
+                let prodi_set = '<option>_Pilih Prodi_</option>';
+                $.each(prodi.prodi, function(id,val){
+                    prodi_set += '<option value="'+ val.nama_prodi +'">'+ val.nama_prodi +'</option>';
+                });
+
+                // Set to Form
+                $('#prodi').html(prodi_set);
+            }
+        });
+        
+
+
         // Load first page data siswa
         loadDataSiswa();
 

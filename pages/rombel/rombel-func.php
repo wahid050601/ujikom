@@ -205,5 +205,97 @@ if(isset($action)){
                 ]);
             }
         break;
+
+        case "addProdi" :
+            try {
+                $kode_prodi = $_POST["kode-prodi"];
+                $nama_prodi = $_POST["nama-prodi"];
+                $kaprodi = $_POST["kaprodi"];
+
+
+                $insProdi = "insert into tb_prodi (code_prodi,nama_prodi,kaprodi)
+                values ('$kode_prodi', '$nama_prodi', '$kaprodi')";
+                error_log($insProdi);
+                $exec_prodi = mysqli_query($koneksi, $insProdi);
+
+                $status = $exec_prodi == true ? "success" : "error";
+
+                echo json_encode([
+                    "status" => $status,
+                    "info" => $exec_prodi == true ? "prodi berhasil ditambah" : "prodi gagal ditambah"
+                ]);
+
+            } catch (Exception $th) {
+                echo json_encode([
+                    "status" => "error",
+                    "info" => $th->getMessage()
+                ]);
+            }
+        break;
+
+        case "deleteProdi" :
+            try {
+                $idprodi = $_POST["code"];
+
+                // Query Delete
+                $query = "DELETE FROM tb_prodi WHERE code_prodi = '$idprodi'";
+
+                //Process
+                if(mysqli_query($koneksi, $query)){
+                    $alert = "success";
+                    $text = "Prodi berhasil dihapus";
+                }else{
+                    $alert = "error";
+                    $text = "Prodi gagal dihapus";
+                }
+                echo json_encode([
+                    "status" => $alert, 
+                    "info" => $text
+                ]);
+
+            } catch (Exception $th) {
+                echo json_encode([
+                    "status" => "error",
+                    "info" => mysqli_error($koneksi)
+                ]);
+            }
+        break;
+
+        case "editProdi" :
+            try {
+                    
+                // Ambil data dari Form Update
+                $oldProdiCode = htmlspecialchars($_POST["code-old-prodi"]);
+                $code_prodi = htmlspecialchars($_POST["kode-prodi-edit"]);
+                $nama_prodi = htmlspecialchars($_POST["nama-prodi-edit"]);
+                $kaprodi = htmlspecialchars($_POST["kaprodi-edit"]);
+
+                // Query Update
+                $query = "UPDATE tb_prodi SET 
+                    code_prodi = '$code_prodi', 
+                    nama_prodi = '$nama_prodi', 
+                    kaprodi = '$kaprodi'
+                    where code_prodi = '$oldProdiCode'";
+                
+                //Process
+                if (mysqli_query($koneksi, $query)) {
+                    $alert = "success";
+                    $text = "Data Prodi berhasil diupdate";
+                }else{
+                    $alert = "error";
+                    $text = "Data Prodi gagal diupdate";
+                }
+                echo json_encode([
+                    "status" => $alert, 
+                    "info" => $text
+                ]);
+
+            } catch (Exception $th) {
+                echo json_encode([
+                    "status" => "error",
+                    "info" => mysqli_error($koneksi)
+                ]);
+            }
+        break;
     }
 }

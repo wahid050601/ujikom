@@ -91,5 +91,27 @@
                 }
             break;
 
+
+            case "loadProdi" :
+                try {
+                    
+                    $getProdi = "select * from tb_prodi";
+                    $execProdi = mysqli_query($koneksi, $getProdi);
+                    $prodi = [];
+                    while($row = mysqli_fetch_assoc($execProdi)){$prodi[] = $row;}
+
+                    echo json_encode([
+                        "status" => "success",
+                        "prodi" => $prodi
+                    ]);
+
+                } catch (\Throwable $th) {
+                    echo json_encode([
+                        "status" => "error",
+                        "info" => $th->getMessage()
+                    ]);
+                }
+            break;
+
         }
     }
