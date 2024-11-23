@@ -552,7 +552,7 @@
                 </table>`;
                 $('.prodi-list-div').html(prodi_set);
 
-                var tableSiswa = $('.table-prodi').DataTable({
+                var tableProdi = $('.table-prodi').DataTable({
                     processing: true,
                     serverside: true,
                     select: true,

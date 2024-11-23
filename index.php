@@ -32,6 +32,8 @@
     <link rel="stylesheet" type="text/css" href="assets/icon/font-awesome/css/all.min.css">
     <!-- scrollbar.css -->
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <!-- morris chart -->
+    <link rel="stylesheet" type="text/css" href="assets/css/morris.js/css/morris.css">
 
     <!-- DataTables Pack -->
     <link rel="stylesheet" href="assets/datatable-pack/datables/dataTables.min.css">
@@ -223,6 +225,18 @@ font-size: 30px;
                                     </a>
                                 </li>
                             </ul>
+                            
+                            <!-- User Management -->
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"><i class="fas fa-users-cog"></i> User Management</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="">
+                                    <a href="#" onclick="HtmlLoad('pages/user/user.php')" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fa fa-genderless"></i><b>D</b></span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">konfigurasi user</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                            </ul>
 
                             <!-- Akademik -->
                             <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"><i class="fas fa-graduation-cap"></i> Akademik</div>
@@ -357,15 +371,22 @@ font-size: 30px;
     <script src="assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
     <!-- Chart js -->
     <script type="text/javascript" src="assets/js/chart.js/Chart.js"></script>
+    
     <!-- amchart js -->
     <!-- <script src="https://www.amcharts.com/lib/3/amcharts.js"></script> -->
-    <script src="assets/pages/widget/amchart/gauge.js"></script>
+    <!-- <script src="assets/pages/widget/amchart/gauge.js"></script>
     <script src="assets/pages/widget/amchart/serial.js"></script>
     <script src="assets/pages/widget/amchart/light.js"></script>
-    <script src="assets/pages/widget/amchart/pie.min.js"></script>
+    <script src="assets/pages/widget/amchart/pie.min.js"></script> -->
+
     <!-- <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script> -->
     <!-- Icon/Fontawesom -->
     <script src="assets/icon/font-awesome/js/all.min.js"></script>
+    
+    <!-- Morris Chart js -->
+    <script src="assets/js/raphael/raphael.min.js"></script>
+    <script src="assets/js/morris.js/morris.js"></script>
+
 
     <!-- DataTables -->
     <script src="assets/datatable-pack/datables/dataTables.min.js"></script>

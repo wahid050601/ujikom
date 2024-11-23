@@ -49,11 +49,11 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-2">
-                        <button type="button" class="btn btn-primary btn-mini rounded btn-disabled" disabled id="btn-cicilan" title="Pembayaran Cicilan"><i class="far fa-copy"></i></button>
-                        <button type="button" class="btn btn-primary btn-mini rounded btn-disabled" disabled id="btn-lunas" title="Pembayaran Lunas"><i class="far fa-sticky-note"></i></button>
+                    <div class="col-lg-3">
+                        <button type="button" class="btn btn-primary btn-mini rounded btn-disabled" disabled id="btn-cicilan" data-toggle="tooltip" data-placement="top" title="Pembayaran Cicilan"><i class="far fa-copy"></i></button>
+                        <button type="button" class="btn btn-primary btn-mini rounded btn-disabled" disabled id="btn-lunas" data-toggle="tooltip" data-placement="top" title="Pembayaran Lunas"><i class="far fa-sticky-note"></i></button>
                     </div>
-                    <div class="col-lg-10">
+                    <div class="col-lg-9">
                         <span style="color: red; font-style: italic; font-size: 10px; display: contents;" class="note-metode-pem"><i class="fas fa-arrow-left"></i>&nbsp; Pilih metode pembayaran</span>
                         <div class="show-form-pem">
                             <!-- FORM HERE -->
@@ -169,6 +169,9 @@
             placeholder: '__pilih pembayaran__',
             theme: "classic"
         });
+
+        // ToolTips
+        $('button[data-toggle="tooltip"]').tooltip();
     });
 
 

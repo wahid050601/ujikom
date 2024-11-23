@@ -138,7 +138,7 @@
                 } catch (Exception $th) {
                     echo json_encode([
                         "status" => "error",
-                        "info" => $th
+                        "info" => $th->getMessage()
                     ]);
                 }
                 break;

@@ -9,7 +9,7 @@
         <button class="btn btn-primary btn-mini rounded" id="btnAdd"><i class="fas fa-plus"></i>&nbsp; add</button>
         <button class="btn btn-primary btn-mini rounded" id="btnEdit"><i class="fas fa-pencil-alt"></i>&nbsp; edit</button>
         <button class="btn btn-primary btn-mini rounded" id="btnDell"><i class="fas fa-trash"></i>&nbsp; delete</button>
-        <button class="btn btn-success btn-mini rounded"><i class="fas fa-download"></i>&nbsp; download</button>
+        <!-- <button class="btn btn-success btn-mini rounded"><i class="fas fa-download"></i>&nbsp; download</button> -->
 
         <div class="data-content mt-3">
             <table id="tb-siswa" class="table table-bordered table-xs" style="width:100%">

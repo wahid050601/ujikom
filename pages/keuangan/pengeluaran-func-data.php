@@ -95,7 +95,7 @@ if(isset($action)){
                 $total =  $satuan * $qty;
                 $ket = $_POST["ket"];
 
-                $insertLaporan = "insert into tb_lap_pengeluaran values (null, $idlaporan, '$kategori', '$nama_pengeluaran', $qty, $satuan, $total, '$ket')";
+                $insertLaporan = "insert into tb_lap_pengeluaran values (null, $idlaporan, '$kategori', '$nama_pengeluaran', $qty, $satuan, $total, '$ket', now())";
                 $procIns = mysqli_query($koneksi, $insertLaporan);
 
                 if($procIns == true){
