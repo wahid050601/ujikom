@@ -1,7 +1,7 @@
 <?php
 // require_once '../../mpdf/vendor/autoload.php';
 require "../connection/conn.php";
-include "../plugins/dompdf/vendor/autoload.php";
+require_once "../plugins/vendor/autoload.php";
 
 // Local Variable Set
 $idsiswa = $_GET["idsiswa"];
@@ -44,8 +44,9 @@ $RomanMonth = [
 $month = $RomanMonth[date('m')];
 
 
-// reference the Dompdf namespace
+// reference the Dompdf namespasce
 use Dompdf\Dompdf;
+use Dompdf\Options;
 
 // instantiate and use the dompdf class
 $dompdf = new Dompdf();
