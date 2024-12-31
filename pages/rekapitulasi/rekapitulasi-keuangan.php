@@ -40,8 +40,8 @@
                     <div class="col-lg-8">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-file-pdf"></i> PDF</button>
-                                <hr>
+                                <!-- <button type="button" class="btn btn-primary btn-sm"><i class="fas fa-file-pdf"></i> PDF</button>
+                                <hr> -->
                                 <div class="note-laporan text-center h5 mt-3">
                                     <i class="fas fa-exclamation-circle"></i>&nbsp; silahkan config laporan terlebih dahulu
                                 </div>
@@ -168,10 +168,11 @@
                                 <th>Keterangan</th>
                                 <th>Pemasukan</th>
                                 <th>Pengeluaran</th>
-                                <th>Saldo</th>
                             </tr>
                         </thead>
                         <tbody>`;
+
+                        // <th>Saldo</th>
 
                         $.each(data.rekapitulasi, function(id,val) {
                             tableSet += `
@@ -181,9 +182,9 @@
                                 <td>${val.keterangan}</td>
                                 <td>${val.pemasukan}</td>
                                 <td>${val.pengeluaran}</td>
-                                <td>${val.saldo}</td>
                             </tr>`;
-                        });            
+                        });         
+                        // <td>${val.saldo}</td>   
                         tableSet += `
                         </tbody>
                         </table>`;

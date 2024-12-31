@@ -17,20 +17,20 @@
     <!-- Google font-->
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet"> -->
     <!-- waves.css -->
-    <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../assets/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="../assets/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify icon -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="../assets/icon/themify-icons/themify-icons.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" type="text/css" href="assets/icon/font-awesome/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/icon/font-awesome/css/all.min.css">
     <!-- scrollbar.css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/jquery.mCustomScrollbar.css">
 
     <!-- DataTables Pack -->
-    <link rel="stylesheet" href="assets/datatable-pack/datables/dataTables.min.css">
+    <!-- <link rel="stylesheet" href="assets/datatable-pack/datables/dataTables.min.css">
     <link rel="stylesheet" href="assets/datatable-pack/autofill/autoFill.bootstrap4.min.css">
     <link rel="stylesheet" href="assets/datatable-pack/buttons/buttons.bootstrap4.min.css">
     <link rel="stylesheet" href="assets/datatable-pack/colreorders/colReorder.bootstrap4.min.css">
@@ -39,17 +39,17 @@
     <link rel="stylesheet" href="assets/datatable-pack/scrollers/scroller.bootstrap4.min.css">
     <link rel="stylesheet" href="assets/datatable-pack/scrollers/scroller.bootstrap4.min.css">
     <link rel="stylesheet" href="assets/datatable-pack/searchbuilders/searchBuilder.bootstrap4.min.css">
-    <link rel="stylesheet" href="assets/datatable-pack/selects/select.dataTables.min.css">
+    <link rel="stylesheet" href="assets/datatable-pack/selects/select.dataTables.min.css"> -->
 
 
     <!-- Sweet Alert -->
-    <link rel="stylesheet" href="assets/sweetalert/sweetalert2.min.css">
+    <link rel="stylesheet" href="../assets/sweetalert/sweetalert2.min.css">
     <!-- Select2 -->
-    <link rel="stylesheet" href="assets/select2/select2.css">
+    <link rel="stylesheet" href="../assets/select2/select2.css">
     <!-- am chart export.css -->
     <!-- <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" /> -->
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 </head>
 
 <body themebg-pattern="theme1">
@@ -118,26 +118,20 @@
                         <form class="md-float-material form-material">
                             <div class="text-center">
                                 <!-- <img src="assets/images/logo.png" alt="logo.png"> -->
-                                 <div class="h4 text-white">SISTEM ADMINISTRASI KEUANGAN</div>
+                                 <div class="h4 text-white">INFORMASI PEMBAYARAN SISWA</div>
                                  <div class="h3 text-white">SMK AD-DA'WAH</div>
-                                 <div><img src="assets/images/Logo-ad.png" alt="ad" width="50"></div>
                             </div>
                             <div class="auth-box card">
                                 <div class="card-block">
                                     <div class="row m-b-20">
                                         <div class="col-md-12">
-                                            <h3 class="text-center">Log-in</h3>
+                                            <h3 class="text-center">Cek Pembayaran</h3>
                                         </div>
                                     </div>
                                     <div class="form-group form-primary">
-                                        <input type="text" name="users" class="form-control" id="users">
+                                        <input type="text" name="nis" class="form-control" id="nis" placeholder="16.0000">
                                         <span class="form-bar"></span>
-                                        <label class="float-label"><i class="fas fa-user"></i>&nbsp; Username</label>
-                                    </div>
-                                    <div class="form-group form-primary">
-                                        <input type="password" name="pass" class="form-control" id="pass">
-                                        <span class="form-bar"></span>
-                                        <label class="float-label"><i class="fas fa-lock"></i>&nbsp; Password</label>
+                                        <label class="float-label"><i class="fas fa-user"></i>&nbsp; Nomor Induk (NIK)</label>
                                     </div>
                                     <!-- <div class="row m-t-25 text-left">
                                         <div class="col-12">
@@ -152,7 +146,7 @@
                                     </div> -->
                                     <div class="row m-t-30">
                                         <div class="col-md-12">
-                                            <button type="button" id="login-btn" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Sign in</button>
+                                            <button type="button" id="login-btn" class="btn btn-primary btn-md btn-block waves-effect waves-light text-center m-b-20">Submit</button>
                                         </div>
                                     </div>
                                     <hr/>
@@ -168,35 +162,70 @@
         <!-- end of container-fluid -->
     </section>
 
+
+    <!-- MODAL -->
+    <div class="modal fade" id="regisModal" tabindex="-1" role="dialog" aria-labelledby="regisModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title" id="regisModalLabel"><i class="fas fa-user"></i>&nbsp; <span class="title">INFORMSI PEMBAYARAN SISWA</span></span>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>Nama Siswa : <span class="siswa"></span></div>
+                    <div>Nis : <span class="nis"></span></div>
+                    <div>Kelas : <span class="kelas"></span></div>
+                    <div>Prodi : <span class="prodi"></span></div>
+                    <hr>
+                    
+                    <div class="alert alert-warning notice bg-warning text-dark" role="alert">
+                        Siswa belum melakukan pembayaran
+                    </div>
+
+                    <div class="show-data"></div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm rounded" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+                    <!-- <button type="submit" class="btn btn-primary btn-sm rounded" id="regissiswa"><i class="fas fa-save"></i> <span>Save</span> </button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- Required Jquery -->
-    <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/jquery-ui/jquery-ui.min.js "></script>
-    <script type="text/javascript" src="assets/js/popper.js/popper.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap/js/bootstrap.min.js "></script>
-    <script type="text/javascript" src="assets/pages/widget/excanvas.js "></script>
+    <script type="text/javascript" src="../assets/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="../assets/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="../assets/pages/widget/excanvas.js "></script>
     <!-- waves js -->
-    <script src="assets/pages/waves/js/waves.min.js"></script>
+    <script src="../assets/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="assets/js/jquery-slimscroll/jquery.slimscroll.js "></script>
+    <script type="text/javascript" src="../assets/js/jquery-slimscroll/jquery.slimscroll.js "></script>
     <!-- modernizr js -->
-    <script type="text/javascript" src="assets/js/modernizr/modernizr.js "></script>
+    <script type="text/javascript" src="../assets/js/modernizr/modernizr.js "></script>
     <!-- slimscroll js -->
-    <script type="text/javascript" src="assets/js/SmoothScroll.js"></script>
-    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script type="text/javascript" src="../assets/js/SmoothScroll.js"></script>
+    <script src="../assets/js/jquery.mCustomScrollbar.concat.min.js "></script>
     <!-- Chart js -->
-    <script type="text/javascript" src="assets/js/chart.js/Chart.js"></script>
+    <script type="text/javascript" src="../assets/js/chart.js/Chart.js"></script>
     <!-- amchart js -->
     <!-- <script src="https://www.amcharts.com/lib/3/amcharts.js"></script> -->
-    <script src="assets/pages/widget/amchart/gauge.js"></script>
-    <script src="assets/pages/widget/amchart/serial.js"></script>
-    <script src="assets/pages/widget/amchart/light.js"></script>
-    <script src="assets/pages/widget/amchart/pie.min.js"></script>
+    <script src="../assets/pages/widget/amchart/gauge.js"></script>
+    <script src="../assets/pages/widget/amchart/serial.js"></script>
+    <script src="../assets/pages/widget/amchart/light.js"></script>
+    <script src="../assets/pages/widget/amchart/pie.min.js"></script>
     <!-- <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script> -->
     <!-- Icon/Fontawesom -->
-    <script src="assets/icon/font-awesome/js/all.min.js"></script>
+    <script src="../assets/icon/font-awesome/js/all.min.js"></script>
 
     <!-- DataTables -->
-    <script src="assets/datatable-pack/datables/dataTables.min.js"></script>
+    <!-- <script src="assets/datatable-pack/datables/dataTables.min.js"></script>
     <script src="assets/datatable-pack/datables/dataTables.bootstrap4.min.js"></script>
     <script src="assets/datatable-pack/autofill/dataTables.autoFill.min.js"></script>
     <script src="assets/datatable-pack/autofill/autoFill.bootstrap4.min.js"></script>
@@ -212,55 +241,63 @@
     <script src="assets/datatable-pack/scrollers/dataTables.scroller.min.js"></script>
     <script src="assets/datatable-pack/searchbuilders/dataTables.searchBuilder.min.js"></script>
     <script src="assets/datatable-pack/searchbuilders/searchBuilder.bootstrap4.min.js"></script>
-    <script src="assets/datatable-pack/selects/dataTables.select.min.js"></script>
+    <script src="assets/datatable-pack/selects/dataTables.select.min.js"></script> -->
 
     <!-- Sweet Alert -->
-    <script src="assets/sweetalert/sweetalert2.all.min.js"></script>
+    <script src="../assets/sweetalert/sweetalert2.all.min.js"></script>
     <!-- Select2 -->
-    <script src="assets/select2/select2.js"></script>
+    <script src="../assets/select2/select2.js"></script>
     <!-- menu js -->
-    <script src="assets/js/pcoded.min.js"></script>
-    <script src="assets/js/vertical-layout.min.js "></script>
+    <script src="../assets/js/pcoded.min.js"></script>
+    <script src="../assets/js/vertical-layout.min.js "></script>
     <!-- custom js -->
-    <script type="text/javascript" src="assets/pages/dashboard/custom-dashboard.js"></script>
-    <script type="text/javascript" src="assets/js/script.js "></script>
+    <script type="text/javascript" src="../assets/pages/dashboard/custom-dashboard.js"></script>
+    <script type="text/javascript" src="../assets/js/script.js "></script>
 
 
     <script>
         $('#login-btn').on('click', function(){
-            let users = $('#users').val();
-            let pass = $('#pass').val();
-
-            if(users == ''){
+            let nis = $('#nis').val();
+            if(nis == ''){
                 Swal.fire({
                     title: "warning",
-                    text: "Username harus diisi",
-                    icon: "warning",
-                });
-            }else if(pass == ''){
-                Swal.fire({
-                    title: "warning",
-                    text: "Password harus diisi",
+                    text: "Nomor Induk harus diisi",
                     icon: "warning",
                 });
             }else{
                 $.ajax({
-                    url: 'login-act.php',
+                    url: 'login-siswa.php',
                     method: 'post',
                     dataType: 'json',
                     data: {
                         'action': 'login',
-                        'username': users,
-                        'password': pass
+                        'nis': nis,
                     },
                     success: function(logins){
                         if(logins.status == 'success'){
-                            localStorage.setItem('loginToken',users + pass);
-                            console.log(logins);
-                            localStorage.setItem('user', logins.user.nama_adm);
-                            localStorage.setItem('id', logins.user.id_adm);
+                            // localStorage.setItem('nis', nis);
+                            $('.siswa').html(logins.siswa.nama_siswa);
+                            $('.nis').html(logins.siswa.nis_siswa);
+                            $('.kelas').html(logins.siswa.kls_siswa);
+                            $('.prodi').html(logins.siswa.prod_siswa);
 
-                            window.location.href = "/apps1/";
+                            if(logins.bayaran.length == 0){
+                                $('.notice').show();
+                                $('.show-data').hide();
+                            }else{
+                                $('.notice').hide();
+
+                                let pembayaran = '<ul class="list-group">';
+                                $.each(logins.bayaran, function(id,val){
+                                    pembayaran += '<li class="list-group-item">'+ val.pem +' &nbsp; <i class="fas fa-check"></i></li>';
+                                });
+                                pembayaran += '</ul>';
+                                $('.show-data').html(pembayaran);
+                                $('.show-data').show();
+
+                            }
+
+                            $('#regisModal').modal('show');
                         }else if(logins.status == 'error'){
 
                             Swal.fire({

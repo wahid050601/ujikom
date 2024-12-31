@@ -94,7 +94,7 @@
                         <li class="list-group-item">
                             <div class="d-flex justify-content-between">
                                 <span><i class="fas fa-th-list"></i> History Pembayaran Siswa/i</span>
-                                <span><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> download</button></span>
+                                <!-- <span><button type="button" class="btn btn-primary btn-sm"><i class="fas fa-cloud-download-alt"></i> download</button></span> -->
                             </div>
                         </li>
                         <li class="list-group-item">

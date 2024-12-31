@@ -146,7 +146,7 @@ font-size: 30px;
                             <i class="ti-menu"></i>
                         </a>
                         <a href="index.php">
-                            <img class="img-fluid" src="assets/images/logo-apps.png" alt="Theme-Logo" width="100px" />
+                            <img class="img-fluid" src="assets/images/logo-apps-new.png" alt="Theme-Logo" width="100px" />
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
@@ -167,19 +167,20 @@ font-size: 30px;
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="assets/images/wahid.JPG" class="img-radius" alt="User-Profile-Image">
-                                    <span>Wahid Prayogo</span>
+                                    <img src="assets/images/avatar-blank.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <!-- USER -->
+                                    <span class="user-set"></span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
-                                    <li class="waves-effect waves-light">
+                                    <!-- <li class="waves-effect waves-light">
                                         <a href="#!"><i class="ti-settings"></i> Settings</a>
                                     </li>
                                     <li class="waves-effect waves-light">
                                         <a href="user-profile.html"><i class="ti-user"></i> Profile</a>
-                                    </li>
+                                    </li> -->
                                     <li class="waves-effect waves-light">
-                                        <a href="auth-normal-sign-in.html"><i class="ti-power-off"></i> Logout</a>
+                                        <a href="#" id="logout"><i class="ti-power-off"></i> Logout</a>
                                     </li>
                                 </ul>
                             </li>
@@ -195,16 +196,17 @@ font-size: 30px;
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="assets/images/wahid.JPG" alt="User-Profile-Image">
+                                    <img class="img-80 img-radius" src="assets/images/avatar-blank.jpg" alt="User-Profile-Image">
                                     <div class="user-details">
-                                        <span id="more-details">Wahid Prayogo</span>
+                                        <span id="more-details"></span>
                                     </div>
                                 </div>
 
                             </div>
                             <!-- MENU -->
                             <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"></div>
-                            <ul class="pcoded-item pcoded-left-item">
+
+                            <ul class="pcoded-item pcoded-left-item" id="pembayaran">
                                 <li class="active">
                                     <a href="#" onclick="HtmlLoad('pages/pembayaran/pembayaran.php')" class="waves-effect waves-dark">
                                         <span class="pcoded-micon mt-2 mb-2"><i class="fas fa-signature"></i></i><b>P</b></span>
@@ -225,10 +227,10 @@ font-size: 30px;
                                     </a>
                                 </li>
                             </ul>
-                            
+
                             <!-- User Management -->
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"><i class="fas fa-users-cog"></i> User Management</div>
-                            <ul class="pcoded-item pcoded-left-item">
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"><i class="fas fa-users-cog" id="user-mgm"></i> User Management</div>
+                            <ul class="pcoded-item pcoded-left-item" id="user-mgm-sc">
                                 <li class="">
                                     <a href="#" onclick="HtmlLoad('pages/user/user.php')" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-genderless"></i><b>D</b></span>
@@ -331,6 +333,7 @@ font-size: 30px;
                                     </ul>
                                 </li>
                             </ul>
+
                         </div>
                     </nav>
                     
@@ -420,12 +423,36 @@ font-size: 30px;
 
     <script>
 
+        // LOGOUT
+        $('#logout').on('click', function(){
+            localStorage.removeItem('loginToken');
+            localStorage.removeItem('user');
+            window.location.href = "/apps1/login.php";
+        });
+
         // Login check
         var tokenLogin = localStorage.getItem('loginToken');
+        var user = localStorage.getItem('user');
         if(tokenLogin == null){
-            alert('Token login tidak ada');
+            // alert('Token login tidak ada')
+            window.location.href = "/apps1/login.php";
         }else{
-            alert('Token : ' + tokenLogin);
+            // alert('Token : ' + tokenLogin);
+            $('#more-details').text(user);
+
+
+            $.ajax({
+                url: 'login-act.php',
+                method: 'post',
+                dataType: 'json',
+                data: {
+                    'action': 'getmenus',
+                    'id': localStorage.getItem('id')
+                },
+                success: function(menus){
+
+                }
+            })
         }
         
         // Load URL PAGES
@@ -445,7 +472,15 @@ font-size: 30px;
             $('#mn-'+ idbtn).removeClass('btn-primary').addClass('btn-danger');
         }
 
+
+        function loadMenus(){
+            $('.menus-entry').empty();
+            $('.menus-entry').load('pages/menus/menus.php');
+        }
+
         $(document).ready(function(){
+            loadMenus();
+
             $.ajax({
                 url: "pages/dashboard/dashboard.php",
                 success: function(page){

@@ -75,6 +75,29 @@ if(isset($_POST["action"])){
                 email_adm = '$email',
                 sts_akun_adm = $statusakun,
                 role_adm = '$role' where id_adm = $iduser";
+
+
+                // Get data exist
+                $getExist = "select * from tb_admin where id_adm = ". $iduser;
+                $execGet = mysqli_query($koneksi, $getExist);
+                $usr = mysqli_fetch_assoc($execGet);
+
+                if($usr["role_adm"] != $role){
+                    // Inser to role menu access
+                    $roleInsert = "update tb_menu_access set ";
+                    if($role == "kepsek"){
+                        $roleInsert .= "pembayaran = 0,konfig_user = 0,dt_siswa_aktif = 0,td_siswa_nonaktif = 0,rombel_prodi = 0,kat_pembayaran = 0,catatan_pemasukan = 1,catatan_pengeluaran = 1,rekap_keuangan = 1,rekap_pembayaran = 1";
+                    }elseif($role == "bendahara"){
+                        $roleInsert .= "pembayaran = 0,konfig_user = 0,dt_siswa_aktif = 0,td_siswa_nonaktif = 0,rombel_prodi = 0,kat_pembayaran = 1,catatan_pemasukan = 1,catatan_pengeluaran = 1,rekap_keuangan = 1,rekap_pembayaran = 1";
+                    }elseif($role == "tu"){
+                        $roleInsert .= "pembayaran = 1,konfig_user = 0,dt_siswa_aktif = 0,td_siswa_nonaktif = 0,rombel_prodi = 0,kat_pembayaran = 0,catatan_pemasukan = 1,catatan_pengeluaran = 1,rekap_keuangan = 0,rekap_pembayaran = 0";
+                    }else{
+                        $roleInsert .= "pembayaran = 1,konfig_user = 1,dt_siswa_aktif = 1,td_siswa_nonaktif = 1,rombel_prodi = 1,kat_pembayaran = 1,catatan_pemasukan = 1,catatan_pengeluaran = 1,rekap_keuangan = 1,rekap_pembayaran = 1";
+                    }
+                    $roleInsert .= " where admin_id = ". $iduser;
+                    error_log("========= ". $roleInsert ."===============");
+                    $execRole = mysqli_query($koneksi, $roleInsert);
+                }
                 
                 mysqli_query($koneksi, $updateQuery);
 

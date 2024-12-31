@@ -9,6 +9,7 @@
         <button class="btn btn-primary btn-mini rounded" id="btnAdd"><i class="fas fa-plus"></i>&nbsp; add</button>
         <button class="btn btn-primary btn-mini rounded" id="btnEdit"><i class="fas fa-pencil-alt"></i>&nbsp; edit</button>
         <button class="btn btn-primary btn-mini rounded" id="btnDell"><i class="fas fa-trash"></i>&nbsp; delete</button>
+        <button class="btn btn-primary btn-mini rounded" id="btnRegis"><i class="fas fa-cogs"></i>&nbsp; register</button>
         <!-- <button class="btn btn-success btn-mini rounded"><i class="fas fa-download"></i>&nbsp; download</button> -->
 
         <div class="data-content mt-3">
@@ -312,6 +313,33 @@
     </div>
 </div>
 
+<!-- Modal Register -->
+<div class="modal fade" id="regisModal" tabindex="-1" role="dialog" aria-labelledby="regisModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title" id="regisModalLabel"><i class="fas fa-cogs"></i>&nbsp; <span class="title">Register Data Siswa</span></span>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span>Nama Siswa : </span><span class="siswa-regis"></span>
+                <hr>
+                <select name="sl-regis-siswa" id="sl-regis-siswa" class="custom-select" style="width: 100%;">
+                    <option value="">_pilih register_</option>
+                    <option value="aktif">Aktif</option>
+                    <option value="non-aktif">No-Aktif</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm rounded" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+                <button type="submit" class="btn btn-primary btn-sm rounded" id="regissiswa"><i class="fas fa-save"></i> <span>Save</span> </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <script>
@@ -458,7 +486,6 @@
         });
 
 
-
         // Delete data Siswa
         $('#btnDell').on('click', function(){
             if($('table#tb-siswa tr.selected').length > 0){
@@ -505,6 +532,65 @@
                 });
             }
         });
+
+
+        // Register Data Siswa
+        $('#btnRegis').on('click', function(){
+            let siswa = ($('tr.selected').data('siswa')).split('|');
+            
+            $('.siswa-regis').html(siswa[0]);
+            $('#sl-regis-siswa').val(siswa[1]);
+            $('#regisModal').modal('show');
+        });
+
+        $('#regissiswa').on('click', function(){
+            if($('#sl-regis-siswa').val() == 'non-aktif'){
+                $('#regisModal').modal('hide');
+                Swal.fire({
+                    title: 'Register',
+                    text: 'Ingin mengubah status regis siswa ?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: "yes"
+                }).then((result) => {
+                    if(result.isConfirmed){
+
+                        $.ajax({
+                            url: "pages/siswa/siswa-func.php",
+                            method: 'post',
+                            dataType: 'json',
+                            data: {
+                                "action": "regis",
+                                "idsiswa": $('tr.selected').data('id'),
+                                "status": $('#sl-regis-siswa').val()
+                            },
+                            success: function(msg){
+                                if(msg.status == 'success'){
+                                    Swal.fire({
+                                        title: msg.status,
+                                        text: msg.info,
+                                        icon: msg.status
+                                    }).then((ok) => {
+                                        $('.show-page').empty();
+                                        $('.show-page').load('pages/siswa/siswa.php');
+                                    });
+                                }
+                            }
+                        });
+    
+                    }else{
+                        $('#regisModal').modal('show');
+                    }
+                });
+            }else{
+                $('#regisModal').modal('hide');
+                Swal.fire({
+                    title: 'warning',
+                    text: 'Tidak ada perubahan status regis',
+                    icon: 'warning'
+                });
+            }
+        });
    });
 
    function loadDataSiswa(){
@@ -521,7 +607,7 @@
 
                 $.each(datas.datatable.data, function(id,val){
                     datatablesiswa +=`
-                    <tr data-id="${val.id}">
+                    <tr data-id="${val.id}" data-siswa="${val.nama_siswa}|${val.status_siswa}">
                         <th>${number++}</th>
                         <!--<td>${val.btn}</td>-->
                         <td>${val.nis_siswa}</td>

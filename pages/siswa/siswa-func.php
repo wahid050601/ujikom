@@ -132,7 +132,29 @@
                     ]);
                 }
             break;
+            
+            case "regis" :
+                try {
+                    
+                    $idSiswa = $_POST["idsiswa"];
+                    $status = $_POST["status"];
 
+                    $updtRegis = "update tb_siswa set status_siswa = '$status' where id = ". $idSiswa;  
+                    $exec = mysqli_query($koneksi, $updtRegis);
+
+                    $status_ex = $exec == '1' ? "success" : "failed";
+                    echo json_encode([
+                        "status" => $status_ex,
+                        "info" => "Data siswa ". $status_ex ." diregister"
+                    ]);
+
+                } catch (\Throwable $th) {
+                    echo json_encode([
+                        "status" => "error",
+                        "info" => $th->getMessage()
+                    ]);
+                }
+            break;
         }
     }
     
