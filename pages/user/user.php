@@ -769,6 +769,7 @@
                             <th>No.Telp</th>
                             <th>E-Mail</th>
                             <th>User ID</th>
+                            <th>Role Akun</th>
                             <th>Status</th>
                         </tr>
                     </thead>
@@ -777,6 +778,18 @@
                     $.each(users.data_user, function(id,val){
 
                         let status = val.sts_akun_adm == '1' ? '<span class="badge badge-success">active</span>' : '<span class="badge badge-danger">disable</span>';
+                        let role_akun = '';
+                        if(val.role_adm == 'tu'){
+                            role_akun = 'Tata Usaha';
+                        }else if(val.role_adm == 'kepsek'){
+                            role_akun = 'Kepala Sekolah';
+                        }else if(val.role_adm == 'bendahara'){
+                            role_akun = 'Bendahara';
+                        }else{
+                            role_akun = 'Administrator'
+                        }
+
+
                         listUser += `
                         <tr data-iduser="${val.id_adm}">
                             <th>${nums}</th>
@@ -784,6 +797,7 @@
                             <td>${val.tlp_adm}</td>
                             <td>${val.email_adm}</td>
                             <td>${val.user_adm}</td>
+                            <td>${role_akun}</td>
                             <td>${status}</td>
                         </tr>`;
 

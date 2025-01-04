@@ -167,7 +167,7 @@ font-size: 30px;
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="assets/images/avatar-blank.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <img src="assets/images/user-blank.webp" class="img-radius" alt="User-Profile-Image">
                                     <!-- USER -->
                                     <span class="user-set"></span>
                                     <i class="ti-angle-down"></i>
@@ -175,10 +175,10 @@ font-size: 30px;
                                 <ul class="show-notification profile-notification">
                                     <!-- <li class="waves-effect waves-light">
                                         <a href="#!"><i class="ti-settings"></i> Settings</a>
-                                    </li>
+                                    </li> -->
                                     <li class="waves-effect waves-light">
                                         <a href="user-profile.html"><i class="ti-user"></i> Profile</a>
-                                    </li> -->
+                                    </li>
                                     <li class="waves-effect waves-light">
                                         <a href="#" id="logout"><i class="ti-power-off"></i> Logout</a>
                                     </li>
@@ -196,7 +196,7 @@ font-size: 30px;
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="">
                                 <div class="main-menu-header">
-                                    <img class="img-80 img-radius" src="assets/images/avatar-blank.jpg" alt="User-Profile-Image">
+                                    <img class="img-80 img-radius" src="assets/images/user-blank.webp" alt="User-Profile-Image">
                                     <div class="user-details">
                                         <span id="more-details"></span>
                                     </div>
@@ -206,7 +206,7 @@ font-size: 30px;
                             <!-- MENU -->
                             <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"></div>
 
-                            <ul class="pcoded-item pcoded-left-item" id="pembayaran">
+                            <ul class="pcoded-item pcoded-left-item" id="mn-pembayaran">
                                 <li class="active">
                                     <a href="#" onclick="HtmlLoad('pages/pembayaran/pembayaran.php')" class="waves-effect waves-dark">
                                         <span class="pcoded-micon mt-2 mb-2"><i class="fas fa-signature"></i></i><b>P</b></span>
@@ -229,8 +229,8 @@ font-size: 30px;
                             </ul>
 
                             <!-- User Management -->
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"><i class="fas fa-users-cog" id="user-mgm"></i> User Management</div>
-                            <ul class="pcoded-item pcoded-left-item" id="user-mgm-sc">
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation" id="mn-user-mgm"><i class="fas fa-users-cog"></i> User Management</div>
+                            <ul class="pcoded-item pcoded-left-item" id="mn-user-mgm-sc">
                                 <li class="">
                                     <a href="#" onclick="HtmlLoad('pages/user/user.php')" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-genderless"></i><b>D</b></span>
@@ -241,23 +241,23 @@ font-size: 30px;
                             </ul>
 
                             <!-- Akademik -->
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"><i class="fas fa-graduation-cap"></i> Akademik</div>
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation" id="mn-akademik"><i class="fas fa-graduation-cap"></i> Akademik</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu">
+                                <li class="pcoded-hasmenu" id="mn-akademik-siswa">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fas fa-genderless"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Data Siswa</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li class=" ">
+                                        <li class="" id="mn-akademik-siswa-act">
                                             <a href="#" onclick="HtmlLoad('pages/siswa/siswa.php')" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Siswa Aktif</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class=" ">
+                                        <li class="" id="mn-akademik-siswa-non">
                                             <a href="#" onclick="HtmlLoad('pages/siswa/siswa-non.php')" class="waves-effect waves-dark" id="mn-siswa-nonaktif">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Siswa Nonaktif</span>
@@ -266,7 +266,7 @@ font-size: 30px;
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="">
+                                <li class="" id="mn-akademik-rombel">
                                     <a href="#" onclick="HtmlLoad('pages/rombel/rombel.php')" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fas fa-genderless"></i><b>R</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Rombel & Prodi</span>
@@ -277,30 +277,30 @@ font-size: 30px;
                             <!-- end MENU -->
 
                             <!-- Managemen pembayaran -->
-                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation"><i class="fas fa-book"></i> Administrasi</div>
+                            <div class="pcoded-navigation-label" data-i18n="nav.category.navigation" id="mn-administrasi"><i class="fas fa-book"></i> Administrasi</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="">
+                                <li class="" id="mn-adm-kat-pembayaran">
                                     <a href="#" onclick="HtmlLoad('pages/adm-katg/adm-katg.php')" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fas fa-genderless"></i><b>D</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Kategori Pembayaran</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="pcoded-hasmenu">
+                                <li class="pcoded-hasmenu" id="mn-adm-keuangan">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fas fa-genderless"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Keuangan</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li class=" ">
+                                        <li class="" id="mn-adm-keuangan-pemasukan">
                                             <a href="#" onclick="HtmlLoad('pages/keuangan/pemasukan.php')" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Catatan Pemasukan</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class=" ">
+                                        <li class="" id="mn-adm-keuangan-keluaran">
                                             <a href="#" onclick="HtmlLoad('pages/keuangan/pengeluaran.php')" class="waves-effect waves-dark" id="mn-siswa-nonaktif">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Catatan Pengeluaran</span>
@@ -309,21 +309,21 @@ font-size: 30px;
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="pcoded-hasmenu">
+                                <li class="pcoded-hasmenu" id="mn-adm-rekap">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fas fa-genderless"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Rekapitulasi</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                     <ul class="pcoded-submenu">
-                                        <li class=" ">
+                                        <li class="" id="mn-adm-rekap-keuangan">
                                             <a href="#" onclick="HtmlLoad('pages/rekapitulasi/rekapitulasi-keuangan.php')" class="waves-effect waves-dark">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.alert"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Rekap Keuangan</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class=" ">
+                                        <li class="" id="mn-adm-rekap-pem">
                                             <a href="#" onclick="HtmlLoad('pages/rekapitulasi/rekapitulasi-pembayaran.php')" class="waves-effect waves-dark" id="mn-siswa-nonaktif">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs"><i style="font-size: 8px;" class="fas fa-circle"></i>&nbsp; Rekap Pembayaran</span>
@@ -440,7 +440,7 @@ font-size: 30px;
             // alert('Token : ' + tokenLogin);
             $('#more-details').text(user);
 
-
+            // Config Role Menus
             $.ajax({
                 url: 'login-act.php',
                 method: 'post',
@@ -450,6 +450,139 @@ font-size: 30px;
                     'id': localStorage.getItem('id')
                 },
                 success: function(menus){
+                    // Set menus access
+                    let pembayaran = menus.menu.pembayaran;
+                    let config_user = menus.menu.konfig_user;
+                    let siswa_aktif = menus.menu.dt_siswa_aktif;
+                    let siswa_non = menus.menu.td_siswa_nonaktif;
+                    let rombel_prodi = menus.menu.rombel_prodi;
+                    let kat_pembayaran = menus.menu.kat_pembayaran;
+                    let cat_pemasukan = menus.menu.catatan_pemasukan;
+                    let cat_pengeluaran = menus.menu.catatan_pengeluaran;
+                    let rekap_keuangan = menus.menu.rekap_keuangan;
+                    let rekap_pembayaran = menus.menu.rekap_pembayaran;
+
+                    // Config menus
+                    // === Pembayaran
+                    if(pembayaran == '0'){
+                        $('#mn-pembayaran').hide();
+                    }else{
+                        $('#mn-pembayaran').show();
+                    }
+
+                    // === User Management
+                    if(config_user == '0'){
+                        $('#mn-user-mgm').hide();
+                        $('#mn-user-mgm-sc').hide();
+                    }else{
+                        $('#mn-user-mgm').show();
+                        $('#mn-user-mgm-sc').show();
+                    }
+
+                    // === Akademik
+                    if(siswa_aktif == '0' && siswa_non == '0' && rombel_prodi == '0'){
+                        $('#mn-akademik').hide();
+                        $('#mn-akademik-siswa').hide();
+                        $('#mn-akademik-siswa-act').hide();
+                        $('#mn-akademik-siswa-non').hide();
+                        $('#mn-akademik-rombel').hide();
+                    }else{
+                        $('#mn-akademik').show();
+
+                        if(siswa_aktif == '0' && siswa_non == '0'){
+                            $('#mn-akademik-siswa').hide();
+                            $('#mn-akademik-siswa-act').hide();
+                            $('#mn-akademik-siswa-non').hide();
+                        }else{
+                            $('#mn-akademik-siswa').show();
+
+                            if(siswa_aktif == '0'){
+                                $('#mn-akademik-siswa-act').hide();
+                            }else{
+                                $('#mn-akademik-siswa-act').show();
+                            }
+
+                            if(siswa_non == '0'){
+                                $('#mn-akademik-siswa-non').hide();
+                            }else{
+                                $('#mn-akademik-siswa-non').show();
+                            }
+                        }
+
+                        if(rombel_prodi == '0'){
+                            $('#mn-akademik-rombel').hide();
+                        }else{
+                            $('#mn-akademik-rombel').show();
+                        }
+                    }
+
+                    // === Administrasi
+                    if(kat_pembayaran == '0' && cat_pemasukan == '0' && cat_pengeluaran == '0' && rekap_keuangan == '0' && rekap_pembayaran == '0'){
+                        $('#mn-administrasi').hide();
+                        $('#mn-adm-kat-pembayaran').hide();
+                        $('#mn-adm-keuangan').hide();
+                        $('#mn-adm-keuangan-pemasukan').hide();
+                        $('#mn-adm-keuangan-keluaran').hide();
+                        $('#mn-adm-rekap').hide();
+                        $('#mn-adm-rekap-keuangan').hide();
+                        $('#mn-adm-rekap-pem').hide();
+                    }else{
+                        $('#mn-administrasi').show();
+
+                        if(kat_pembayaran == '0'){
+                            $('#mn-adm-kat-pembayaran').hide();
+                        }else{
+                            $('#mn-adm-kat-pembayaran').show();
+                        }
+
+                        if(cat_pemasukan == '0' && cat_pengeluaran == '0'){
+                            $('#mn-adm-keuangan').hide();
+                            $('#mn-adm-keuangan-pemasukan').hide();
+                            $('#mn-adm-keuangan-keluaran').hide();
+                        }else{
+                            $('#mn-adm-keuangan').show();
+
+                            if(cat_pemasukan == '0'){
+                                $('#mn-adm-keuangan-pemasukan').hide();
+                            }else{
+                                $('#mn-adm-keuangan-pemasukan').show();
+                            }
+
+                            if(cat_pengeluaran == '0'){
+                                $('#mn-adm-keuangan-keluaran').hide();
+                            }else{
+                                $('#mn-adm-keuangan-keluaran').show();
+                            }
+                        }
+
+                        if(rekap_keuangan == '0' && rekap_pembayaran == '0'){
+                            $('#mn-adm-rekap').hide();
+                            $('#mn-adm-rekap-keuangan').hide();
+                            $('#mn-adm-rekap-pem').hide();
+                        }else{
+                            $('#mn-adm-rekap').show();
+
+                            if(rekap_keuangan == '0'){
+                                $('#mn-adm-rekap-keuangan').hide();
+                            }else{
+                                $('#mn-adm-rekap-keuangan').show();
+                            }
+
+                            if(rekap_pembayaran == '0'){
+                                $('#mn-adm-rekap-pem').hide();
+                            }else{
+                                $('#mn-adm-rekap-pem').show();
+                            }
+                        }
+                    }
+                    // mn-administrasi
+                    // mn-adm-kat-pembayaran
+                    // mn-adm-keuangan
+                    // mn-adm-keuangan-pemasukan
+                    // mn-adm-keuangan-keluaran
+                    // mn-adm-rekap
+                    // mn-adm-rekap-keuangan
+                    // mn-adm-rekap-pem
 
                 }
             })

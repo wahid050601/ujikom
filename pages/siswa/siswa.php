@@ -536,11 +536,19 @@
 
         // Register Data Siswa
         $('#btnRegis').on('click', function(){
-            let siswa = ($('tr.selected').data('siswa')).split('|');
-            
-            $('.siswa-regis').html(siswa[0]);
-            $('#sl-regis-siswa').val(siswa[1]);
-            $('#regisModal').modal('show');
+            if($('table#tb-siswa tr.selected').length > 0){
+                let siswa = ($('tr.selected').data('siswa')).split('|');
+                
+                $('.siswa-regis').html(siswa[0]);
+                $('#sl-regis-siswa').val(siswa[1]);
+                $('#regisModal').modal('show');
+            }else{
+                Swal.fire({
+                    title: "warning",
+                    text: "pilih salah satu siswa",
+                    icon: "warning",
+                });
+            }
         });
 
         $('#regissiswa').on('click', function(){

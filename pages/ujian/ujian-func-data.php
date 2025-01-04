@@ -114,17 +114,16 @@
                             "datapem" => $datainfopem,
                             "datasiswa" => $datasiswa
                         ]);
-                    }
 
-
-                    elseif($_POST["trigger"] == "procpem"){
+                    }elseif($_POST["trigger"] == "procpem"){
+                        $idadmin = $_POST["admin"];
                         $idsiswa = $_POST["siswa"];
                         $idpem = $_POST["idpem"];
                         $ketpem = $_POST["ketpem"];
                         $nompem = $_POST["nompem"];
                         $status = $_POST["status"];
 
-                        $qinsDatapem = "insert into tb_pem_ujian values (null,".$idsiswa.", ".$idpem.", 1, '".$ketpem."', ".$nompem.", '".$status."', now())";
+                        $qinsDatapem = "insert into tb_pem_ujian values (null,".$idsiswa.", ".$idpem.", ". $idadmin .", '".$ketpem."', ".$nompem.", '".$status."', now())";
                         $execqinsDatapem = mysqli_query($koneksi, $qinsDatapem);
                         
                         $status = $execqinsDatapem == true ? "success" : "failed";

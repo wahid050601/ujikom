@@ -461,8 +461,13 @@
                             let ccl = stsval.dataval.length + 1;
                             labelstatus += '<span class="label label-primary pem-proc-l" data-ccl="ccl-'+ccl+''+stslunas+'">cicilan-'+ccl+'</span> ';
                         }
+
+                        // Get data validator pembayaran
+                        let user_active = localStorage.getItem('user');
+                        let user = user_active == null ? 'null' : user_active;
+
                         $('.tbu-ketpem').html(labelstatus+ ' ' +labellunas);
-                        $('.tbu-admin').html('<i class="fas fa-user"></i> Vina Elyza');
+                        $('.tbu-admin').html('<i class="fas fa-user"></i> '+ user);
                         
                         // Display table
                         $('.tb-detail-pem').css('display', 'contents');
@@ -502,10 +507,13 @@
     $('#btn-sub-pem').on('click', function(){
         let status_pem = $('table tr td.tbu-ketpem').text().split(' ');
         status_pem = status_pem.length > 2 ? status_pem.pop() : status_pem[0];
+
+        let id_active = localStorage.getItem('id');
         // console.log(status_pem);
         let jasondata = {
             action: "valPemUjian",
             trigger: "procpem",
+            admin: id_active,
             siswa: $('#sl-siswa').val().split('-')[0],
             idpem: $('#sl-pem-ujian').val(),
             ketpem: $('table tr td.tbu-ketpem span.pem-proc-l').data('ccl'),

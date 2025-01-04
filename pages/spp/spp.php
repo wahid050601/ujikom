@@ -63,7 +63,7 @@
                         <tr>
                             <th>Validator</th>
                             <th>:</th>
-                            <td><i class="fas fa-user"></i> <span id="validator-pem" data-idvalidator="1">Vina Elyza</span></td>
+                            <td><i class="fas fa-user"></i> <span id="validator-pem">Vina Elyza</span></td>
                         </tr>
                     </table>
 
@@ -215,6 +215,14 @@
         // LIST DETAIL
         $('.list-detail-spp-siswa').hide();
         $('.spp-null').hide();
+
+        // SET VALIDATOR PEMBAYARAN
+        let user_active = localStorage.getItem('user');
+        let user = user_active == null ? 'null' : user_active;
+        $('#validator-pem').html(user);
+
+        let id_active = localStorage.getItem('id');
+        $('#validator-pem').attr('data-idvalidator', id_active);
 
         // GET DATA SISWA
         $.ajax({
