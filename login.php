@@ -259,6 +259,7 @@
                             console.log(logins);
                             localStorage.setItem('user', logins.user.nama_adm);
                             localStorage.setItem('id', logins.user.id_adm);
+                            localStorage.setItem('role', logins.user.role_adm);
 
                             window.location.href = "/apps1/";
                         }else if(logins.status == 'error'){

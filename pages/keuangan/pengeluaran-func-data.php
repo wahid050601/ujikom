@@ -96,6 +96,7 @@ if(isset($action)){
                 $ket = $_POST["ket"];
 
                 $insertLaporan = "insert into tb_lap_pengeluaran values (null, $idlaporan, '$kategori', '$nama_pengeluaran', $qty, $satuan, $total, '$ket', now())";
+                error_log("=======". $insertLaporan);
                 $procIns = mysqli_query($koneksi, $insertLaporan);
 
                 if($procIns == true){
@@ -114,7 +115,7 @@ if(isset($action)){
             } catch (Exception $th) {
                 echo json_encode([
                     "status" => "error",
-                    "info" => "<span class='text-danger'><i class='fas fa-times'></i> ".json_encode($th)."</span>"
+                    "info" => "<span class='text-danger'><i class='fas fa-times'></i> ".$th->getMessage()."</span>"
                 ]);
             }
         break;

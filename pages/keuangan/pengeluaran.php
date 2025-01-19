@@ -293,6 +293,7 @@
                             "idlap" : idlaporan
                         },
                         success: function(msg){
+                            $('#loading').hide();
                             Swal.fire({
                                 title: msg.status,
                                 text: msg.info,
@@ -368,39 +369,51 @@
     // ==== PROCESS COMMIT
     $('#commit-pengeluaran').on('click', function(){
         $('#processingModal').modal('hide');
-        Swal.fire({
-            title: 'commit laporan',
-            text: 'laporan ini tidak dapat diubah lagi setelah Commit!',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: "ya",
-            cancelButtonText: "tidak"
-        }).then((result) => {
-            if(result.isConfirmed){
-                $('#loading').show();
-                let idlaporan = $('.header-laporan').data('idlaporan');
-                
-                $.ajax({
-                    method: 'post',
-                    url: 'pages/keuangan/pengeluaran-func-data.php',
-                    dataType: 'json',
-                    data: {
-                        "action" : "commitLaporanPengeluaran",
-                        "idlaporan" : idlaporan
-                    },
-                    success: function(msg){
-                        loadLaporanPengeluaran();
-                        Swal.fire({
-                            title: 'berhasil',
-                            text: msg.info,
-                            icon: 'success'
-                        });
-                    }
-                });
-            }else{
+        let roleuser = localStorage.getItem('role');
+
+        if(roleuser == 'kepsek'){
+            Swal.fire({
+                title: 'commit laporan',
+                text: 'laporan ini tidak dapat diubah lagi setelah Commit!',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: "ya",
+                cancelButtonText: "tidak"
+            }).then((result) => {
+                if(result.isConfirmed){
+                    $('#loading').show();
+                    let idlaporan = $('.header-laporan').data('idlaporan');
+                    
+                    $.ajax({
+                        method: 'post',
+                        url: 'pages/keuangan/pengeluaran-func-data.php',
+                        dataType: 'json',
+                        data: {
+                            "action" : "commitLaporanPengeluaran",
+                            "idlaporan" : idlaporan
+                        },
+                        success: function(msg){
+                            loadLaporanPengeluaran();
+                            Swal.fire({
+                                title: 'berhasil',
+                                text: msg.info,
+                                icon: 'success'
+                            });
+                        }
+                    });
+                }else{
+                    $('#processingModal').modal('show');
+                }
+            });
+        }else{
+            Swal.fire({
+                title: 'warning',
+                text: 'Commit hanya bisa dilakukan dengan akun Kepala Sekolah',
+                icon: 'warning',
+            }).then((result) => {
                 $('#processingModal').modal('show');
-            }
-        });
+            });
+        }
     });
 
     // ============= FUNCTION
@@ -518,7 +531,7 @@
                             <td>${val.kat_lap}</td>
                             <td>${val.nama_pengeluaran}</td>
                             <td>${val.hrg_satuan}@${val.qty}</td>
-                            <td>${val.total}</td>
+                            <td>${formatRupiah(val.total)}</td>
                             <td>${val.keterangan}</td>
                         </tr>`;
                     });
@@ -555,4 +568,12 @@
             }
         });
     };
+
+
+    function formatRupiah(number) {
+        return new Intl.NumberFormat('id-ID', { 
+            style: 'currency', 
+            currency: 'IDR' 
+        }).format(number);
+    }
 </script>

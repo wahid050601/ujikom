@@ -611,6 +611,14 @@ font-size: 30px;
             $('.menus-entry').load('pages/menus/menus.php');
         }
 
+
+        function formatRupiah(number) {
+            return new Intl.NumberFormat('id-ID', { 
+                style: 'currency', 
+                currency: 'IDR' 
+            }).format(number);
+        }
+
         $(document).ready(function(){
             loadMenus();
 
