@@ -210,7 +210,7 @@ if(isset($action)){
             try {
                 $kode_prodi = $_POST["kode-prodi"];
                 $nama_prodi = $_POST["nama-prodi"];
-                $kaprodi = $_POST["kaprodi"];
+                $kaprodi = str_replace("'", "''", $_POST["kaprodi"]);
 
 
                 $insProdi = "insert into tb_prodi (code_prodi,nama_prodi,kaprodi)

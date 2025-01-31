@@ -85,5 +85,28 @@ if(isset($_POST["action"])){
             }
         break;
 
+        case "getYears" :
+            try {
+                $SQL = "select DISTINCT YEAR(tgl_pem) as tahun from vw_administrasi_pemasukan";
+
+                $exec = mysqli_query($koneksi, $SQL);
+                $years = [];
+                while($row = mysqli_fetch_assoc($exec)){
+                    $years[] = $row;
+                }
+                
+                echo json_encode([
+                    "status" => "success",
+                    "ydata" => $years,
+                    "info" => "Success get data years"
+                ]);
+
+            } catch (\Throwable $th) {
+                echo json_encode([
+                    "status" => "error",
+                    "info" => $th->getMessage()
+                ]);
+            }
+        break;
     }
 }
