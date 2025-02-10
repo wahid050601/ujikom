@@ -261,7 +261,7 @@
                             localStorage.setItem('id', logins.user.id_adm);
                             localStorage.setItem('role', logins.user.role_adm);
 
-                            window.location.href = "/apps1/";
+                            window.location.href = "/myApps/";
                         }else if(logins.status == 'error'){
 
                             Swal.fire({

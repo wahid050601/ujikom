@@ -10,6 +10,9 @@
         <button class="btn btn-primary btn-mini rounded" id="btnEdit"><i class="fas fa-pencil-alt"></i>&nbsp; edit</button>
         <button class="btn btn-primary btn-mini rounded" id="btnDell"><i class="fas fa-trash"></i>&nbsp; delete</button>
         <button class="btn btn-primary btn-mini rounded" id="btnRegis"><i class="fas fa-cogs"></i>&nbsp; register</button>
+        <button class="btn btn-success btn-mini rounded" id="btnDownload"><i class="fas fa-download"></i>&nbsp; Download Template</button>
+<button class="btn btn-info btn-mini rounded" id="btnImport" data-toggle="modal" data-target="#importModal"><i class="fas fa-file-upload"></i>&nbsp; Import Data</button>
+
         <!-- <button class="btn btn-success btn-mini rounded"><i class="fas fa-download"></i>&nbsp; download</button> -->
 
         <div class="data-content mt-3">
@@ -200,6 +203,28 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="pages/siswa/import.php" method="POST" enctype="multipart/form-data">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importModalLabel">Import Data Siswa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="file" name="file" accept=".xls,.xlsx" required class="form-control">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="import" class="btn btn-info">Import</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
 
 <!-- Modal Edit -->
 <div class="modal fade bd-example-modal-lg" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -649,4 +674,19 @@
             }
         });
    }
+
+   document.getElementById('btnDownload').onclick = function() {
+    window.location.href = 'pages/siswa/export_template.php';
+};
+
+$(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('import') && urlParams.get('import') === 'success') {
+        alert('Data berhasil diimport!');
+        $('#tb-siswa').DataTable().ajax.reload(); // Reload tabel data jika menggunakan DataTables
+    }
+});
+
+
+
 </script>

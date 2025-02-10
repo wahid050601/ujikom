@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -427,7 +428,7 @@ font-size: 30px;
         $('#logout').on('click', function(){
             localStorage.removeItem('loginToken');
             localStorage.removeItem('user');
-            window.location.href = "/apps1/login.php";
+            window.location.href = "/myApps/login.php";
         });
 
         // Login check
@@ -435,7 +436,7 @@ font-size: 30px;
         var user = localStorage.getItem('user');
         if(tokenLogin == null){
             // alert('Token login tidak ada')
-            window.location.href = "/apps1/login.php";
+            window.location.href = "/myApps/login.php";
         }else{
             // alert('Token : ' + tokenLogin);
             $('#more-details').text(user);
